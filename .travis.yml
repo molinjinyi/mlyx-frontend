@@ -15,5 +15,5 @@ script:
 - cd www
 - npm install
 - npm test
-
+- exit
 - docker images
