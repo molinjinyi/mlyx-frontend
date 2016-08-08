@@ -1,15 +1,16 @@
 language: node_js
 
-sudo: false
+sudo: required
 
 node_js:
 - '6.3'
 
 install:
 - npm install pm2 -g
-
-
-script:
-- cd wwww
 - npm install
-- npm test
+
+before_install:
+- cd www
+
+script:npm test
+
