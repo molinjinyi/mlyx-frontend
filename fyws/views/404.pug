@@ -1,0 +1,40 @@
+doctype html
+html(lang='zh-cn')
+  head
+    meta(charset='utf-8')
+    meta(name='author', content='eric tian')
+    meta(name='keywords', content='古剑,古剑奇谭,仙侠,页游')
+    meta(name='description', content='古剑奇谭官网')
+    meta(name='revised', content='2015/11/12')
+    title 找不到页面 - 墨麟集团
+    link(rel='stylesheet' href=config.assets + '/css/404.css')
+  body
+    .container
+      .main.clearfix
+        .content
+          p
+          a.lnk(href='/') 返回官网首页
+    .footer
+      p
+        a(href='http://www.mokylin.com/contact.php', target='_blank') 联系我们
+        | &nbsp;&nbsp;|&nbsp;&nbsp;
+        a(href='http://www.mokylin.com/timeline.php', target='_blank') 加入墨麟
+        | &nbsp;&nbsp;|&nbsp;&nbsp;
+        a(href='http://www.mokylin.com/video.php', target='_blank') 视频中心
+        | &nbsp;&nbsp;|&nbsp;&nbsp;
+        a(href='http://www.mokylin.com/download.php', target='_blank') 下载中心
+        | &nbsp;&nbsp;|&nbsp;&nbsp;
+        a(href='http://www.mokylin.com/legal.php', target='_blank') 法律声明
+        | &nbsp;&nbsp;|&nbsp;&nbsp;
+        a(href='http://www.mokylin.com/map.php', target='_blank') 网站地图
+      p
+        a(href='http://www.mokylin.com/images/B2-20130762.jpg', target='_blank') ICP粤B2-20130762
+        a(href='http://www.miitbeian.gov.cn', target='_blank') 粤ICP备13082784号-1
+        a(href='http://www.mokylin.com/images/icp.jpg', target='_blank') 粤网文[2013]1028-278
+      p
+        | Copyright &copy; 2011-
+        script.
+          document.write(new Date().getFullYear())
+        |  Mokylin. All Rights Reserved
+
+    include ./partials/analytics

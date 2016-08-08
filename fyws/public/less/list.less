@@ -1,0 +1,55 @@
+@import 'base/variables.less';
+
+.newscategorynav {
+    padding: 16px 0;
+    border-bottom: 1px solid #979797;
+    display: block;
+    height: 21px;
+    margin: 20px 0;
+    li {
+        height: 21px;
+        line-height: 21px;
+        float: left;
+        padding: 0 39px;
+        font-size: 16px;
+        border-right: 1px solid #979797;
+        &:last-child {
+            border: none;
+        }
+        &:first-child {
+            padding: 0 39px 0 2px;
+        }
+        a {
+            font-size: 16px;
+            color: @link-general-color;
+            &:hover {
+                color: @content-title-color;
+            }
+        }
+    }
+    li.current {
+        a {
+            color: @content-title-color;
+        }
+    }
+}
+
+.ulnewslist {
+    display: block;
+    li {
+        height: 36px;
+        line-height: 36px;
+        span {
+            float: right;
+            font-size: 14px;
+            color: @link-general-color;
+        }
+        a {
+            font-size: 14px;
+            color: @link-general-color;
+            &:hover {
+                color: @content-title-color;
+            }
+        }
+    }
+}

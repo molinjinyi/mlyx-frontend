@@ -1,0 +1,147 @@
+.main-content .list-top {
+  background-color: #444141;
+  border-bottom: 1px solid #4e5359;
+  color: #848a91;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.main-content .list-top .top-title {
+  font-size: 1.7rem;
+  color: #d7b96c;
+}
+
+.main-content .list-top .top-position {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.main-content .list-top .top-category {
+  margin-top: 30px;
+}
+
+.main-content .list-top .top-category li {
+  float: left;
+}
+
+.main-content .list-top .top-category li a {
+  display: block;
+  padding: 10px 25px;
+  background: #1D1C1C;
+  font-size: .9rem;
+  text-align: center;
+  border-top: 2px solid #1D1C1C;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.main-content .list-top .top-category li.focus a,
+.main-content .list-top .top-category li:hover a {
+  color: #FFF;
+  border-top-color: #A9A7A7;
+  background-color: #5D5B5B;
+}
+
+.main-content .list-main {
+  overflow: hidden;
+  padding: 20px 30px;
+  margin-bottom: 10px;
+  border: 1px solid #cbcbcb;
+  min-height: 367px;
+}
+
+.main-content .list-main .list .item {
+  font-size: .875rem;
+  padding: 10px 0;
+  border-bottom: 1px dotted #DDD;
+  line-height: normal;
+}
+
+.main-content .list-main .list .item a {
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.main-content .list-main .list .item a:hover {
+  padding-left: 5px;
+}
+
+.main-content .pager {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.main-content .pager .previous,
+.main-content .pager .next {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 8px 14px;
+  background-color: #ddd;
+  color: #000;
+  border: 1px solid #CECECE;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+.main-content .pager .previous:hover,
+.main-content .pager .next:hover {
+  background-color: #DD4C2A;
+  color: #FFF;
+}
+
+.main-content .article-top {
+  background-color: #444141;
+  border-bottom: 1px solid #4e5359;
+  color: #848a91;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.main-content .article-top .top-title {
+  font-size: 1.7rem;
+  color: #d7b96c;
+}
+
+.main-content .article-top .top-position {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.main-content .article-main {
+  overflow: hidden;
+  min-height: 650px;
+  margin-bottom: 10px;
+  padding: 20px 30px;
+  border: 1px solid #cbcbcb;
+}
+
+.main-content .article-main .article-title {
+  border-bottom: 1px solid #DDD;
+  padding: 0px 0 10px;
+}
+
+.main-content .article-main .article-title .r-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.main-content .article-main .article-content {
+  font-size: .9rem;
+  color: #000;
+  line-height: 2;
+  padding: 20px 0;
+}
+
+.main-content .article-main .article-content .apply-card-layer {
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.main-content .article-main .article-content img {
+  max-width: 100%;
+}

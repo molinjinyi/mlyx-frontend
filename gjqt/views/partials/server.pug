@@ -1,0 +1,51 @@
+.row.server-area
+  #serverArea.block
+    .title
+      span.title-main 开服列表
+      span.title-assis SERVER LIST
+    .quick-area
+      | 快速进入
+      input#serverInp.server-inp
+      | 服
+      span#normal_spr_enter_btn.enter-btn.floatR
+    ul.list-area
+script.
+  $(function () {
+    getLatestServers();
+
+    // 获取最新开服信息
+    function getLatestServers() {
+      $.ajax({
+        url: '#{config.origin.game}/gameinfo/server/pageopenserverlist',
+        data: {
+          gid: GAME_ID,
+          pagenum: 1,
+          pagesize: 5
+        },
+        dataType: 'jsonp',
+        jsonp: 'function',
+        success: function (result) {
+          if (result.status == 1) {
+            var html = '';
+            var item;
+            for (var i = 0, j = result.data.data.length; i < j; i++) {
+              item = result.data.data[i];
+              html += '<li>' +
+                ' <a href="#{config.url.play}/?gid=' + item.gid + '&sid=' + item.sid + '" target="_blank">' +
+                '   <i id="normal_spr_arrow"></i> ' + item.sname + ' <strong class="marked">火爆开启</strong>' +
+                '</a>';
+            }
+            html += '<li><a href="/server_list" class="all-server-btn">全部服务器列表</a></li>';
+          }
+          $('#serverArea').find('.list-area').html(html);
+        }
+      });
+    }
+
+    $('#normal_spr_enter_btn').on('click', function () {
+      var num = $.trim($('#serverInp').val());
+      if (num) {
+        window.open('#{config.url.play}/?gid=' + GAME_ID + '&sid=' + num);
+      }
+    });
+  });

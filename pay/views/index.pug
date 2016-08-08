@@ -1,0 +1,131 @@
+extends ./layouts/default.pug
+
+block content
+  include ./partials/sidebar.pug
+  .content
+    #pay_wrap.pay-wrap.pr
+      h3.pay-title
+        | 当前的充值方式为&nbsp;
+        strong.pay-mode 微信支付
+      table.table-form
+        tbody
+          tr
+            td.field 充值账号：
+            td.recharge-account
+      #game_name.game-name.pr.tac
+        span.text 游戏名称
+        span.arrow.pa
+          .triangle.bottom
+      #server_name.server-name.pr.tac
+        span.text 游戏服务器
+        span.arrow.pa
+          .triangle.bottom
+      #game_list.game-list.hide.pa
+        .triangle.top.pa
+        .close.pa ×
+        ul.cf
+          each game in games
+            li
+              label.lbl-rdo
+                input.rdo-game(type='radio', name='game', value=game.gid, data-text=game.gname, data-ratio=game.recharge_ratio)
+                | #{game.gname}
+      #server_list.server-list.hide.pa
+        .triangle.top.pa
+        .close.pa ×
+        ul.cf
+          div.tac
+            img(src=config.assets + '/images/loading.gif')
+      .pw-title 角色名称：
+      ul#role_list.role-list.cf
+      .pw-title 充值金额：
+      ul#amount_list.amount-list.cf
+        li(data-value='10') 10元
+        li(data-value='20') 20元
+        li(data-value='50') 50元
+        li.active(data-value='100') 100元
+        li(data-value='200') 200元
+        li.nrm(data-value='500') 500元
+        li(data-value='1000') 1000元
+        li(data-value='2000') 2000元
+        li(data-value='5000') 5000元
+        li(data-value='10000') 10000元
+        li(data-value='20000') 20000元
+        li.nrm(data-value='50000') 50000元
+      .pw-title.ntm 其他金额：
+        input#other_amount.input.other-amount(type='text')
+        | 元
+      .pw-title.ntm 对应元宝数量：
+        strong#ingot.ingot 0
+        | [兑换比例1:
+        span#ratio.ratio
+        | ]
+      .btn-wrap.tac
+        button#btn_recharge.btn.btn-orange(type='button') 立即充值
+        #error_msg.error-msg.tac
+      hr.separate
+      .explain.explain-alipay
+        .explain-title
+          i.icon.icon-info
+          | 支付说明：
+        ol.explain-list.weichat-list.active
+          li 需开通微信支付，开通后用微信的“扫一扫”功能扫描二维码即可进行支付。
+        ol.explain-list.alipay-list
+          li 您必须拥有支付宝账户；
+          li 首次使用需要在手机端下载支付宝钱包；
+          li.danger 请充值时务必确认好您的充值金额准确无误后再进行充值，避免输错金额导致的失误，如因未仔细确认金额造成的充值 问题，我们将一律不予处理此类退款申诉。
+  #pay_backdrop.pay-backdrop
+  #order_wrap.order-wrap
+    .close ×
+    .order-info
+      table
+        tbody
+          tr
+            td.field 充值方式：
+            td.order-mode
+          tr
+            td.field 订单号：
+            td.order-no
+          tr
+            td.field 充值账号：
+            td.order-user
+          tr
+            td.field 充值游戏：
+            td.order-game
+          tr
+            td.field 充值金额：
+            td.order-money
+          tr
+            td.field 获得元宝：
+            td.order-ingot
+    .order-footer
+      #submit_form.hide
+      button.btn.btn-orange(type='button') 确认提交
+      button.btn.btn-default(type='button') 返回修改
+  #end_wrap.end-wrap
+    .close ×
+    .end-header 提示
+    .end-body
+      h3 请确认您的充值信息
+      p 付款完成前请不要关闭或者刷新此窗口
+      p 完成付款后根据您的情况点击下面的按钮
+    .end-footer
+      a.btn.btn-orange(href='') 查看充值结果
+      a.btn.btn-default(href='', target='_blank') 付款遇到问题
+      button.btn.btn-default.btn-back(type='button') 返回
+  #qrcode_wrap.qrcode-wrap.tac
+    .close ×
+    .qrcode-header 提示
+    .qrcode-body
+      #qrcode.qrcode
+      p 请使用微信扫描二维码以完成支付
+
+
+block scripts
+  script.
+    var url_pay = '#{config.url.pay}';
+    var url_user = '#{config.url.user}';
+    var origin_assets = '#{config.assets}';
+    var origin_game = '#{config.origin.game}';
+    var origin_misc = '#{config.origin.misc}';
+    var origin_recharge = '#{config.origin.recharge}';
+  script(src=config.assets + '/js/index.js')

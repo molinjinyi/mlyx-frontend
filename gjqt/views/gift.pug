@@ -1,0 +1,22 @@
+extends ./layouts/default.pug
+
+block styles
+  link(rel='stylesheet' href=config.assets + '/css/news.css?v=' + config.version)
+
+block content
+  .article-top
+    .top-title 新手礼包
+  .article-main
+    .article-content
+      p(style='color: #e36c09') 人参*1、飞鞋*5、铜钱*10W
+      p
+        strong 领取方法：
+      p 进入游戏后，跟剧情升级到11级后，在游戏界面上方，人物头像右边点击元宝大礼。
+      br
+      p(style='text-align: center')
+        img(src='http://img2.37wanimg.com/2015/0402/14279622558764.jpg')
+      br
+      p 输入新手卡卡码领取兑换即可
+      br
+      p(style='text-align: center')
+        img(src='http://img2.37wanimg.com/2015/0330/14276842047630.small.png')

@@ -1,0 +1,28 @@
+.articletitle {
+  text-align: center;
+  border-bottom: 1px solid #979797;
+  height: 76px;
+  font-size: 26px;
+  color: #555555;
+  margin: 40px 0;
+}
+.articletitle span {
+  font-size: 12px;
+  color: #979797;
+  display: block;
+  line-height: 12px;
+  height: 12px;
+  margin: 25px 0 0 0;
+}
+.articlecontent {
+  line-height: 20px;
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 14px;
+  color: #555555;
+  width: 780px;
+  overflow: hidden;
+}
+.articlecontent img {
+  max-width: 760px;
+}

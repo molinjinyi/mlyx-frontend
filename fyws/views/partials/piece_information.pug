@@ -1,0 +1,13 @@
+.newfilms
+  h3.commonbigtitle
+    | 全新资料片
+    span / PIECE OF INFORMATION
+  if carouselList && carouselList.index_pieceinfo && carouselList.index_pieceinfo.length > 0
+    img(src=carouselList.index_pieceinfo[0].data.img, alt=carouselList.index_pieceinfo[0].data.title, title=carouselList.index_pieceinfo[0].data.title)
+  else  
+    img(src=config.assets + '/images/baner.png')
+  ul
+    each item in pieceInformation
+      li
+        span.time [#{moment(item.uDate).format('MM-DD')}]
+        a(href=item.link ? item.link : config.site_url.news_details+'/'+item.aid, target='_blank') [攻略] #{item.title}

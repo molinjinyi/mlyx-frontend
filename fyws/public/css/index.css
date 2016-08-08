@@ -1,0 +1,403 @@
+.content1 {
+  height: 454px;
+  margin: 30px auto 0 auto;
+}
+.begingame {
+  width: 327px;
+  height: 395px;
+  float: left;
+  background: url(../images/yonghudenglu1.png) no-repeat center 100%;
+  padding-top: 60px;
+}
+.carousel {
+  float: left;
+  width: 545px;
+  height: 455px;
+}
+#slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#slide .carousel-item {
+  position: relative;
+  float: left;
+  width: 545px;
+  height: 455px;
+}
+#slide .carousel-item a {
+  display: block;
+  width: 100%;
+  line-height: 0;
+  border: none;
+}
+#slide .carousel-item img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  max-width: 100%;
+  border: none;
+  width: 100%;
+  min-height: 390px;
+}
+.switchable-triggers {
+  position: absolute;
+  left: 37px;
+  bottom: 34px;
+  height: 5px;
+}
+.switchable-triggers li {
+  float: left;
+  height: 5px;
+  width: 41px;
+  background-color: #5c5c5c;
+  filter: alpha(opacity=35);
+  -moz-opacity: 0.35;
+  opacity: 0.35;
+  margin: 0 10px 0 0;
+  cursor: pointer;
+  overflow: hidden;
+}
+.switchable-triggers li.current {
+  background-color: #6b1f09;
+  filter: alpha(opacity=100);
+  -moz-opacity: 1;
+  opacity: 1;
+}
+.news {
+  width: 327px;
+  height: 395px;
+  float: left;
+  background: url(../images/xinw1.jpg) no-repeat center 100%;
+  padding-top: 60px;
+}
+.news .newsarea {
+  height: 264px;
+  overflow: hidden;
+}
+.newslist {
+  padding: 20px 0 0 20px;
+}
+.newslist li {
+  height: 28px;
+  line-height: 28px;
+}
+.newslist li a {
+  color: #b4b3b3;
+}
+.morenews {
+  float: left;
+  width: 79px;
+  margin: 12px 0 18px 20px;
+}
+.content2 {
+  height: 422px;
+  margin: 0px auto 0 auto;
+}
+.newfilms {
+  width: 305px;
+  height: 350px;
+  float: left;
+  background: url(../images/ziliaopian.png) no-repeat center 70px;
+  padding: 70px 0 0 23px;
+}
+.newfilms ul {
+  padding: 20px 0 0 0;
+}
+.newfilms ul li {
+  height: 28px;
+  line-height: 28px;
+}
+.newfilms ul li a {
+  color: #bfbfbf;
+  width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: left;
+}
+.newfilms ul li .time {
+  float: right;
+  color: #bfbfbf;
+  padding: 0 28px 0 0;
+}
+.carousel2 {
+  float: left;
+  width: 545px;
+  height: 420px;
+}
+#slide2 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#slide2 .carousel-item {
+  position: relative;
+  float: left;
+  height: 420px;
+  width: 545px;
+}
+#slide2 .carousel-item .word {
+  position: absolute;
+  top: 190px;
+  left: 30px;
+  width: 242px;
+  color: #1f1f1f;
+}
+#slide2 .carousel-item .word a {
+  color: #671900;
+  display: block;
+  padding: 28px 0 0 0;
+}
+#slide2 .carousel-item .role-name {
+  position: absolute;
+  top: 110px;
+  left: 30px;
+  margin: 0;
+  font-size: 28px;
+  color: #1e2020;
+  font-weight: bold;
+  line-height: 36px;
+}
+#slide2 .carousel-item img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  max-width: 100%;
+  border: none;
+  width: 100%;
+  min-height: 350px;
+}
+.gamedata {
+  width: 281px;
+  height: 350px;
+  float: left;
+  background: url(../images/youxiziliao.png) no-repeat center 70px;
+  padding: 70px 23px 0 23px;
+}
+.gamedata img {
+  border: none;
+  display: block;
+  float: left;
+}
+.gamedata ul.firstnav {
+  height: 28px;
+  clear: both;
+  margin: 25px 0 0 0;
+}
+.gamedata ul.firstnav li {
+  float: left;
+  height: 26px;
+  line-height: 26px;
+  background-color: #191714;
+  width: 90px;
+  text-align: center;
+  color: #727272;
+  cursor: pointer;
+}
+.gamedata ul.firstnav li a {
+  color: #727272;
+}
+.gamedata ul.firstnav li.current {
+  background-color: #e5b04c;
+  color: #242627;
+}
+.gamedata ul.firstnav li.current a {
+  color: #242627;
+}
+.gamedata ul.secondnav {
+  padding: 20px 0 0px 0;
+  clear: both;
+  margin: 0 0 0px 0;
+  height: 75px;
+}
+.gamedata ul.secondnav li {
+  float: left;
+  width: 24%;
+  text-align: center;
+  margin: 7px 0;
+  height: 12px;
+  line-height: 12px;
+  border-right: 1px solid #bfbfbf;
+}
+.gamedata ul.secondnav li:last-child {
+  border: none;
+}
+.gamedata ul.secondnav li a {
+  color: #bfbfbf;
+  width: 65px;
+  line-height: 13px;
+  text-align: center;
+  display: inline-block;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: left;
+}
+.content3 {
+  height: 300px;
+  margin: 67px auto 0 auto;
+  background: #3b3f40;
+  vertical-align: middle;
+  position: relative;
+}
+.content3 .commonbigtitle {
+  height: 24px;
+  line-height: 24px;
+  position: absolute;
+  z-index: 10;
+}
+.content3 .arms {
+  position: absolute;
+  bottom: 0px;
+  z-index: 1;
+}
+.content3 .arm_item {
+  float: left;
+  width: 150px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+.content3 .arm_item .arms_img {
+  width: 150px;
+  height: 300px;
+  display: inline-block;
+  background-image: url(../images/arms.jpg);
+  background-repeat: no-repeat;
+  margin: 0;
+}
+.content3 .arm_item:hover .arms_img {
+  display: none;
+}
+.content3 .arm_item .arms_flash {
+  position: absolute;
+  top: 300px;
+  left: 50%;
+  margin-left: -90px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.content3 .arm1 .arms_img {
+  background-position: 0px 0px;
+}
+.content3 .arm1:hover .arms_flash {
+  top: 50px;
+}
+.content3 .arm2 .arms_img {
+  background-position: -150px 0px;
+}
+.content3 .arm2:hover .arms_flash {
+  top: 50px;
+}
+.content3 .arm3 .arms_img {
+  background-position: -300px 0px;
+}
+.content3 .arm3:hover .arms_flash {
+  top: 30px;
+}
+.content3 .arm4 .arms_img {
+  background-position: -450px 0px;
+}
+.content3 .arm4:hover .arms_flash {
+  top: 30px;
+}
+.content3 .arm5 .arms_img {
+  background-position: -600px 0px;
+}
+.content3 .arm5:hover .arms_flash {
+  top: 0px;
+}
+.content3 .arm6 .arms_img {
+  background-position: -750px 0px;
+}
+.content3 .arm6:hover .arms_flash {
+  top: 0px;
+}
+.content3 .arm7 .arms_img {
+  background-position: -900px 0px;
+}
+.content3 .arm7:hover .arms_flash {
+  top: 0px;
+}
+.content3 .arm8 .arms_img {
+  background-position: -1050px 0px;
+}
+.content3 .arm8:hover .arms_flash {
+  top: 0px;
+}
+.content4 {
+  height: 216px;
+  margin: 55px auto 0px auto;
+  background: url(../images/shiting2.png) no-repeat center top;
+  clear: both;
+}
+.content4 li {
+  float: left;
+  width: 377px;
+  padding: 0 0 0 23px;
+}
+.video {
+  width: 353px;
+  height: 131px;
+  overflow: hidden;
+  display: inline-block;
+  padding-top: 18px;
+}
+.video img {
+  width: 100%;
+  height: 100%;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  border: none;
+}
+.video:hover img {
+  filter: alpha(opacity=100);
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  opacity: 1;
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+.playerworldnav {
+  height: 26px;
+  background-color: #191714;
+  margin: 25px 24px 0px 0;
+  clear: both;
+}
+.playerworldnav li {
+  height: 26px;
+  line-height: 26px;
+  float: left;
+  width: 95px;
+  padding-left: 14px;
+  color: #979797;
+  cursor: pointer;
+  font-size: 14px;
+}
+.playerworldnav li.current {
+  color: #ffe2c0;
+}
+.playerworld-ul {
+  padding: 20px 0 0 0;
+  float: left;
+}
+.playerworld-ul li {
+  height: 28px;
+  line-height: 28px;
+  padding: 0;
+}
+.playerworld-ul li a {
+  color: #bfbfbf;
+}
+.playerworld-ul li .time {
+  float: right;
+  color: #bfbfbf;
+  padding: 0 28px 0 0;
+}

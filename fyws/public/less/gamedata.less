@@ -1,0 +1,39 @@
+@import 'base/variables.less';
+
+.dlgamedata {
+    width: 100%;
+    margin: 30px 0 0 0;
+    float: left;
+    dt {
+        border-bottom: 1px solid #979797;
+        height: 48px;
+        line-height: 48px;
+        color: @content-title-color;
+        font-size: 16px;
+        width: 100%;
+        float: left;
+    }
+    dd {
+        color: @content-txt-color;
+        font-size: 14px;
+        float: left;
+        height: 14px;
+        line-height: 14px;
+        padding: 0px 14px 0px 14px;
+        margin: 10px 0;
+        border-right: 1px solid #555555;
+        a {
+            color: @content-txt-color;
+            text-align: center;
+            &:hover {
+                color: @content-title-color;
+            }
+        }
+        &:first-of-type {
+            padding: 0px 14px 0px 0px;
+        }
+        &:last-child {
+            border: none;
+        }
+    }
+}

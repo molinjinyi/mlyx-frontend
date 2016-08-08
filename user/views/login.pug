@@ -1,0 +1,149 @@
+extends ./layouts/sign.pug
+
+block title
+  title 登录 - #{config.name}
+
+block header-title
+  | 登录
+
+block content
+  .sign-wrap
+    .container.pr
+      form#signin_form.signin-form.form.pa
+        .input-box
+          .input-addon.tac
+            .icon.icon-user2
+          input.input.account(type='text', name='account', placeholder='账号')
+        .input-box
+          .input-addon.tac
+            .icon.icon-lock
+          input.input.password(type='password', name='password', placeholder='密码')
+        .input-box.checkcode-box.hide
+          input.input.checkcode
+          img.imgcode(title='点击刷新验证码')
+        .input-box
+          span.error-msg
+          a.lnk-forget(href=config.url.service + '/forgotpwd', target='_blank') 忘记密码？
+        .input-box
+          button#btn_signin.btn.btn-signin(type='button') 登 录
+        .input-box.third-party.tac
+          a.lnk-qq(href='')
+            .icon.icon-qq
+          a.lnk-weixin(href='')
+            .icon.icon-weixin
+        .input-box.tac.nbm
+          a.lnk-signup(href='/register', target='_blank') 还没有账号？立即注册
+
+block scripts
+  script(src=config.common_assets + '/js/login.js?v=' + config.version)
+  script.
+    $(function () {
+      var $signin_form = $('#signin_form');
+
+      // 登录成功跳转页面
+      var surl = decodeURIComponent(getPageVar('surl')) || '#{config.url.main}/';
+
+      function getPageVar(sVar) {
+        return decodeURI(window.location.search.replace(new RegExp('^(?:.*[&\\?]' + encodeURI(sVar).replace(/[\.\+\*]/g, '\\$&') + '(?:\\=([^&]*))?)?.*$', 'i'), '$1'));
+      }
+
+      // 第三方登录
+      $signin_form.find('.lnk-qq').attr('href', LoginManager.loginByQQ(surl));
+      $signin_form.find('.lnk-weixin').attr('href', LoginManager.loginByWeixin(surl));
+
+      // 登录按钮
+      $('#btn_signin').on('click', function (e) {
+        login();
+      });
+
+      // 回车登录
+      $signin_form.on('keypress', '.account, .password, .checkcode', function(e) {
+        if (e.which == 13) {
+          login();
+        }
+      });
+
+      // 是否需要验证码
+      $signin_form.on('blur', '.account', function (e) {
+        needCode();
+      });
+
+      // 手动刷新验证码
+      $signin_form.on('click', '.imgcode', function() {
+        $signin_form.find('.imgcode').attr('src', LoginManager.getCode());
+      });
+
+      // 登录
+      function login() {
+        var data = getFormData();
+        if (!data) {
+          return;
+        }
+        $('#btn_signin').text('登录中...');
+        LoginManager.login({
+          username: data.account,
+          password: data.password,
+          validatecode: data.code,
+          success: function (result) {
+            $('#btn_signin').text('登 录');
+            if (result.status == 1) {
+              location.href = surl;
+            } else {
+              var $error = $signin_form.find('.error-msg');
+              if (result.status == 15) {
+                $error.text('账号已被禁用！');
+              } else if (result.status == 17) {
+                $error.text('验证码不正确！');
+              } else {
+                $error.text('账号或密码不正确！');
+              }
+              needCode();
+            }
+          }
+        });
+      }
+
+      // 获取表单数据
+      function getFormData() {
+        var $account = $signin_form.find('.account');
+        var $password = $signin_form.find('.password');
+        var $error = $signin_form.find('.error-msg');
+        var account = $.trim($account.val());
+        var password = $password.val();
+        var code = '';
+        if (!account) {
+          $error.text('请输入账号');
+          return false;
+        }
+        if (!password) {
+          $error.text('请输入密码');
+          return false;
+        }
+        if (!$signin_form.find('.checkcode-box').hasClass('hide')) {
+          code = $.trim($signin_form.find('.checkcode').val());
+          if (!code) {
+            $error.text('请输入验证码');
+            return false;
+          }
+        }
+        $error.text('');
+        return {
+          account: account,
+          password: password,
+          code: code
+        }
+      }
+
+      // 是否需要验证码
+      function needCode() {
+        LoginManager.needCode({
+          yes: function () {
+            $signin_form.find('.checkcode-box').removeClass('hide');
+            $signin_form.find('.imgcode').attr('src', LoginManager.getCode());
+          },
+          no: function () {
+            $signin_form.find('.checkcode-box').addClass('hide');
+          }
+        });
+      }
+    });

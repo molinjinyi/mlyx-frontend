@@ -1,0 +1,135 @@
+extends ./layouts/default.pug
+
+block content
+  include ./partials/sidebar.pug
+  .content
+    #forget_wrap.forget-wrap
+      ul#step.step-wrap.cf
+        li.step-1 1、验证身份
+        li.step-2.active 2、重置密码
+        li.step-3 3、找回成功
+      form#form.form.form-forgot
+        .input-box
+          label.lbl 邮箱
+          p.email.input-static &nbsp;
+        .input-box
+          label.lbl 新密码
+          input.input.new-pwd(type='password')
+        .input-box
+          label.lbl 确认新密码
+          input.input.confirm-pwd(type='password')
+        .input-box
+          label.lbl
+          button#btn_submit.btn.btn-primary(type='button') 提交
+          span#error_msg.error-msg
+      #success.success-wrap(style='display:none;')
+        .tips
+          div
+            i.icon.icon-correct
+            | 恭喜，您的密码重置成功！
+          .s-tips
+            span.countdown 5
+            | 秒后自动返回登录页，
+            a(href=config.url.user + '/login') 立即登录
+      #error.error-wrap(style='display:none;')
+        .tips
+          div
+            i.icon.icon-error
+            | Sorry，重设密码的验证码错误或已失效
+          .s-tips
+            span.countdown 5
+            | 秒后自动返回找回密码页面，
+            a(href='/forgotpwd') 重新找回密码
+
+
+block scripts
+  script.
+    $(function () {
+      var $form = $('#form');
+      var $btn_submit = $('#btn_submit');
+      var $success = $('#success');
+      var $error = $('#error');
+      var params = {
+        validatecode: getPageVar('validatecode'),
+        status: getPageVar('status'),
+        email: getPageVar('email')
+      };
+
+      // 显示token错误信息
+      function showError() {
+        $form.hide();
+        $error.show();
+        jumpUrl('#{config.url.service}/forgotpwd');
+      }
+
+      // 跳转页面
+      function jumpUrl(url) {
+        var $countdown = $('.countdown'),
+          num = 5;
+        setInterval(function () {
+          num--;
+          if (num <= 0) {
+            location.href = '#{config.url.user}/login';
+          } else {
+            $countdown.text(num);
+          }
+        }, 1000);
+      }
+      
+      // 获取页面参数值
+      function getPageVar(sVar) {
+        return decodeURI(window.location.search.replace(new RegExp('^(?:.*[&\\?]' + encodeURI(sVar).replace(/[\.\+\*]/g, '\\$&') + '(?:\\=([^&]*))?)?.*$', 'i'), '$1'));
+      }
+
+      if (!params.validatecode || params.status === '0') {
+        showError();
+      } else {
+        $form.find('.email').text(params.email);
+      }
+
+      // 提交
+      $btn_submit.on('click', function (e) {
+        var $error_msg = $('#error_msg');
+        var newPwd = $form.find('.new-pwd').val();
+        var confirmPwd = $form.find('.confirm-pwd').val();
+        if (!newPwd) {
+          $error_msg.text('请输入新密码');
+          return;
+        } else if (newPwd.length < 6 || newPwd.length > 40) {
+          $error_msg.text('密码长度为6-40个字符');
+          return;
+        } else if (!confirmPwd) {
+          $error_msg.text('请输入确认新密码');
+          return;
+        } else if (confirmPwd != newPwd) {
+          $error_msg.text('两次密码不一致');
+          return;
+        }
+        $btn_submit.text('提交中...').prop('disabled', true);
+        $.ajax({
+          url: '#{config.origin.user}/user/security/dofindpwd',
+          data: {
+            validatecode: params.validatecode,
+            newpwd: newPwd
+          },
+          dataType: 'jsonp',
+          jsonp: 'function',
+          success: function (result) {
+            if (result.status == 1) {
+              $form.hide();
+              $success.show();
+
+              var $step = $('#step');
+              $step.find('.active').removeClass('acitve');
+              $step.find('.step-3').addClass('active');
+              jumpUrl('#{config.url.user}/login');
+            } else {
+              showError();
+            }
+          },
+          complete: function () {
+            $btn_submit.text('提交').prop('disabled', false);
+          }
+        });
+      });
+    });

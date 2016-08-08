@@ -1,0 +1,37 @@
+extends ./layouts/default.pug
+
+block content
+  include ./partials/bannerad.pug
+  //- 内容 开始
+  .listcontent.container
+    //- 右侧内容开始
+    include ./partials/rightcomponents.pug
+    //- 右侧内容结束
+    .leftcontent
+      //- 左侧内容开始
+      .breadcrumbs
+        ul
+          li 您的位置：
+          li 
+            a(href='/') 首页
+          li 
+            a(href=config.site_url.game_data) 游戏资料
+        h3.title 游戏资料
+        span / GAME DATA
+      dl(id='newbie', name='newbie').dlgamedata
+        dt 新手引导
+        each item in newbieGuide
+          dd
+            a(href=item.link ? item.link : config.site_url.news_details+'/'+item.aid, target='_blank') #{item.title}
+      dl(id='characteristics', name='characteristics').dlgamedata
+        dt 特色玩法
+        each item in characteristicsPlay
+          dd
+            a(href=item.link ? item.link : config.site_url.news_details+'/'+item.aid, target='_blank') #{item.title}
+      dl(id='seniorplayers', name='seniorplayers').dlgamedata
+        dt 高级玩家
+        each item in seniorPlayers
+          dd
+            a(href=item.link ? item.link : config.site_url.news_details+'/'+item.aid, target='_blank') #{item.title}
+      //- 左侧内容结束
+  //- 内容结束

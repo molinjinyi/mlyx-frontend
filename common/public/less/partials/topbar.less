@@ -1,0 +1,139 @@
+// 顶部topbar
+.g-topbar {
+  height: @topbar-height;
+  background-color: @topbar-bgcolor;
+  color: @topbar-color;
+  font-size: 12px;
+  .lnk {
+    color: @topbar-color;
+    &:hover {
+      color: #fff;
+    }
+  }
+  .user-wrap {
+    float: right;
+    margin-right: 30px;
+    line-height: @topbar-height;
+    .gicon-user {
+      margin-top: -3px;
+    }
+    .lnk-username {
+      color: #fff;
+    }
+  }
+  .games-wrap {
+    position: relative;
+    float: right;
+    &:hover {
+      .game-menu {
+        background-color: @game-bgcolor;
+      }
+      .game-list {
+        display: block;
+      }
+    }
+    .gicon-th,
+    .gicon-hand {
+      margin-top: -3px;
+    }
+    .gicon-newest,
+    .gicon-hot,
+    .gicon-file {
+      margin-top: -2px;
+    }
+    .gicon-file,
+    .gicon-desktop2,
+    .gicon-hand {
+      margin-right: 10px;
+    }
+  }
+  .game-menu {
+    padding: 0 20px;
+    line-height: @topbar-height;
+    background-color: #303030;
+    cursor: default;
+  }
+  .game-list {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    z-index: 9999999;
+    width: 765px;
+    background-color: @game-bgcolor;
+    color: @game-color;
+    font-size: 14px;
+    line-height: 36px;
+    .illustrate {
+      padding: 15px 25px;
+      .newest,
+      .hot {
+        display: inline-block;
+      }
+      .newest {
+        margin-right: 35px;
+      }
+    }
+    .web-games,
+    .client-games,
+    .mobile-games {
+      float: left;
+      border-right: 1px solid #565963;
+      height: 334px;
+      .title {
+        padding: 0 25px;
+        background-color: #373940;
+        color: #fff;
+      }
+      .gicon-newest,
+      .gicon-hot {
+        margin-left: 5px;
+        margin-right: 0;
+      }
+    }
+    .web-games {
+      width: 325px;
+    }
+    .client-games,
+    .mobile-games {
+      width: 220px;
+    }
+    .web-list,
+    .client-list,
+    .mobile-list {
+      margin: 30px 0;
+      padding-left: 40px;
+      li {
+        float: left;
+        width: 142px;
+        padding-right: 30px;
+        .text-overflow();
+        a {
+          color: @game-color;
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
+    }
+    .client-list,
+    .mobile-list {
+      li {
+        float: none;
+        width: 100%;
+      }
+    }
+  }
+  .menu-wrap {
+    float: left;
+    line-height: @topbar-height;
+    .lnk {
+      margin-right: 20px;
+    }
+    .gicon-desktop,
+    .gicon-home,
+    .gicon-handle {
+      margin-top: -3px;
+    }
+  }
+}

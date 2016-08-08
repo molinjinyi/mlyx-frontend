@@ -1,0 +1,40 @@
+#topBar.top-bar
+  .top-content
+    .floatL
+      a.top-logo(href='/')
+    .floatR
+      .top-mark.top-btn.floatR
+        a.top-mark-tab.top-tab(href='javascript:;')
+          | 收藏
+          span.icon.top-arrow-icon
+        .top-mark-menu.top-menu(style='display: none;opacity: 0;top:58px;')
+          a.top-mark-home(href='javascript:;')
+            span.icon.top-home-icon
+            | 设为首页
+          a.top-mark-bookmark(href='javascript:;')
+            span.icon.top-bookmark-icon
+            | 收藏本站
+      .top-more.top-btn.floatR
+        a.top-more-tab.top-tab(href='javascript:;')
+          | 所有游戏
+          span.icon.top-arrow-icon
+        .top-more-menu.top-menu(style='display: none;opacity: 0;top:58px;')
+          a 列表加载中...
+      .top-login.floatR
+        a.call-login-btn.top-tab.loginBtn(href='javascript:;')
+          span.icon.top-u-icon
+          | 登录
+        a.call-login-btn.top-tab.regBtn(href='javascript:;') 注册
+      .top-logined.floatR.hide
+        a.top-user-tab.top-tab(href='javascript:;')
+          | 帐号：
+          strong.top-uname
+        a.top-logout-tab.top-tab.logout-btn(href='javascript:;') 注销
+script.
+  var g_server = '#{config.origin.game}';
+  var g_server2 = '#{config.origin.user}';
+  var g_usr_prefixUrl = '#{config.origin.cdn}';
+#loginDialog.login-dialog(style='display:none;')
+  .main
+    a.loginCloseBtn.close-btn(href='javascript:void(0)') &times;
+    iframe#loginFrame(src='', height='390', width='390')

@@ -1,0 +1,77 @@
+{
+  "dev": {
+    "gid": 0,
+    "name": "墨麟游戏，最优质的游戏平台",
+    "version": "20160715180145",
+    "url": {
+      "main": "http://localhost:15300",
+      "game": "http://localhost:15350",
+      "user": "http://localhost:15310",
+      "pay": "http://localhost:15320",
+      "gift": "http://localhost:15300",
+      "mall": "http://localhost:15300",
+      "service": "http://localhost:15330",
+      "forum": "http://localhost:15300",
+      "play": "http://localhost:15340"
+    },
+    "assets": "/public",
+    "common_assets": "http://localhost:15400/public",
+    "domain": "localhost",
+    "origin": {
+      "game": "https://gameinfo-dev.36b.me",
+      "user": "https://user-dev.36b.me",
+      "misc": "https://misc-dev.36b.me",
+      "recharge": "https://recharge-dev.36b.me"
+    }
+  },
+  "test": {
+    "gid": 0,
+    "name": "墨麟游戏，最优质的游戏平台",
+    "version": "20160715180145",
+    "url": {
+      "main": "http://www.13yx.com:8080",
+      "game": "http://game.13yx.com:8080",
+      "user": "http://user.13yx.com:8080",
+      "pay": "http://pay.13yx.com:8080",
+      "gift": "http://gift.13yx.com:8080",
+      "mall": "http://mall.13yx.com:8080",
+      "service": "http://service.13yx.com:8080",
+      "forum": "http://forum.13yx.com:8080",
+      "play": "http://play.13yx.com:8080"
+    },
+    "assets": "http://o97fpkcbr.bkt.clouddn.com/pay/201607",
+    "common_assets": "http://o97fpkcbr.bkt.clouddn.com/common",
+    "domain": "13yx.com",
+    "origin": {
+      "game": "https://gameinfo-dev.36b.me",
+      "user": "https://user-dev.36b.me",
+      "misc": "https://misc-dev.36b.me",
+      "recharge": "https://recharge-dev.36b.me"
+    }
+  },
+  "pro": {
+    "gid": 0,
+    "name": "墨麟游戏，最优质的游戏平台",
+    "version": "201608051415",
+    "url": {
+      "main": "http://www.mlyx.com",
+      "game": "http://game.mlyx.com",
+      "user": "http://user.mlyx.com",
+      "pay": "http://pay.mlyx.com",
+      "gift": "http://gift.mlyx.com",
+      "mall": "http://mall.mlyx.com",
+      "service": "http://service.mlyx.com",
+      "forum": "https://bbs.mlyx.com",
+      "play": "http://play.mlyx.com"
+    },
+    "assets": "http://static.mlyx.com/pay/201607",
+    "common_assets": "http://static.mlyx.com/common",
+    "domain": "mlyx.com",
+    "origin": {
+      "game": "https://gameapi.mlyx.com",
+      "user": "https://userapi.mlyx.com",
+      "misc": "https://miscapi.mlyx.com",
+      "recharge": "https://payapi.mlyx.com"
+    }
+  }
+}

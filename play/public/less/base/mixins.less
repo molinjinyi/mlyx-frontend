@@ -1,0 +1,21 @@
+.clearfix() {
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gradient-vertical(@start-color: #5963b3; @end-color: #4493d7; @start-percent: 0%; @end-percent: 100%) {
+  background-image: linear-gradient(to bottom, @start-color @start-percent, @end-color @end-percent);
+  background-repeat: repeat-x;
+}

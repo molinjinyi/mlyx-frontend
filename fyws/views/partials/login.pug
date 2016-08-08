@@ -1,0 +1,224 @@
+.beforelogin
+  .title
+    | 用户登录
+    span / USER LOGIN
+  .login-form
+    form(name='login', class='form')
+      input.loginbutton(type='button', value='')
+      input.inputwidth151(type='text', id="account", value='', title='帐号/邮箱/手机号', placeholder='帐号/邮箱/手机号', class='account')
+      input.inputwidth151(type='password', id='password', value='', title='密码', placeholder='密码', class='password')
+      .checkcode-box
+        input.inputwidth93(type='text', id='checkcode', value='', class='checkcode', check-code='', placeholder='请输入验证码', title='请输入验证码')
+        img(src='', class='imgcode')
+        a(href='javascript:;', class="a-imgcode") 换一个
+    .clear
+    a.findandreg.addreg(href=config.site_url.user + '/register', target="_blank") &nbsp;
+    a.findandreg.addfind(href=config.site_url.service + '/forgotpwd', target="_blank") &nbsp;
+  .loggedon
+    div
+      | 您好，
+      span.username
+    div
+      | 登录时间：
+      span.logintime
+    div
+      | #{config.name} 推荐您进入：
+    div
+      .divselect(id='divselect')
+        .selected
+          span
+        ul.playlist
+      input(id="playselect", type="hidden")
+      a.logout.right(href='javascript:;') 注销
+      a.right(href=config.site_url.user) 用户中心
+    .clear
+    div
+      a.pay.btn(href=config.site_url.pay_center, target="_blank")
+      a.play.btn(href='javascript:;')
+script.
+  $(function () {
+    var $beforelogin = $('.beforelogin');
+    var $divselect = $('#divselect');
+    var $playselect = $('#playselect');
+    var gid = "#{config.gid}";
+
+    // 登录按钮
+    $beforelogin.on('click', '.loginbutton', function (e) {
+      login();
+    });
+
+    // 回车登录
+    $beforelogin.on('keypress', '.account, .password, .checkcode', function(e) {
+      if (e.which == 13) {
+        login();
+      }
+    });
+
+    // 是否需要验证码
+    $beforelogin.on('blur', '.account', function (e) {
+      needCode();
+    });
+
+    // 手动刷新验证码
+    $beforelogin.on('click', '.imgcode, .a-imgcode', function() {
+      $beforelogin.find('.imgcode').attr('src', LoginManager.getCode());
+    });
+
+    //  登出
+    $beforelogin.on('click', '.logout', function (e) {
+      LoginManager.logout({
+        success: function () {
+          location.reload();
+        }
+      });
+    });
+
+    // 开始游戏
+    $beforelogin.find('.loggedon').on('click', '.play ', function(){
+      var sid = $playselect.val();
+      window.open('#{config.site_url.play_url}/?gid=#{config.gid}&sid=' + sid);
+    });
+
+    // 登录
+    function login() {
+      var data = getFormData();
+      if (!data) {
+        return;
+      }
+      LoginManager.login({
+        username: data.account,
+        password: data.password,
+        validatecode: data.code,
+        success: function (result) {
+          if (result.status == 1) {
+            location.reload();
+          } else {
+            var $error = $beforelogin.find('.error-msg');
+            if (result.status == 0) {
+              showMsg('登录失败');
+            } else if (result.status == 5) {
+              showMsg('系统错误');
+            } else if (result.status == 6) {
+              showMsg('此邮箱账号不存在');
+            } else if (result.status == 7) {
+              showMsg('密码错误');
+            } else if (result.status == 15) {
+              showMsg('此账号已经被禁用');
+            } else if (result.status == 17) {
+              showMsg('验证码输入错误');
+            }
+            needCode();
+          }
+        }
+      });
+    }
+
+    // 获取表单数据
+    function getFormData() {
+      var $account = $beforelogin.find('.account');
+      var $password = $beforelogin.find('.password');
+      var $code = $beforelogin.find('.checkcode');
+      var account = $.trim($account.val());
+      var password = $password.val();
+      var code = $.trim($code.val());
+      if (!account || account == '帐号/邮箱/手机号') {
+        showMsg('请输入账号');
+        return false;
+      }
+      if (!password) {
+        showMsg('请输入密码');
+        return false;
+      }
+      if($beforelogin.find('.checkcode-box').attr('check-code') == 'true'){
+        if (!code || code=='请输入验证码') {
+          showMsg('请输入验证码');
+          return false;
+        }
+      }
+      return {
+        account: account,
+        password: password,
+        code: code
+      }
+    }
+
+    function showMsg(msg){
+      $.dialog({
+          title: '提示',
+          className: 'dialog-example-tip',
+          content: '<div class="text-center msg">'+ msg+'</div>'
+      });
+    }
+
+    // 是否需要验证码
+    function needCode() {
+      LoginManager.needCode({
+        yes: function () {
+          $beforelogin.find('.checkcode-box').attr('check-code','true');
+          $beforelogin.find('.checkcode-box').show();
+          $beforelogin.find('.imgcode').attr('src', LoginManager.getCode());
+        },
+        no: function () {
+          $beforelogin.find('.checkcode-box').attr('check-code','');
+          $beforelogin.find('.checkcode-box').hide();
+        }
+      });
+    }
+
+    var bindPlayList = function(){
+        var data = (document.gameRecents && document.gameRecents.data  && document.gameRecents.data.data)   || (document.gameServerList && document.gameServerList.data && document.gameServerList.data.data);
+        if(!data || !data.length || data.length < 1){
+          return;
+        }
+        var fisrtItem = data[0];
+
+        $divselect.find('.selected span').html(fisrtItem.sname);
+        $playselect.val(fisrtItem.sid);
+        var html='';
+        for(var i=0,j=data.length;i<j;i++){
+          var serverItem = data[i];
+          var dataHtml = '<li><a href="javascript:;" selectid="' + serverItem.sid + '" title="' + serverItem.sname + '">' + serverItem.sname + '</a></li>';
+          html += dataHtml;
+        }
+        $divselect.find('.playlist').html(html);
+    };
+
+    var pageInit = function(){
+      getPlayRecent({
+        gid: gid
+      }, bindPlayList);
+
+      getServerList({
+        gid: gid
+      }, bindPlayList);
+
+      LoginManager.isLogined(function(isLogin){
+        var loginForm = $beforelogin.find('.login-form');
+        var loggedon = $beforelogin.find('.loggedon');
+        if(isLogin){
+          LoginManager.getUserInfo(function(userInfo){
+            $beforelogin.find('.username').html(userInfo.nickname);
+            $beforelogin.find('.logintime').html(userInfo.cDate);
+            loginForm.hide();
+            loggedon.show();
+          });
+        }else{
+          loggedon.hide();
+          loginForm.show();
+        }
+      });
+
+      $.divselect("#divselect","#playselect");
+    };
+
+    pageInit();
+  });
+<!--[if (lt IE 10)]>
+script.
+  $('#account').placeholder({
+    word: '帐号/邮箱/手机号'
+  });
+  $('#checkcode').placeholder({
+    word: '请输入验证码'
+  });
+<![endif]-->

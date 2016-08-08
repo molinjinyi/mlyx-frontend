@@ -1,0 +1,169 @@
+extends ./layouts/default.pug
+
+block styles
+  link(rel='stylesheet', href=config.common_assets + '/components/unslider/unslider.css')
+
+block content
+  .index-wrapper
+    .carousel-wrap
+      #unslider_carousel.carousel
+        ul
+          each carousel in carousels
+            - var item = JSON.parse(carousel.data);
+            li
+              a.item(href=item.link, title=item.title, target='_blank', style='background-image: url(' + item.img + ');')
+    .container
+      include partials/signin.pug
+      #logined_wrap.logined-wrap
+        a.lnk-avatar(href=config.url.user + '/', target='_blank')
+          img.avatar(src=config.common_assets + '/images/avatar.png', width='90', height='90')
+        p.tac
+          a.lnk-uname(href=config.url.user + '/')
+          a.lnk-logout(href='javascript:;') [退出]
+        hr.separate
+        a.lnk-recharge(href=config.url.pay + '/', target='_blank') 充值
+        h3.played-title
+          i.icon.icon-angle-right3
+          span.title
+        ul.played-list
+        ul.hot-recommend-list
+      aside.sidebar.fl
+        include partials/server.pug
+        include partials/news.pug
+        include partials/shortcut.pug
+      .content.fl
+        .recommend-wrap
+          header.title 推荐游戏
+            .square.vat
+            .more
+              span MORE
+              a.lnk-more(href=config.url.game + '/', target='_blank') +
+                i.icon.icon-plus
+          ul.recommend-list.cf
+            each recommend, index in recommends
+              li.item(class={nrm: (index + 1) % 3 == 0})
+                a.lnk-cover.block(href=recommend.apidata.gurl, target='_blank')
+                  img.cover(src=JSON.parse(recommend.data).img)
+                .online.fl
+                  a.name(href=recommend.apidata.gurl, target='_blank') #{recommend.apidata.gname}
+                  .cates #{recommend.apidata.catnames}
+                .lnks.fr
+                  a.lnk(href=recommend.apidata.gurl, target='_blank') 官网
+                  a.lnk.nbm(href=recommend.apidata.serverurl, target='_blank') 游戏
+        .quality-wrap
+          header.title 精品游戏
+            .square.vat
+            .more
+              span MORE
+              a.lnk-more(href=config.url.game + '/', target='_blank') +
+                i.icon.icon-plus
+          ul.quality-list.cf
+            each quality, index in qualities
+              li.item(class={nrm: (index + 1) % 3 == 0})
+                a.lnk-cover.block(href=quality.apidata.gurl, target='_blank')
+                  img.cover(src=JSON.parse(quality.data).img)
+                .lnks
+                  a.name(href=quality.apidata.gurl, target='_blank') #{quality.apidata.gname}
+                  a.go.fr(href=quality.apidata.gurl, target='_blank')
+                    i.icon.icon-arrow-right.nrm
+
+block scripts
+  script(src=config.common_assets + '/components/unslider/unslider.js')
+  script.
+    $(function () {
+
+      // 获取最近玩过的游戏列表
+      function getPlayedList() {
+        $.ajax({
+          url: '#{config.origin.game}/gameinfo/server/recentserver',
+          data: {
+            pagenum: 1,
+            pagesize: 4
+          },
+          dataType: 'jsonp',
+          jsonp: 'function',
+          success: function (result) {
+            if (result.status == 1) {
+              var html = '';
+              var item;
+              if (result.data.data.length != 0) {
+                for (var i = 0, j = result.data.data.length; i < j; i++) {
+                  item = result.data.data[i];
+                  html += '<li class="cf">' +
+                    '<a class="g-icon" href="' + item.gurl + '" target="_blank">' +
+                    '<img src="' + item.gamepictureicon + '" width="20" height="20">' +
+                    '</a>' +
+                    '<a class="g-name toe" href="' + item.gurl + '" target="_blank">' + item.gname + '</a>' +
+                    '<a class="g-server toe" href="#{config.url.play}/?gid=' + item.gid + '&sid=' + item.sid + '" target="_blank">' + item.sname + '</a>' +
+                    '<a class="g-start toe" href="#{config.url.play}/?gid=' + item.gid + '&sid=' + item.sid + '" target="_blank">进入游戏</a>' +
+                    '</li>';
+                }
+                $('#logined_wrap').find('.played-title .title').text('最近玩过的游戏：');
+                $('#logined_wrap').find('.played-list').html(html).show();
+              } else {
+                getHotRecommendList();
+              }
+            }
+          }
+        });
+      }
+
+      // 获取热门推荐游戏列表
+      function getHotRecommendList() {
+        $.ajax({
+          url: '#{config.origin.game}/gameinfo/server/pagemultigamehotserverrecommendlist',
+          data: {
+            pagenum: 1,
+            pagesize: 4
+          },
+          dataType: 'jsonp',
+          jsonp: 'function',
+          success: function (result) {
+            if (result.status == 1) {
+              var html = '';
+              var item;
+              for (var i = 0, j = result.data.data.length; i < j; i++) {
+                item = result.data.data[i];
+                html += '<li class="cf">' +
+                  '<a class="g-icon" href="' + item.gameurl + '" target="_blank">' +
+                  '<img src="' + item.gamepictureicon + '" width="20" height="20">' +
+                  '</a>' +
+                  '<a class="g-name toe" href="' + item.gameurl + '" target="_blank">' + item.gamename + '</a>' +
+                  '<a class="g-server toe" href="#{config.url.play}/?gid=' + item.gid + '&sid=' + item.sid + '" target="_blank">' + item.sname + '</a>' +
+                  '<a class="g-start toe" href="#{config.url.play}/?gid=' + item.gid + '&sid=' + item.sid + '" target="_blank">进入游戏</a>' +
+                  '</li>';
+              }
+              $('#logined_wrap').find('.played-title .title').text('热门推荐游戏：');
+              $('#logined_wrap').find('.hot-recommend-list').html(html).show();
+            }
+          }
+        });
+      }
+
+      LoginManager.isLogined(function (logined) {
+        if (logined) {
+          var $logined_wrap = $('#logined_wrap');
+          $('#signin_form').hide();
+          $logined_wrap.show();
+          $logined_wrap.find('.lnk-uname').text(LoginManager.userInfo.nickname);
+
+          getPlayedList();
+
+          // 退出
+          $logined_wrap.on('click', '.lnk-logout', function (e) {
+            LoginManager.logout({
+              success: function () {
+                location.reload();
+              }
+            });
+          });
+        }
+      });
+
+      $('#unslider_carousel').unslider({
+        animation: 'fade',
+        autoplay: true,
+        arrows: false,
+        delay: 3000
+      });
+    });

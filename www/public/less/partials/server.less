@@ -1,0 +1,91 @@
+// 开服列表
+.server-panel {
+  .panel-header {
+    border-bottom: 0;
+  }
+  .tab {
+    float: left;
+    padding: 10px;
+    width: 50%;
+    border-bottom: 1px solid @border-color;
+    border-left: 1px solid @border-color;
+    border-top: 1px solid #f5f5f5;
+    background-color: #fafafa;
+    color: #878787;
+    cursor: pointer;
+    .gradient-vertical(#f5f5f5, #fdfdfd);
+    &.active {
+      border-top-color: @secondary-color;
+    }
+  }
+  .tab-content {
+    .separate {
+      margin: 0 5px;
+      border: 0;
+      border-top: 1px dotted #cfcfcf;
+    }
+    .tab-pane {
+      display: none;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      &.active {
+        display: block;
+      }
+    }
+    .unslider-wrap {
+      padding: 15px 0;
+      min-height: 470px;
+      .clearfix();
+    }
+    .unslider-nav {
+      padding: 20px 0px;
+      height: 60px;
+      text-align: center;
+      li {
+        margin: 0 10px;
+        width: 12px;
+        height: 12px;
+        background-color: @border-color;
+        text-indent: 1000px;
+        overflow: hidden;
+        border: 0;
+        border-radius: 50%;
+        &.unslider-active {
+          background-color: @primary-color;
+        }
+      }
+    }
+    table.server-list {
+      table-layout: fixed;
+      width: 100%;
+      border-spacing: 0;
+      border-collapse: collapse;
+      thead th {
+        padding: 20px 5px;
+      }
+      tbody td {
+        padding: 10px 5px;
+        text-align: center;
+        vertical-align: top;
+      }
+      a {
+        color: #686868;
+        &:hover {
+          color: @primary-color;
+        }
+      }
+      .server-name a {
+        color: @primary-color;
+        &:hover {
+          color: @primary-hover-color;
+        }
+      }
+      .date {
+        font-size: 12px;
+        color: #ababab;
+      }
+    }
+  }
+}

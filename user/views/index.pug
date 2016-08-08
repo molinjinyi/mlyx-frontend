@@ -1,0 +1,89 @@
+extends ./layouts/default.pug
+
+block content
+  #modifypwd_wrap.modifypwd-wrap
+    h3.title 修改密码
+    form
+      table.table-form
+        tbody
+          tr
+            td.field 原密码
+            td
+              input.input.old-pwd(type='password')
+              span#error_old.error-msg
+          tr
+            td.field 新密码
+            td
+              input.input.new-pwd(type='password')
+              span#error_new.error-msg
+          tr
+            td.field 确认密码
+            td
+              input.input.confirm-pwd(type='password')
+              span#error_confirm.error-msg
+      .tac
+        button#btn_primary.btn.btn-primary(type='button') 提交
+
+block scripts
+  script.
+    $(function () {
+      $('#btn_primary').on('click', function (e) {
+        var $btn_primary = $(this);
+        var $modifypwd_wrap = $('#modifypwd_wrap');
+        var oldPwd = $modifypwd_wrap.find('.old-pwd').val();
+        var newPwd = $modifypwd_wrap.find('.new-pwd').val();
+        var confirmPwd = $modifypwd_wrap.find('.confirm-pwd').val();
+        var $error_old = $('#error_old');
+        var $error_new = $('#error_new');
+        var $error_confirm = $('#error_confirm');
+        if (!oldPwd) {
+          $error_old.text('请输入原密码');
+          return;
+        } else {
+          $error_old.text('');
+        }
+        if (!newPwd) {
+          $error_new.text('请输入新密码');
+          return;
+        } else if (newPwd == oldPwd) {
+          $error_new.text('新密码必须与原密码不同');
+          return;
+        } else {
+          $error_new.text('');
+        }
+        if (!confirmPwd) {
+          $error_confirm.text('请输入确认密码');
+          return;
+        } else if (confirmPwd != newPwd) {
+          $error_confirm.text('两次密码不一致');
+          return;
+        } else {
+          $error_confirm.text('');
+        }
+        $btn_primary.text('提交中...').prop('disabled', true);
+        $.ajax({
+          url: '#{config.origin.user}/user/info/updatepwd',
+          data: {
+            oldpwd: oldPwd,
+            pwd: newPwd
+          },
+          dataType: 'jsonp',
+          jsonp: 'function',
+          success: function (result) {
+            if (result.status == 1) {
+              alert('修改成功');
+              location.reload();
+            } else {
+              if (result.status == 0) {
+                alert('原密码不正确');
+              } else if (result.status == 5) {
+                alert('系统异常');
+              }
+            }
+          },
+          complete: function () {
+            $btn_primary.text('提交');
+          }
+        });
+      });
+    });

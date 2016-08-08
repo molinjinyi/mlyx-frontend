@@ -1,0 +1,421 @@
+@import 'base/normalize.less';
+@screen-width: 1000px;
+@body-color: #fff;
+@body-bgcolor: #0c0c0c;
+@footer-bgcolor: #000;
+@footer-color: #929292;
+@footer-color-hover: #fff;
+@footer-weixin-bgcolor: #32a545;
+@footer-weibo-bgcolor: #494949;
+.clearfix() {
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+  *zoom: 1;
+}
+.inline-block() {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+* {
+  box-sizing: border-box;
+  outline: 0;
+  transition-duration: .15s;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  min-width: @screen-width;
+}
+body {
+  font-family: 'Hiragino Sans GB', 'Helveica Neue', 'Open Sans', 'Microsoft YaHei', Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: @body-color;
+  background-color: @body-bgcolor;
+}
+
+a {
+  text-decoration: none;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cf {
+  .clearfix();
+}
+.fl {
+  float: left !important;
+}
+.fr {
+  float: right !important;
+}
+.ntm {
+  margin-top: 0 !important;
+}
+.nlm {
+  margin-left: 0 !important;
+}
+.nrm {
+  margin-right: 0 !important;
+}
+.icon {
+  .inline-block();
+  margin-right: 5px;
+  width: 14px;
+  height: 14px;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+.icon-home {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/icon_home.png);
+}
+.icon-recharge {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/icon_recharge.png);
+}
+.icon-heart {
+  width: 16px;
+  height: 14px;
+  background-image: url(../images/icon_heart.png);
+}
+.icon-commenting {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/icon_commenting.png);
+}
+.icon-clock {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/icon_clock.png);
+}
+.icon-user {
+  width: 30px;
+  height: 32px;
+  background-image: url(../images/icon_user.png);
+}
+.icon-server {
+  width: 28px;
+  height: 32px;
+  background-image: url(../images/icon_server.png);
+}
+
+.container {
+  margin: 0 auto;
+  width: @screen-width;
+  .clearfix();
+}
+
+// 顶部
+.topbar {
+  height: 70px;
+  background-color: #2d88ce;
+  .container {
+    position: relative;
+    padding: 0 40px;
+    height: 70px;
+    background-color: #59a2db;
+  }
+  .logo {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+  }
+  .nav {
+    float: right;
+    padding: 20px 0;
+    li {
+      float: left;
+      margin-right: 10px;
+      a {
+        display: block;
+        padding: 5px 20px;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 2px;
+        color: #858585;
+        &:hover {
+          background-color: darken(#fff, 5%);
+        }
+      }
+      .icon {
+        margin-top: -2px;
+      }
+    }
+  }
+}
+
+// 内容
+.content {
+  background: @body-bgcolor url(../images/bg_server.jpg) 50% 0 no-repeat;
+  .container {
+    padding: 40px;
+    background-color: #191919;
+    border: 1px solid #323232;
+    border-top: 0;
+    border-bottom: 0;
+    box-shadow: 0 0 100px 0 #000;
+  }
+  .title {
+    margin: 30px 0 20px;
+    font-size: 19px;
+    font-weight: normal;
+  }
+  .sub-title {
+    margin: 50px 0 20px;
+    font-size: 16px;
+    font-weight: normal;
+    .angle {
+      margin-right: 5px;
+      font-family: SimSun, '宋体';
+    }
+  }
+  .icon-user,
+  .icon-server {
+    margin-top: -5px;
+    margin-right: 15px;
+  }
+  .login-title {
+    *margin-top: 70px;
+  }
+  .unlogin-wrap {
+    margin-bottom: 70px;
+    padding: 40px;
+    background-color: #222222;
+    .prompt {
+      margin-bottom: 25px;
+    }
+    .btn-login {
+      .inline-block();
+      padding: 7px 10px;
+      width: 140px;
+      color: #fff;
+      background-color: #1d8ee6;
+      text-align: center;
+      border-radius: 3px;
+      &:hover {
+        background-color: lighten(#1d8ee6, 5%);
+      }
+    }
+  }
+  .logined-wrap {
+    margin-bottom: 70px;
+    background-color: #222222;
+    .user-info {
+      padding: 40px;
+      background-color: #222222;
+    }
+    .name-wrap {
+      margin-bottom: 25px;
+    }
+    .username {
+      margin-right: 10px;
+      color: #4ab0ff;
+      &:hover {
+        color: lighten(#4ab0ff, 5%);
+      }
+    }
+    .btn-logout {
+      margin-left: 10px;
+      padding: 2px 15px;
+      background-color: #373737;
+      border-radius: 2px;
+      color: #878787;
+      &:hover {
+        background-color: lighten(#373737, 5%);
+        color: #fff;
+      }
+    }
+    .btn-infocenter {
+      .inline-block();
+      padding: 7px 10px;
+      width: 140px;
+      color: #fff;
+      background-color: #1d8ee6;
+      text-align: center;
+      border-radius: 3px;
+      &:hover {
+        background-color: lighten(#1d8ee6, 5%);
+      }
+    }
+    .played-server {
+      padding: 20px 40px;
+      background-color: #262626;
+      color: #848484;
+      .icon-clock {
+        margin-top: -2px;
+      }
+      a {
+        margin-left: 15px;
+        color: #1d8ee6;
+        &:hover {
+          color: lighten(#1d8ee6, 5%);
+        }
+      }
+    }
+  }
+  .recommend-title {
+    color: #d13f18;
+    margin-top: 20px;
+  }
+  .recommend-list {
+    padding: 70px 40px;
+    background-color: #222222;
+    .item {
+      float: left;
+      margin-right: 29px;
+      a {
+        display: block;
+        width: 260px;
+        height: 60px;
+        line-height: 60px;
+        background-color: #d13f18;
+        text-align: center;
+        color: #fff;
+        &:hover {
+          background-color: lighten(#d13f18, 10%);
+        }
+      }
+    }
+  }
+  .server-wrap {
+    padding: 20px 40px;
+    .lbl {
+      .inline-block();
+      margin: 0 15px;
+      color: #727272;
+      font-size: 16px;
+      line-height: 34px;
+      vertical-align: bottom;
+    }
+    .input {
+      .inline-block();
+      width: 150px;
+      height: 34px;
+      padding: 6px 12px;
+      *padding: 0 12px;
+      font-size: 14px;
+      line-height: 1.42857143;
+      color: #555;
+      background-color: #fff;
+      background-image: none;
+      border: 0;
+      border-radius: 2px;
+    }
+    .btn-quick {
+      .inline-block();
+      margin-left: 20px;
+      padding: 7px 10px;
+      width: 80px;
+      background-color: #ffba00;
+      text-align: center;
+      border-radius: 3px;
+      border: 0;
+      font-weight: bold;
+      color: #161616;
+      cursor: pointer;
+      &:hover {
+        background-color: lighten(#ffba00, 5%);
+      }
+      &:active {
+        box-shadow: 0 0 15px 0 darken(#ffba00, 20%) inset;
+      }
+    }
+  }
+  .list-wrap {
+    margin-top: 50px;
+    width: 858px;
+    max-height: 600px;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  .server-list {
+    .item {
+      float: left;
+      margin-right: 29px;
+      margin-bottom: 29px;
+      a {
+        display: block;
+        width: 260px;
+        height: 60px;
+        line-height: 60px;
+        background-color: #232323;
+        text-align: center;
+        color: #fff;
+        border-left: 4px solid transparent;
+        &:hover {
+          border-left-color: #0089f3;
+        }
+      }
+    }
+  }
+}
+// 底部
+.footer {
+  padding: 30px 0;
+  background-color: @footer-bgcolor;
+  color: @footer-color;
+  font-size: 12px;
+  .f-logo {
+    float: left;
+    margin-right: 50px;
+    height: 37px;
+  }
+  .copyright {
+    float: left;
+    a {
+      color: @footer-color;
+      &:hover {
+        color: @footer-color-hover;
+      }
+    }
+    .icp {
+      a {
+        color: @footer-color;
+        &:hover {
+          color: @footer-color-hover;
+        }
+      }
+    }
+  }
+  .contact {
+    a {
+      display: inline-block;
+      padding: 14px 30px;
+      width: 235px;
+      color: #fff;
+    }
+    .gicon {
+      margin-right: 20px;
+    }
+    .weixin {
+      background-color: @footer-weixin-bgcolor;
+      &:hover {
+        background-color: lighten(@footer-weixin-bgcolor, 5%)
+      }
+    }
+    .weibo {
+      margin-left: 25px;
+      background-color: @footer-weibo-bgcolor;
+      &:hover {
+        background-color: lighten(@footer-weibo-bgcolor, 5%)
+      }
+    }
+  }
+}

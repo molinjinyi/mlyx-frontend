@@ -1,0 +1,94 @@
+extends ./layouts/default.pug
+
+block content
+  .container.main.pr
+    include ./partials/sidebar.pug
+    .content
+      #forget_wrap.forget-wrap
+        ul#step.step-wrap.cf
+          li.step-1.active 1、验证身份
+          li.step-2 2、重置密码
+          li.step-3 3、找回成功
+        form#form.form.form-forgot
+          .input-box
+            label.lbl 确认邮箱
+            input.input.email(type='text', placeholder='请输入您注册时的邮箱地址')
+          .input-box
+            label.lbl
+            button#btn_next.btn.btn-primary(type='button') 下一步
+            span#error_msg.error-msg
+        #send.send-wrap(style='display:none;')
+          .tips
+            i.icon.icon-correct
+            |  密码重置的验证信息已发送至您的邮箱！请按邮箱提示操作完成身份验证。
+          .resend
+            | 没有收到邮件？
+            a.btn-resend(href='javascript:;') 重新发送邮件
+
+block scripts
+  script.
+    $(function () {
+      var $forget_wrap = $('#forget_wrap');
+      var $form = $('#form');
+      var $btn_next = $('#btn_next');
+      var $error_msg = $('#error_msg');
+      var email = '';
+
+      $forget_wrap.on('keydown', '.email', function (e) {
+        if (e.which == 13) {
+          e.preventDefault();
+          submitForm();
+        }
+      });
+
+      // 提交
+      $btn_next.on('click', function (e) {
+        submitForm();
+      });
+
+      // 重新发送邮件
+      $forget_wrap.on('click', '.btn-resend', function (e) {
+        sendEmail();
+      });
+
+      // 提交表单
+      function submitForm() {
+        var reg = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        email = $.trim($form.find('.email').val());
+        if (!email) {
+          $error_msg.text('请输入你注册的邮箱地址');
+          return;
+        } else if (!reg.test(email)) {
+          $error_msg.text('请输入正确的邮箱地址');
+          return;
+        }
+        $error_msg.text('');
+        sendEmail();
+      }
+
+      // 发送邮件
+      function sendEmail() {
+        $btn_next.text('提交中...').prop('disabled', true);
+        $.ajax({
+          url: '#{config.origin.user}/user/security/requestfindpwd',
+          data: {
+            email: email,
+            surl: '#{config.url.service}/resetpwd',
+            furl: '#{config.url.service}/resetpwd'
+          },
+          dataType: 'jsonp',
+          jsonp: 'function',
+          success: function (result) {
+            if (result.status == 1) {
+              $form.hide();
+              $('#send').show();
+            } else if (result.status == 6) {
+              $error_msg.text('邮件不存在');
+            }
+          },
+          complete: function () {
+            $btn_next.text('下一步').prop('disabled', false);
+          }
+        });
+      }
+    });

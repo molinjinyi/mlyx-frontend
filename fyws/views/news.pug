@@ -1,0 +1,31 @@
+extends ./layouts/default.pug
+
+block content
+  include ./partials/bannerad.pug
+  //- 内容 开始
+  .listcontent.container
+    //- 右侧内容开始
+    include ./partials/rightcomponents.pug
+    //- 右侧内容结束
+    .leftcontent
+      //- 左侧内容开始
+      .breadcrumbs
+        ul
+          li 您的位置：
+          li 
+            a(href='/') 首页
+          li 
+            a(href=config.site_url.news_center) 新闻中心
+          li 
+            a(href=config.site_url.news_center+"/"+article.catename) #{article.cname}
+          li 
+            | #{article.title}
+        h3.title 新闻中心
+        span / NEWS center
+      h1.articletitle
+        | #{article.title}
+        span #{moment(article.uDate || article.cDate).format('YYYY-MM-DD HH:mm')}
+      .articlecontent
+        | !{article.content}
+      //- 左侧内容结束
+  //- 内容结束

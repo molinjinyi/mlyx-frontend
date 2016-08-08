@@ -1,0 +1,277 @@
+.enter-area .start-area .start-btn {
+  display: block;
+  width: 255px;
+  height: 156px;
+  background: url(../images/normal-spr.png) -255px -0px no-repeat;
+  cursor: pointer;
+  border: none;
+  transition: .3s;
+}
+
+.enter-area .start-area .start-btn:hover {
+  opacity: .85;
+}
+
+.enter-area .deposit-area {
+  background: url(../images/bg_1.png) no-repeat;
+  background-size: cover;
+  height: 43px;
+}
+
+.enter-area .deposit-area div {
+  width: 50%;
+  cursor: pointer;
+}
+
+.enter-area .deposit-area div:nth-of-type(2) {
+  background: url(../images/bg_border.png) no-repeat;
+}
+
+.enter-area .deposit-area div a {
+  font-size: .9rem;
+  color: #FFF;
+  padding: 10px 0;
+  line-height: 23px;
+  display: block;
+}
+
+.enter-area .deposit-area div i {
+  display: block;
+  float: left;
+  width: 22px;
+  height: 22px;
+  margin: 0px 6px 0 23px;
+  background: url(../images/icon.png);
+  transition: all 1s ease-out;
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.enter-area .deposit-area div i.images-dep {
+  background-position: 0 -242px;
+}
+
+.enter-area .deposit-area div i.images-reg {
+  background-position: 0 -290px;
+}
+
+.enter-area .deposit-area div:hover i {
+  -webkit-transform: rotateY(360deg);
+  transform: rotateY(360deg);
+}
+
+.enter-area .login-area {
+  padding: 15px 7px 10px 7px;
+  background: url(../images/bg_2.png) no-repeat;
+  overflow: hidden;
+}
+
+.enter-area .login-area .inp-area {
+  width: 180px;
+}
+
+.enter-area .login-area .inp {
+  margin-bottom: 5px;
+  border: 1px solid #313131;
+  background-color: #313131;
+  padding: 5px 15px;
+  outline: none;
+  color: #CECCCC;
+  width: 140px;
+}
+
+.enter-area .login-area .inp.verify-inp {
+  width: 50px;
+}
+
+.enter-area .login-area .inp.error {
+  border-color: #D81212;
+}
+
+.enter-area .login-area .verify-images {
+  border: none;
+  width: 50px;
+  height: 23px;
+  margin-left: 10px;
+  margin-top: 2px;
+}
+
+.enter-area .login-area .login-btn {
+  width: 60px;
+  padding: 18px 0;
+  overflow: hidden;
+  background-color: #807E7E;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #D6D5D5;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.enter-area .login-area .login-btn:hover {
+  background-color: #DD4C2A;
+  color: #FFF;
+}
+
+.enter-area .login-area .other-login {
+  padding: 10px 0 30px 0;
+  width: 100%;
+  position: relative;
+}
+
+.enter-area .login-area .other-login a {
+  position: absolute;
+}
+
+.enter-area .user-area {
+  padding: 25px 7px 10px 7px;
+  background: url(../images/bg_2.png) no-repeat;
+  overflow: hidden;
+}
+
+.enter-area .user-area .point {
+  color: #f2d075;
+}
+
+.enter-area .user-area .point:hover {
+  text-decoration: underline;
+}
+
+.enter-area .user-area p {
+  padding: 0px 0px 19px 15px;
+  overflow: hidden;
+}
+
+.enter-area .user-area p.user-out {
+  border-top: 1px dotted #888;
+  padding: 10px 0 5px 0;
+}
+
+
+/* 登录窗口样式 */
+
+.login-dialog {
+  width: 390px;
+  /*height: 500px;*/
+  position: relative;
+}
+
+.login-dialog .main {
+  padding: 0px;
+  height: 100%;
+  background-color: #ffffff;
+  position: relative;
+  border-radius: 1px;
+  box-shadow: 6px 3px 15px 0px #2B2B2B;
+}
+
+.login-dialog .main .close-btn {
+  position: absolute;
+  right: -25px;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: .9;
+  background-color: #eae9e9;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+}
+
+.login-dialog .main .error-tips {
+  color: #D81212;
+}
+
+.login-dialog .main .row {
+  margin: 10px auto;
+  width: 288px;
+}
+
+.login-dialog .main .row-1 {
+  margin-top: 35px;
+  position: relative;
+}
+
+.login-dialog .main .row-1 .d-title {
+  font-size: 1.2rem;
+  color: #929292;
+}
+
+.login-dialog .main .row-1 .d-register {
+  font-size: .8rem;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid #fff;
+}
+
+.login-dialog .main .row-1 .d-register:hover {
+  color: #ff6600;
+  border-color: #ff6600;
+}
+
+.login-dialog .main .row-2 input {
+  width: 228px;
+  height: 43px;
+  background: url(../images/uname_bg.png) no-repeat;
+  border: none;
+  outline: none;
+  padding-left: 60px;
+}
+
+.login-dialog .main .row-3 input {
+  width: 100%;
+  height: 43px;
+  background: url(../images/pwd_bg.png) no-repeat;
+  border: none;
+  outline: none;
+  padding-left: 60px;
+}
+
+.login-dialog .main .row-4 {
+  position: relative;
+  font-size: .8rem;
+  margin-top: 30px;
+}
+
+.login-dialog .main .row-4 .d-auto-login {
+  cursor: pointer;
+}
+
+.login-dialog .main .row-4 .d-auto-login i {
+  width: 13px;
+  height: 13px;
+  background: url(../images/check.png);
+  display: inline-block;
+}
+
+.login-dialog .main .row-4 .d-forget {
+  position: absolute;
+  right: 0;
+  border-bottom: 1px solid #fff;
+  cursor: pointer;
+}
+
+.login-dialog .main .row-4 .d-forget:hover {
+  color: #ff6600;
+  border-color: #ff6600;
+}
+
+.login-dialog .main .row-5 button {
+  background: #ff6600;
+  border-radius: 5px;
+  color: #FFF;
+  border: none;
+  padding: 10px 0;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-dialog .main .row-5 button:hover {
+  opacity: .8;
+}

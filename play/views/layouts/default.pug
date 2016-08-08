@@ -1,0 +1,14 @@
+doctype html
+html(lang='zh-cn')
+  head
+    include ../../../common/views/head.pug
+    block title
+      title #{config.name}
+    link(rel='stylesheet' href=config.assets + '/css/main.css?v=' + config.version)
+    block styles
+    script(src=config.common_assets + '/components/jquery/v1/jquery.js')
+    script(src=config.common_assets + '/js/login.js?v=' + config.version)
+  body
+    block content
+    block scripts
+    include ../../../common/views/analytics.pug

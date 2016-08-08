@@ -1,0 +1,33 @@
+@import 'base/variables.less';
+
+.articletitle {
+    text-align: center;
+    border-bottom: 1px solid #979797;
+    height: 76px;
+    font-size: 26px;
+    color: @content-txt-color;
+    margin: 40px 0;
+    span {
+        font-size: 12px;
+        color: @link-general-color;
+        display: block;
+        line-height: 12px;
+        height: 12px;
+        margin: 25px 0 0 0;
+    }
+}
+
+.articlecontent {
+    line-height: 20px;
+    //height: 751px;
+    //overflow-y: scroll;
+    word-break: break-all;
+    word-wrap: break-word;
+    font-size: 14px;
+    color: @content-txt-color;
+    width: 780px;
+    overflow: hidden;
+    img{
+        max-width: 760px;
+    }
+}

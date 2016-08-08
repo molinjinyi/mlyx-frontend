@@ -1,0 +1,63 @@
+doctype html
+html(lang='zh-cn')
+  head
+    include ../../../common/views/head.pug
+    block title
+      title 充值中心 - #{config.name}
+    link(rel='stylesheet' href=config.common_assets + '/css/mlyx.css?v=' + config.version)
+    link(rel='stylesheet' href=config.assets + '/css/main.css?v=' + config.version)
+    block styles
+    <!--[if lt IE 9]>
+    script(src=config.common_assets + '/components/html5shiv/html5shiv.js?v=' + config.version)
+    <![endif]-->
+    script(src=config.common_assets + '/components/jquery/v1/jquery.js')
+    script(src=config.common_assets + '/js/login.js?v=' + config.version)
+  body
+    - var nav = 'pay'
+    include ../../../common/views/topbar.pug
+    include ../../../common/views/navbar.pug
+    .container
+      .g-wrap.pr
+        block content
+    //- .ad-wrap.pr
+    //-   .bg-block.pa
+    //-   a.ad.pr(href='')
+    .help-wrap
+      .container
+        .lnk-box
+          .h-title 客服热线
+          dl
+            dt 充值咨询：
+            dd
+              a.online(href='http://wpa.qq.com/msgrd?v=3&uin=2880500813&site=qq&menu=yes', target='_blank') 在线客服
+            dt 客服电话：
+            dd
+              div 0755-86958818
+        .lnk-box
+          .h-title 常见问题
+          ul
+            li
+              a(href=config.url.service + '/', target='_blank') 没开通网银可以充值吗？
+            li
+              a(href=config.url.service + '/', target='_blank') Q币能充值游戏吗？
+            li
+              a(href=config.url.service + '/', target='_blank') 手机话费能充值吗？
+        .lnk-box
+          .h-title 充值帮助
+          ul
+            li
+              a(href=config.url.service + '/', target='_blank') 支付宝充值帮助
+            li
+              a(href=config.url.service + '/', target='_blank') 微信充值帮助
+            li
+              a(href=config.url.service + '/', target='_blank') 银行卡充值帮助
+        .lnk-box
+          .h-title 充值公告
+          ul
+            li
+              a(href=config.url.service + '/', target='_blank') 支付宝充值方式上线通知
+            li
+              a(href=config.url.service + '/', target='_blank') 微信充值方式上线通知
+    include ../../../common/views/footer.pug
+    block scripts
+    include ../../../common/views/analytics.pug

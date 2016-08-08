@@ -1,0 +1,39 @@
+.sidebar {
+  top: 0;
+  left: 0;
+  width: @sidebar-width;
+  height: 100%;
+  background-color: #f6f6f6;
+  border-right: 1px solid @sidebar-border-color;
+  .subnav {
+    margin: 50px 0;
+    ul {
+      margin-left: -1px;
+      margin-right: -1px;
+    }
+    li {
+      margin-bottom: 5px;
+      &.active {
+        a {
+          background-color: #fff;
+          border-color: @sidebar-border-color;
+          border-right-color: #fff;
+        }
+      }
+    }
+    a {
+      display: block;
+      padding: 15px 40px;
+      color: #6d6d6d;
+      border: 1px solid #f6f6f6;
+      border-left-color: #cfcfcf;
+      border-right-color: @sidebar-border-color;
+      &:hover {
+        background-color: #fff;
+      }
+      .icon {
+        margin-right: 25px;
+      }
+    }
+  }
+}

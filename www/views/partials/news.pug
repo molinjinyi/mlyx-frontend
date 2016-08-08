@@ -1,0 +1,14 @@
+.news-panel.panel
+  header.panel-header 新闻资讯
+    .more
+      span MORE
+      a.lnk-more(href=config.url.main + '/newslist', target='_blank') +
+  .panel-body
+    ul.news-list
+      each item, index in news
+        li(class={nbb: index == 4})
+          .triangle.right
+          time.date #{moment(item.cDate).format('MM.DD')}
+          - var url = item.type == 0 ? config.url.main + '/news/' + item.aid : item.link
+          .title.toe
+            a(href=url, target='_blank') #{item.title}

@@ -1,0 +1,134 @@
+.sidebar {
+  top: 0;
+  left: 0;
+  width: @sidebar-width;
+  height: 100%;
+  background-color: #f6f6f6;
+  border-right: 1px solid @orange-color;
+  .subnav {
+    margin: 50px 0;
+    ul {
+      margin-left: -1px;
+      margin-right: -1px;
+    }
+    li {
+      margin-bottom: 5px;
+      &.active {
+        a {
+          background-color: #fff;
+          border-color: @orange-color;
+          border-right-color: #fff;
+        }
+      }
+    }
+    a {
+      display: block;
+      padding: 15px 40px;
+      color: #6d6d6d;
+      border: 1px solid #f6f6f6;
+      border-left-color: #cfcfcf;
+      border-right-color: @orange-color;
+      &:hover {
+        background-color: #fff;
+      }
+      .icon {
+        margin-right: 25px;
+      }
+    }
+  }
+}
+
+.content {
+  margin-left: @sidebar-width;
+  padding: 40px;
+  width: @screen-width - @sidebar-width - 2;
+  background-color: #fff;
+  @media screen and (max-width: @screen-max-width) {
+    width: @screen-width - (@sidebar-width + @mini-padding * 2) - 2;
+  }
+  .separate {
+    border: 0;
+    border-bottom: 1px solid #ececec;
+  }
+  .explain {
+    .explain-title {
+      margin: 15px 0;
+      color: #6d6d6d;
+    }
+    .explain-list {
+      display: none;
+      padding-left: 20px;
+      list-style-type: decimal;
+      color: #a1a1a1;
+      line-height: 1.8em;
+      &.active {
+        display: block;
+      }
+      li.danger {
+        color: #e0504d;
+      }
+    }
+  }
+}
+
+.g-wrap {
+  margin-bottom: 100px;
+  border: 1px solid #cfcfcf;
+  border-top: 0;
+  .pw-title {
+    margin: 30px 0 20px;
+  }
+}
+
+.ad-wrap {
+  .ad {
+    display: block;
+    height: 165px;
+    background: url(../images/pay_ad.png) no-repeat 50% 100%;
+  }
+  .bg-block {
+    bottom: 0;
+    width: 100%;
+    background-color: #47a6ff;
+    height: 111px;
+  }
+}
+
+.help-wrap {
+  padding: 50px 0;
+  background-color: #f4f4f4;
+  .lnk-box {
+    float: left;
+    width: 25%;
+    line-height: 2em;
+    color: #a9a9a9;
+    a {
+      color: #a9a9a9;
+      &:hover {
+        color: @primary-color;
+      }
+    }
+    .online {
+      color: #a9a9a9;
+      border: 1px solid #ddd;
+      padding: 2px 10px;
+      background-color: #fff;
+      border-radius: 3px;
+    }
+  }
+  .h-title {
+    font-size: 16px;
+    color: #6d6d6d;
+    margin-bottom: 10px;
+  }
+  dl {
+    margin: 0;
+    dt {
+      float: left;
+      width: 80px;
+    }
+    dd {
+      margin-left: 80px;
+    }
+  }
+}

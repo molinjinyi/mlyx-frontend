@@ -1,0 +1,150 @@
+.beforelogin {
+    padding: 26px 26px 15px 31px;
+    display: inline-block;
+    height: 169px;
+    overflow: hidden;
+    .login-form{
+        // display: none;
+    }
+    .form {
+        display: inline-block;
+        margin: 0;
+    }
+    .title {
+        font-size: 16px;
+        height: 20px;
+        line-height: 20px;
+        margin: 0 0 13px 0;
+        color: @title-color;
+        span {
+            font-size: 12px;
+            color: @beforelogin-span-color;
+            padding-left: 12px;
+        }
+    }
+    .loginbutton {
+        float: right;
+        width: 106px;
+        height: 65px;
+        background: url(../images/login_btn.jpg) no-repeat center center;
+        border: none;
+    }
+    .checkcode-box {
+        display: none;
+    }
+    input {
+        float: left;
+        height: 26px;
+        line-height: 26px;
+        border: 1px solid #1c1c1c;
+        background-color: #370c01;
+        color: @beforelogin-input-color;
+        margin: 0 0 5px 0;
+        padding-left: 6px;
+    }
+    img {
+        margin: 3px 8px 0 8px;
+    }
+    a {
+        color: @title-color;
+    }
+    .loggedon {
+        height: 168px;
+        display: none; 
+        line-height: 22px;
+        color: #f7a487;
+        width: 260px;
+        overflow: hidden;
+        div{
+            white-space: nowrap;
+        }
+        .username{
+            color: #e5b04c;
+        }
+        a{
+            color: #f7a487;
+        }
+        .right{
+            float:right;
+            margin-right: 10px;
+        }
+        .btn{
+            height: 31px;
+            width: 115px;
+            display: block;
+            float: left;
+            margin: 10px 0 0;
+        }
+        .pay{
+            background: url(../images/payplaybtn.jpg) no-repeat 0 0;
+            margin-right: 10px;
+        }
+        .play{
+            background: url(../images/payplaybtn.jpg) no-repeat -115px 0;
+        }
+        .list{
+            color: #e5b04c;
+            height: 22px;
+            width: 100px;
+            background: #521a0f;
+            border-color: #421200;
+            padding-left: 10px;
+            display: inline-block;
+        }
+        .divselect{
+            width:110px;
+            position:relative; 
+            z-index:10000;
+            display: inline-block;
+            color: #e5b04c;
+            background: #521a0f;
+            float: left;
+            .selected{
+                height:22px;
+                line-height:22px; 
+                display:block;
+                cursor:pointer;
+                font-style:normal;
+                padding:0 10px; 
+                border:1px solid #421200;
+                background: url(../images/arrows.png) no-repeat 95px center;
+                overflow: hidden;
+                span{
+                    width: 80px;
+                    overflow: hidden;
+                    display: inline-block;
+                }
+            }
+            ul{
+                width:108px;
+                border:1px solid #421200; 
+                background-color:#521a0f; 
+                position:absolute; 
+                z-index:20000; 
+                margin-top:-1px; 
+                display:none;
+                list-style: none;
+                max-height: 100px;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+            li{
+                height:24px; 
+                line-height:24px;
+                margin: 0;
+                padding: 0;
+            }
+            a{
+                display:block; 
+                height:22px; 
+                color:#f7a487; 
+                text-decoration:none; 
+                padding-left:10px;
+                &:hover{
+                    background-color:#CCC;
+                    color: #000;
+                }
+            }
+        }
+    }
+}

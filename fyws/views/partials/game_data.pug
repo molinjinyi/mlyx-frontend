@@ -1,0 +1,29 @@
+.gamedata
+  h3.commonbigtitle
+    | 游戏资料
+    span / GAME DATA
+  ul.firstnav
+    li.current 新手引导
+    li 特色玩法
+    li 高级玩家
+  ul.secondnav
+    each item in newbieGuide
+      li
+        a(href=item.link ? item.link : config.site_url.news_details+'/'+item.aid, target='_blank') #{item.title}
+    li
+      a(href=config.site_url.game_data+'#newbie', target='_blank') 更多
+  ul.secondnav.none
+    each item in characteristicsPlay
+      li
+        a(href=item.link ? item.link : config.site_url.news_details+'/'+item.aid, target='_blank') #{item.title}
+    li
+      a(href=config.site_url.game_data+'#characteristics', target='_blank') 更多
+  ul.secondnav.none
+    each item in seniorPlayers
+      li
+        a(href=item.link ? item.link : config.site_url.news_details+'/'+item.aid, target='_blank') #{item.title}
+    li
+      a(href=config.site_url.game_data+'#seniorplayers', target='_blank') 更多
+  //- 游戏资料链接-begin
+  include datalink.pug
+  //- 游戏资料链接-end

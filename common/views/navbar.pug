@@ -1,0 +1,26 @@
+nav.g-navbar
+  .container
+    a.brand(href=config.url.main + '/')
+      img(src=config.common_assets + '/images/logo.png')
+    ul.nav
+      li(class={active: nav == 'index'})
+        a(href=config.url.main + '/') 首页
+      li(class={active: nav == 'game'})
+        a(href=config.url.game + '/') 游戏中心
+      li(class={active: nav == 'user'})
+        a(href=config.url.user + '/') 用户中心
+      li(class={active: nav == 'pay'})
+        a(href=config.url.pay + '/') 充值中心
+      //- li(class={active: nav == 'gift'})
+      //-   a(href=config.url.gift + '/') 礼包中心
+      //- li(class={active: nav == 'mall'})
+      //-   a(href=config.url.mall + '/') 积分商城
+      li(class={active: nav == 'service'})
+        a(href=config.url.service + '/') 客服中心
+      li(class={active: nav == 'forum'})
+        a(href=config.url.forum + '/', target='_blank') 游戏论坛
+      //- li.search-wrap
+      //-   form#search_form.search-form(action='', target='_blank')
+      //-     input.txt-search(type='search', name='keyword', placeholder='请输入搜索内容')
+      //-     button.btn-search(type='submit')
+      //-       i.icon.icon-search

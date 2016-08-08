@@ -1,0 +1,33 @@
+.clearfix() {
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.opacity(@opacity) {
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+  opacity: @opacity;
+}
+
+
+.text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gradient-vertical(@start-color: #5963b3; @end-color: #4493d7; @start-percent: 0%; @end-percent: 100%) {
+  background-image: linear-gradient(to bottom, @start-color @start-percent, @end-color @end-percent);
+  background-repeat: repeat-x;
+}
+
+.gradient-horizontal(@start-color: #06b9d9; @end-color: #50e7be; @start-percent: 0%; @end-percent: 100%) {
+  background-image: linear-gradient(to right, @start-color @start-percent, @end-color @end-percent);
+  background-repeat: repeat-x;
+}

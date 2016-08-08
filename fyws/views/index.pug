@@ -1,0 +1,226 @@
+extends ./layouts/default_bg.pug
+
+block content
+  .content1.container
+    .begingame
+      //- 用户登录-begin
+      include ./partials/login.pug
+      //- 用户登录-end
+      .clear
+      //- 服务器列表-begin
+      include ./partials/server.pug
+      //- 服务器列表-end
+    .carousel
+      #slide
+        ul
+          if carouselList.index_carousel1
+            each item in carouselList.index_carousel1
+              li.carousel-item
+                a(href=item.data.link target="_blank")
+                  img(src=item.data.img alt=item.title)
+    //- 最新资讯&玩家自助-begin
+    include ./partials/indexnews.pug
+    //- 最新资讯&玩家自助-end
+  .content2.container
+    //- 全新资料片-begin
+    include ./partials/piece_information.pug
+    //- 全新资料片-end
+    .carousel2
+      #slide2
+        ul
+          if carouselList.index_carousel2
+            each item in carouselList.index_carousel2
+              li.carousel-item
+                if item.data.link
+                  a(href=item.data.link, target="_blank")
+                    img(src=item.data.img, alt=item.data.title + "：" + item.data.desc || '')
+                else
+                  img(src=item.data.img, alt=item.data.title + "：" + item.data.desc || '')
+    //- 游戏资料-begin
+    include ./partials/game_data.pug
+    //- 游戏资料-end
+  .content3.container
+    h3.commonbigtitle.paddingleft23
+      | 武器展示
+      span / Weapons Show
+    .arms
+      .arm_item.arm1
+        p.arms_img
+        #arms_flash1.arms_flash
+      .arm_item.arm2
+        p.arms_img
+        #arms_flash2.arms_flash
+      .arm_item.arm3
+        p.arms_img
+        #arms_flash3.arms_flash
+      .arm_item.arm4
+        p.arms_img
+        #arms_flash4.arms_flash
+      .arm_item.arm5
+        p.arms_img
+        #arms_flash5.arms_flash
+      .arm_item.arm6
+        p.arms_img
+        #arms_flash6.arms_flash
+      .arm_item.arm7
+        p.arms_img
+        #arms_flash7.arms_flash
+      .arm_item.arm8
+        p.arms_img
+        #arms_flash8.arms_flash
+  ul.content4.container
+    li
+      h3.commonbigtitle
+        | 视频赏析
+        span / Video Appreciation
+      div
+        if carouselList.index_videoappreciation && carouselList.index_videoappreciation.length > 0
+          a.video(href=carouselList.index_videoappreciation[0].data.link, target='_blank', title=carouselList.index_videoappreciation[0].data.title)
+            img(src=carouselList.index_videoappreciation[0].data.img)
+    li
+      //- 玩家天地-begin
+      include ./partials/players_area.pug
+      //- 玩家天地-end
+    li
+      //- 客服中心-begin
+      include ./partials/customer_service.pug
+      //- 客服中心-end
+block scripts
+  script(src=config.assets + '/components/switchable/jquery.switchable-2.0.min.js')
+  script(src=config.assets + '/components/swfobject/swfobject.js')
+  script.
+    $(function () {
+      var Slide = $('#slide').switchable({
+        putTriggers: 'appendTo',
+        panels: 'li',
+        initIndex: 0, // display the last panel
+        effect: 'scrollLeft', // taking effect when autoplay == true
+        easing: 'cubic-bezier(.455, .03, .515, .955)', // equal to 'easeInOutQuad'
+        end2end: true, // if set to true, loop == true
+        loop: false, // not taking effect, because end2end == true
+        autoplay: true,
+        interval: 4,
+        api: true // if set to true, Switchable returns API
+      })
+      if(Slide && typeof Slide.play == 'function')
+      {
+        Slide.play()
+      };
+      var Slide2 = $('#slide2').switchable({
+        triggerType: 'click',
+        putTriggers: 'appendTo',
+        panels: 'li',
+        initIndex: 0, // display the last panel
+        effect: 'scrollLeft', // taking effect when autoplay == true
+        easing: 'cubic-bezier(.455, .03, .515, .955)', // equal to 'easeInOutQuad'
+        end2end: true, // if set to true, loop == true
+        loop: false, // not taking effect, because end2end == true
+        autoplay: false,
+        interval: 4,
+        api: true // if set to true, Switchable returns API
+      });
+      /*flash1*/
+      var so1 = new SWFObject("#{config.assets}/images/arms1.swf","ply","180","400","9");
+      so1.addParam("allowfullscreen","true");
+      so1.addParam("allowscriptaccess","always");
+      so1.addParam("wmode","transparent");
+      so1.addParam("quality","high");
+      so1.addParam("salign","lt");
+      so1.write("arms_flash1");
+
+      /*flash2*/
+      var so2 = new SWFObject("#{config.assets}/images/arms2.swf","ply","180","400","9");
+      so2.addParam("allowfullscreen","true");
+      so2.addParam("allowscriptaccess","always");
+      so2.addParam("wmode","transparent");
+      so2.addParam("quality","high");
+      so2.addParam("salign","lt");
+      so2.write("arms_flash2");
+
+      /*flash3*/
+      var so3 = new SWFObject("#{config.assets}/images/arms3.swf","ply","200","450","9");
+      so3.addParam("allowfullscreen","true");
+      so3.addParam("allowscriptaccess","always");
+      so3.addParam("wmode","transparent");
+      so3.addParam("quality","high");
+      so3.addParam("salign","lt");
+      so3.write("arms_flash3");
+
+      /*flash4*/
+      var so4 = new SWFObject("#{config.assets}/images/arms4.swf","ply","200","450","9");
+      so4.addParam("allowfullscreen","true");
+      so4.addParam("allowscriptaccess","always");
+      so4.addParam("wmode","transparent");
+      so4.addParam("quality","high");
+      so4.addParam("salign","lt");
+      so4.write("arms_flash4");
+
+      /*flash5*/
+      var so5 = new SWFObject("#{config.assets}/images/arms5.swf","ply","220","500","9");
+      so5.addParam("allowfullscreen","true");
+      so5.addParam("allowscriptaccess","always");
+      so5.addParam("wmode","transparent");
+      so5.addParam("quality","high");
+      so5.addParam("salign","lt");
+      so5.write("arms_flash5");
+
+      /*flash6*/
+      var so6 = new SWFObject("#{config.assets}/images/arms6.swf","ply","220","500","9");
+      so6.addParam("allowfullscreen","true");
+      so6.addParam("allowscriptaccess","always");
+      so6.addParam("wmode","transparent");
+      so6.addParam("quality","high");
+      so6.addParam("salign","lt");
+      so6.write("arms_flash6");
+
+      /*flash7*/
+      var so7 = new SWFObject("#{config.assets}/images/arms7.swf","ply","220","500","9");
+      so7.addParam("allowfullscreen","true");
+      so7.addParam("allowscriptaccess","always");
+      so7.addParam("wmode","transparent");
+      so7.addParam("quality","high");
+      so7.addParam("salign","lt");
+      so7.write("arms_flash7");
+
+      /*flash8*/
+      var so8 = new SWFObject("#{config.assets}/images/arms8.swf","ply","220","500","9");
+      so8.addParam("allowfullscreen","true");
+      so8.addParam("allowscriptaccess","always");
+      so8.addParam("wmode","transparent");
+      so8.addParam("quality","high");
+      so8.addParam("salign","lt");
+      so8.write("arms_flash8");
+    });
+    $('.newscategory li').on('click', function () {
+      var index = $(this).index();
+      $('.newscategory li').removeClass('current');
+      $(this).addClass("current");
+      $('.newcom_box').hide();
+      $('.newcom_box').each(function (i) {
+        if (i === index) {
+          $(this).show();
+        }
+      });
+    });
+    $('.firstnav li').on('click', function () {
+      var index = $(this).index();
+      $('.firstnav li').removeClass('current');
+      $(this).addClass("current");
+      $('.secondnav').hide();
+      $('.secondnav').each(function (i) {
+        if (i === index) {
+          $(this).show();
+        }
+      });
+    });
+    $('.playerworldnav li').on('click', function () {
+      var index = $(this).index();
+      $('.playerworldnav li').removeClass('current');
+      $(this).addClass('current');
+      $('.playerworld-ul').hide();
+      $('.playerworld-ul').each(function (i) {
+        if (i === index) {
+          $(this).show();
+        }
+      });
+    });

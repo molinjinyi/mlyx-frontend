@@ -1,0 +1,23 @@
+// 面板
+.panel {
+  margin-bottom: 20px;
+  border: 1px solid @border-color;
+  border-top: 0;
+  color: #6c6c6c;
+  &:before {
+    display: block;
+    content: ' ';
+    height: 2px;
+    background-color: @primary-color;
+    .gradient-horizontal();
+  }
+  .panel-header {
+    padding: 10px 15px;
+    font-size: 16px;
+    border-bottom: 1px solid #e9e9e9;
+    .gradient-vertical(#fff, #fafafa);
+  }
+  .panel-body {
+    background-color: #fff;
+  }
+}

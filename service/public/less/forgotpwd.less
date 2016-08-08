@@ -1,0 +1,121 @@
+.forget-wrap {
+  background-color: #fff;
+  a {
+    color: @primary-color;
+    &:hover {
+      color: @secondary-color;
+    }
+  }
+  .step-wrap {
+    margin: 0 auto;
+    width: @forgot-width;
+    &>li {
+      position: relative;
+      float: left;
+      width: 200px;
+      height: 34px;
+      line-height: 34px;
+      text-align: center;
+      background-color: #eeeeee;
+      color: #7b7b7b;
+      &:before,
+      &:after {
+        position: absolute;
+        top: 0;
+        display: block;
+        content: '';
+        height: 0;
+        width: 0;
+        border: 17px solid #eeeeee;
+        border-style: solid;
+        border-color: #eee;
+      }
+      &:before {
+        left: -12px;
+        border-width: 17px 0 17px 12px;
+        border-left-color: transparent;
+      }
+      &:after {
+        right: -12px;
+        border-width: 17px 0 17px 12px;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+      }
+      &.active {
+        background-color: #7a7a7a;
+        color: #fff;
+        &:before {
+          border-top-color: #7a7a7a;
+          border-bottom-color: #7a7a7a;
+        }
+        &:after {
+          border-left-color: #7a7a7a;
+        }
+      }
+      &.step-1 {
+        &:before {
+          display: none;
+        }
+      }
+      &.step-2,
+      &.step-3 {
+        margin-left: 17px;
+      }
+    }
+  }
+  .error-msg {
+    margin-left: 10px;
+    color: @danger-color;
+  }
+  .form-forgot {
+    margin: 80px auto;
+    width: 430px;
+    .lbl {
+      width: 100px;
+    }
+  }
+  .send-wrap,
+  .success-wrap,
+  .error-wrap, {
+    width: @forgot-width;
+    margin: 80px auto;
+    .tips {
+      height: 156px;
+      line-height: 26px;
+      font-size: 16px;
+      padding: 50px 0;
+    }
+    .s-tips {
+      margin-left: 45px;
+      color: #999;
+      font-size: 14px;
+    }
+  }
+  .send-wrap {
+    .tips {
+      height: 128px;
+      border-color: #67b6e4;
+      color: #67b6e4;
+      background-color: #fdfeff;
+    }
+    .resend {
+      margin: 50px 0;
+      color: #7b7b7b;
+    }
+  }
+  .error-wrap {
+    .tips {
+      border-color: #f44a4a;
+      color: #f44a4a;
+    }
+  }
+  .tips {
+    border: 1px solid #50af65;
+    border-radius: 6px;
+    background-color: #fffff6;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    color: #50af65;
+  }
+}

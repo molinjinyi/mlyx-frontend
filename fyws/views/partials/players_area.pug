@@ -1,0 +1,17 @@
+h3.commonbigtitle
+  a.morecommon.aamore(href=config.site_url.news_center+'/playersarea', target="blank") +更多
+  |  玩家天地
+  span / Players of Area
+ul.playerworldnav
+  li.current 玩家攻略
+  li 论坛活动
+ul.playerworld-ul
+  each item in forumActivities
+      li
+        span.time [#{moment(item.uDate).format('MM-DD')}]
+        a(href=item.link ? item.link : config.site_url.news_details+'/'+item.aid, target='_blank') [玩家攻略] #{item.title}
+ul.playerworld-ul.none
+  each item in playerGuide
+      li
+        span.time [#{moment(item.uDate).format('MM-DD')}]
+        a(href=item.link ? item.link : config.site_url.news_details+'/'+item.aid, target='_blank') [论坛活动] #{item.title}

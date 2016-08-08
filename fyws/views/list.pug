@@ -1,0 +1,257 @@
+extends ./layouts/default.pug
+
+block content
+  .nav.container
+    ul.right
+      li.padding-left
+        dl
+          dt 充值中心
+          dd Site
+          dd home
+      li.padding-left
+        dl
+          dt 充值中心
+          dd Site
+          dd home
+      li.padding-left
+        dl
+          dt 充值中心
+          dd Site
+          dd home
+    ul.left
+      li.padding-right
+        dl
+          dt 充值中心
+          dd Site
+          dd home
+      li.padding-right
+        dl
+          dt 充值中心
+          dd Site
+          dd home
+      li.padding-right
+        dl
+          dt 充值中心
+          dd Site
+          dd home
+  .bannerad
+    img(src='images/banner.jpg')
+  .listcontent.container
+    .leftcontent
+      .rightcomponents
+        .beforelogin
+          .title
+            | 用户登录
+            span / USER LOGIN
+          form(name='login', method='post', action='/')
+            input.loginbutton(type='submit', name='submit', value='')
+            |
+            input.inputwidth151(type='text', name='username', value='帐号/邮箱/YY号/手机号')
+            |
+            input.inputwidth151(type='text', name='username', value='密码')
+            |
+            input.inputwidth93(type='text', name='username', value='')
+            img(src='images/验证码.jpg')
+            a(href='') 换一个
+          .clear
+          |
+          a.findandreg.addreg(href='/') &nbsp;
+          |
+          a.findandreg.addfind(href='/') &nbsp;
+        .clear
+        .serverlist
+          .title
+            a.morecommon.more(href='') +更多
+            | 服务器列表
+            span / SEVER
+          .quickselect
+            .smalltitle 快速选服
+            |
+            a.selected(href='') 双线888服
+            |
+            a.click(href='') 点击进入
+          ul.ul-serverlist
+            li
+              a.open(href='/') 火爆开启
+              |
+              a(href='') 火爆开启 战神之巅   [ 双线888服 ]
+            li
+              a.open(href='/') 火爆开启
+              |
+              a(href='') 火爆开启 战神之巅   [ 双线888服 ]
+            li
+              a.open(href='/') 火爆开启
+              |
+              a(href='') 火爆开启 战神之巅   [ 双线888服 ]
+        .kuangselfhelp
+          ul.newscategory
+            li.current 玩家自助
+          ul.playersselfhelp
+            li
+              a(href='')
+                span.icon.icon-1 &nbsp;
+                |
+                span.txt 微端下载
+            li
+              a(href='')
+                span.icon.icon-2 &nbsp;
+                |
+                span.txt 微端下载
+            li
+              a(href='')
+                span.icon.icon-3 &nbsp;
+                |
+                span.txt 微端下载
+            li
+              a(href='')
+                span.icon.icon-4 &nbsp;
+                |
+                span.txt 微端下载
+        .kuangnewhand
+          a(href='')
+            img(src='images/1.jpg')
+          |
+          a(href='')
+            img(src='images/2.jpg')
+          |
+          a(href='')
+            img(src='images/1-拷贝.jpg')
+          |
+          a(href='')
+            img(src='images/2-拷贝.png')
+        .kuangpadding23px
+          h3.commonbigtitle
+            | 客服中心
+            span / Customer Service
+          .servicecenter
+            | 研发：深圳市墨麟科技有限公司
+            br
+            | 授权：天下出版社
+            br
+            | 监制：智傲集团有限公司
+            br
+            | 客服电话：0756-3633228 周1-5
+            br
+            | 客服时间：早9:30-晚22:00
+            br
+            | 客服邮箱：webgame_kf@yy.com
+            br
+            | 客服中心：
+            a.go(href='') 点此进入
+      .breadcrumbs
+        ul
+          li 您的位置：
+          li
+            a(href='/') 风云无双首页
+          li
+            a(href='/') 风云无双首页
+          li
+            a(href='/') 风云无双首页
+        h3.title 新闻中心
+        span / NEWS center
+      ul.newscategorynav
+        li
+          a(href='') 公告
+        li
+          a(href='') 活动
+        li.current
+          a(href='') 最新资讯
+      ul.ulnewslist
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+        li
+          span [12-06]
+          |
+          a(href='/', target='_blank') 巅峰战场怎么玩 巅峰战场系统介绍
+      .pager
+        a(href='/') 1
+        |
+        a.current(href='/') 1
+        |
+        a(href='/') 1
+        |
+        a(href='/') 1
+        |
+        a(href='/') 下一页

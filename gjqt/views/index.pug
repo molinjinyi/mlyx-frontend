@@ -1,0 +1,102 @@
+extends ./layouts/default.pug
+
+block styles
+  link(rel='stylesheet' href=config.assets + '/components/tabso/tabso.css')
+  link(rel='stylesheet' href=config.assets + '/components/kwicks/kwicks.css')
+  link(rel='stylesheet' href=config.assets + '/css/index.css?v=' + config.version)
+
+block content
+  .row
+    .block-1
+      #banner.banner
+        ul
+          each carousel in carousels
+            li
+              a(href=carousel.url)
+                img(src=carousel.image)
+    .block-2
+      ul#home_news.tabbtn.nav-ul
+        li.current 综合
+        each category in categories
+          li #{category.cname}
+      #leftcon.tabcon
+        .subbox
+          .sublist
+            ul
+              //- li.txt-center.borderN
+              //-   a.first-title(href=spread.url) #{spread.title}
+              each article in articles
+                li
+                  strong.floatL [#{article.cname}]
+                  a.floatL.txt-ellipsis(href='/news/' + article.aid, target='_blank') #{article.title}
+                  span.floatR #{moment(article.date).format('MM-DD')}
+            a.floatR(href='/news_list/all') 更多内容 &gt;&gt;
+          .sublist
+            ul
+              each nw in news
+                li
+                  strong.floatL [#{nw.cname}]
+                  a.floatL.txt-ellipsis(href='/news/' + nw.aid, target='_blank') #{nw.title}
+                  span.floatR #{moment(nw.date).format('MM-DD')}
+            a.floatR(href='/news_list/news') 更多新闻 &gt;&gt;
+          .sublist
+            ul
+              each announcement in announcements
+                li
+                  strong.floatL [#{announcement.cname}]
+                  a.floatL.txt-ellipsis(href='/news/' + announcement.aid, target='_blank') #{announcement.title}
+                  span.floatR #{moment(announcement.date).format('MM-DD')}
+            a.floatR(href='/news_list/announcements') 更多公告 &gt;&gt;
+  .row
+    .block-4
+      .title
+        span.title-main 游戏特色
+        span.title-assis GAME FEATURES
+      ul#game_features.kwicks.kwicks-horizontal
+        each feature, index in features
+          li(class=index == 0 ? 'kwicks-expanded' : 'kwicks-collapsed', data-index=index)
+            .in-box
+              img.floatL(src=feature.image)
+              .floatL.in-content
+                .in-title #{feature.title}
+                ul
+                  each article in feature.childrens
+                    li
+                      a(href='/info/' + article.aid, target='_blank') &gt; #{article.title}
+    .block-5
+      each slot in slots
+        div
+          a(href=slot.url)
+            img(src=slot.image)
+
+block scripts
+  script(src=config.assets + '/components/unslider/unslider.js')
+  script(src=config.assets + '/components/tabso/tabso.js')
+  script(src=config.assets + '/components/kwicks/kwicks.js')
+  script.
+    $(function () {
+      $('#banner').unslider({
+        arrows: true,
+        fluid: true,
+        dots: true
+      });
+
+      //左右滑动选项卡切换
+      $('#home_news').tabso({
+        cntSelect: '.tabcon',
+        tabEvent: 'mouseover',
+        tabStyle: 'move-animate',
+        direction: 'left'
+      });
+
+      var $container = $('#game_features').kwicks({
+        maxSize: 335,
+        spacing: 5,
+        duration: 300
+      });
+      $('#game_features').on('click', 'li', function (e) {
+        var index = $(this).data('index');
+        $container.kwicks('expand', index);
+      });
+      $('#game_features').find('li:first').trigger('click');
+    });

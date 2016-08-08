@@ -1,0 +1,150 @@
+.server-panel.panel
+  header.panel-header 开服列表
+  #server_tabs.tabs.tac.cf.pr(data-target='#tab_content')
+    .tab.nlb.active(data-target='#preview') 新服预告
+    .tab(data-target='#newest') 已开新服
+  #tab_content.tab-content.panel-body
+    #preview.tab-pane.fade.active.in
+      #preview_slider
+        table.server-list
+          col(width='auto')
+          col(width='110')
+          col(width='100')
+          thead
+            tr
+              th 游戏
+              th 服数
+              th 日期
+            tr
+              td(colspan='3')
+                hr.separate
+        ul
+          li
+            table.server-list
+              col(width='auto')
+              col(width='110')
+              col(width='100')
+              tbody
+                each preview, index in serverPreviews
+                  if index < 10
+                    tr
+                      td.toe(title=preview.gamename)
+                        a(href=preview.gameurl, target='_blank') #{preview.gamename}
+                      td.server-name
+                        a(href=preview.gameserverurl, target='_blank') #{preview.sname}
+                      td.date #{moment(preview.opentime).format('MM-DD HH:mm')}
+          if serverPreviews.length > 10
+            li
+              table.server-list
+                col(width='auto')
+                col(width='110')
+                col(width='100')
+                tbody
+                  each preview, index in serverPreviews
+                    if index >= 10
+                      tr
+                        td.toe(title=preview.gamename)
+                          a(href=preview.gameurl, target='_blank') #{preview.gamename}
+                        td.server-name
+                          a(href=config.url.play + '/?gid=' + preview.gid + '&sid=' + preview.sid, target='_blank') #{preview.sname}
+                        td.date #{moment(preview.opentime).format('MM-DD HH:mm')}
+        hr.separate
+    #newest.tab-pane.fade
+      #newest_slider
+        table.server-list
+          col(width='auto')
+          col(width='110')
+          col(width='100')
+          thead
+            tr
+              th 游戏
+              th 服数
+              th 日期
+            tr
+              td(colspan='3')
+                hr.separate
+        ul
+          li
+            table.server-list
+              col(width='auto')
+              col(width='110')
+              col(width='100')
+              tbody
+                each newest, index in serverNewests
+                  if index < 10
+                    tr
+                      td.toe(title=newest.gamename)
+                        a(href=newest.gameurl, target='_blank') #{newest.gamename}
+                      td.server-name
+                        a(href=config.url.play + '/?gid=' + newest.gid + '&sid=' + newest.sid, target='_blank') #{newest.sname}
+                      td.date #{moment(newest.opentime).format('MM-DD HH:mm')}
+          if serverNewests.length > 10
+            li
+              table.server-list
+                col(width='auto')
+                col(width='110')
+                col(width='100')
+                tbody
+                  each newest, index in serverNewests
+                    if index >= 10 && index < 20
+                      tr
+                        td.toe(title=newest.gamename)
+                          a(href=newest.gameurl, target='_blank') #{newest.gamename}
+                        td.server-name
+                          a(href=config.url.play + '/?gid=' + newest.gid + '&sid=' + newest.sid, target='_blank') #{newest.sname}
+                        td.date #{moment(newest.opentime).format('MM-DD HH:mm')}
+          if serverNewests.length > 20
+            li
+              table.server-list
+                col(width='auto')
+                col(width='110')
+                col(width='100')
+                tbody
+                  each newest, index in serverNewests
+                    if index >= 20
+                      tr
+                        td.toe(title=newest.gamename)
+                          a(href=newest.gameurl, target='_blank') #{newest.gamename}
+                        td.server-name
+                          a(href=config.url.play + '/?gid=' + newest.gid + '&sid=' + newest.sid, target='_blank') #{newest.sname}
+                        td.date #{moment(newest.opentime).format('MM-DD HH:mm')}
+        hr.separate
+script.
+  $(function () {
+    $('#preview_slider').unslider({
+        animation: 'horizontal',
+        arrows: false,
+        speed: 300
+      });
+
+      var newestSwiper = null;
+      // 切换Tab
+      $('#server_tabs').on('mouseover', '.tab', function (e) {
+        var $this = $(this);
+        var $server_tabs = $(e.delegateTarget);
+        var contentTarget = $server_tabs.data('target');
+        var $contentTarget = $(contentTarget);
+        var paneTarget = $this.data('target');
+        var $paneTarget = $(paneTarget);
+        $server_tabs.find('.tab.active').removeClass('active');
+        $this.addClass('active');
+        $contentTarget.find('.tab-pane.active').removeClass('active in');
+        $paneTarget.addClass('active');
+        setTimeout(function () {
+          $paneTarget.addClass('in');
+          if (newestSwiper) {
+            return;
+          }
+          newestSwiper = $('#newest_slider').unslider({
+            animation: 'horizontal',
+            arrows: false,
+            speed: 300
+          });
+        }, 10);
+      });
+
+      // 开服列表分页
+      $('.server-panel').on('mouseover', '.unslider-nav li', function (e) {
+        $(this).trigger('click');
+      });
+  });

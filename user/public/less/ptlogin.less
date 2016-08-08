@@ -1,0 +1,205 @@
+@import '../../../common/public/less/base/mixins.less';
+@import '../../../common/public/less/base/variables.less';
+@import '../../../common/public/less/base/normalize.less';
+@import 'base/variables.less';
+* {
+  box-sizing: border-box;
+  outline: 0;
+  transition-duration: .15s;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: 'Hiragino Sans GB', 'Helveica Neue', 'Open Sans', 'Microsoft YaHei', Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+.hide {
+  display: none;
+}
+
+.tac {
+  text-align: center;
+}
+
+.icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+.icon-user2 {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/icon_user2.png);
+}
+
+.icon-lock {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/icon_lock.png);
+}
+
+.icon-qq {
+  width: 30px;
+  height: 30px;
+  background-image: url(../images/icon_qq.png);
+}
+
+.icon-weixin {
+  width: 30px;
+  height: 30px;
+  background-image: url(../images/icon_weixin.png);
+}
+
+.container {
+  position: relative;
+  margin: 0 auto;
+  padding: 30px 50px;
+  max-width: 400px;
+  .header {
+    h3 {
+      margin: 0 0 20px;
+      font-size: 16px;
+      font-weight: normal;
+    }
+  }
+  .close {
+    position: absolute;
+    top: -3px;
+    right: 5px;
+    font-size: 32px;
+    color: #929292;
+    cursor: pointer;
+    line-height: 1;
+    &:hover {
+      color: #a94442;
+    }
+  }
+}
+// 登录表单
+.signin-form {
+  .input-box {
+    margin-bottom: 20px;
+    .clearfix();
+  }
+  .input-addon {
+    float: left;
+    width: 16%;
+    height: 40px;
+    border: 1px solid #c5c6c5;
+    background-color: #f0f0f0;
+  }
+  .input {
+    float: left;
+    padding: 8px 12px;
+    width: 84%;
+    height: 40px;
+    border: 1px solid #c5c6c5;
+  }
+  .input-account {
+    .input-addon {
+      border-bottom: 0;
+      border-radius: 3px 0 0 0;
+    }
+    .input {
+      border-left: 0;
+      border-bottom: 0;
+      border-radius: 0 3px 0 0;
+    }
+  }
+  .input-password {
+    .input-addon {
+      border-radius: 0 0 0 3px;
+    }
+    .input {
+      border-left: 0;
+      border-radius: 0 0 3px 0;
+    }
+  }
+  .icon-user2,
+  .icon-lock {
+    margin-top: 10px;
+  }
+  .lnk-forget {
+    float: right;
+    text-decoration: none;
+    color: #827e7a;
+    &:hover {
+      color: #21a5fe;
+    }
+  }
+  .input.checkcode {
+    display: inline-block;
+    width: 150px;
+    border-radius: 3px;
+  }
+  .imgcode {
+    display: inline-block;
+    width: 125px;
+    height: 40px;
+    vertical-align: top;
+    margin-left: 25px;
+    cursor: pointer;
+  }
+  .btn-signin {
+    display: block;
+    padding: 10px 12px;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    background-color: @primary-color;
+    border: 1px solid darken(@primary-color, 5%);
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    &:hover {
+      background-color: darken(@primary-color, 5%);
+      border-color: darken(@primary-color, 15%);
+    }
+    &:active {
+      box-shadow: 0 0 20px 0 darken(@primary-color, 20%) inset;
+    }
+  }
+  .third-party {
+    a {
+      margin: 0 10px;
+    }
+    .icon-qq:hover {
+      background-image: url(../images/icon_qq_hover.png);
+    }
+    .icon-weixin:hover {
+      background-image: url(../images/icon_weixin_hover.png);
+    }
+  }
+  .lnk-signup {
+    color: @primary-color;
+    font-size: 12px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .error-msg {
+    color: @danger-color;
+  }
+}

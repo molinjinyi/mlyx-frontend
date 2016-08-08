@@ -1,0 +1,83 @@
+// 登录
+.signin-form {
+  background-color: #fff;
+  padding: 35px;
+  .input-box {
+    margin-bottom: 20px;
+    .clearfix();
+  }
+  .input-addon {
+    float: left;
+    width: 16%;
+    height: 34px;
+    border: 1px solid #c5c6c5;
+    border-right: 0;
+    border-radius: 3px 0 0 3px;
+    background-color: #f0f0f0;
+  }
+  .input {
+    float: left;
+    padding: 6px 12px;
+    width: 84%;
+    height: 34px;
+    border: 1px solid #c5c6c5;
+    border-radius: 0 3px 3px 0;
+  }
+  .checkcode {
+    width: 116px;
+  }
+  .imgcode {
+    width: 120px;
+    height: 34px;
+    margin-left: 20px;
+    cursor: pointer;
+  }
+  .icon-user2,
+  .icon-lock {
+    margin-top: 7px;
+    margin-right: 0;
+  }
+  .lbl-chk {
+    padding-left: 20px;
+    color: #827e7a;
+    .chk {
+      position: absolute;
+      margin: 4px 0 0;
+      margin-top: 4px\9;
+      margin-left: -20px;
+    }
+  }
+  .error-msg {
+    color: @danger-color;
+  }
+  .lnk-forget {
+    float: right;
+    text-decoration: none;
+    color: #827e7a;
+    &:hover {
+      color: @primary-color;
+    }
+  }
+  .third-party {
+    a {
+      margin: 0 10px;
+    }
+  }
+  .icon-qq,
+  .icon-weixin {
+    margin: 0;
+  }
+  .icon-qq:hover {
+    background-image: url(../images/icon_qq_hover.png);
+  }
+  .icon-weixin:hover {
+    background-image: url(../images/icon_weixin_hover.png);
+  }
+  .signup {
+    color: @primary-color;
+    font-size: 12px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+.news
+  .newsarea
+    ul.newscategory
+      li.current 最新资讯
+      li 活动
+      li 公告
+    .newcom_box
+      ul.newslist
+        each item in news
+          li
+            a(href=item.link ? item.link : config.site_url.news_details+'/'+item.aid, target='_blank') &gt;&gt; #{item.title}
+      a.morecommon.morenews(href=config.site_url.news_center, target="_blank") + 阅读更多
+    .newcom_box.none
+      ul.newslist
+        each item in announcements
+          li
+            a(href=item.link ? item.link : config.site_url.news_details+'/'+item.aid, target='_blank') &gt;&gt; #{item.title}
+      a.morecommon.morenews(href=config.site_url.news_center+'/announcements', target="_blank") + 阅读更多
+    .newcom_box.none
+      ul.newslist
+        each item in events
+          li
+            a(href=item.link ? item.link : config.site_url.news_details+'/'+item.aid, target='_blank') &gt;&gt; #{item.title}
+      a.morecommon.morenews(href=config.site_url.news_center+'/events', target="_blank") + 阅读更多
+  //- 玩家自助-begin
+  include selfhelp.pug
+  //- 玩家自助-end

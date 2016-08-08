@@ -1,0 +1,89 @@
+extends ./layouts/default.pug
+
+block styles
+  link(rel='stylesheet' href=config.assets + '/css/server_list.css?v=' + config.version)
+
+block content
+  .server-wrapper
+    .l-title 推荐服务器
+    .l-list
+      ul#recommend_list.recomm-list
+    .l-title 最近玩过的
+    .l-list
+      ul#played_list.login-list
+    .l-title
+      | 所有服务器
+      .floatR.quick-enter
+        | 快速进入
+        input#quickInp.server-inp
+        | 服
+        span#quickBtn.enter-btn
+    .l-list
+      ul#all_list.all-list
+
+block scripts
+  script.
+    $(function () {
+      $('#quickBtn').on('click', function () {
+        var num = $.trim($('#quickInp').val());
+        if (num) {
+          window.open('#{config.url.play}/?gid=' + GAME_ID + '&sid=' + num);
+        }
+      });
+
+      getServerList();
+      getPlayedList();
+
+      // 获取服务器列表
+      function getServerList() {
+        $.ajax({
+          url: '#{config.origin.game}/gameinfo/server/openserverlist',
+          data: {
+            gid: GAME_ID
+          },
+          dataType: 'jsonp',
+          jsonp: 'function',
+          success: function (result) {
+            if (result.status == 1) {
+              var recommendHtml = '';
+              var allHtml = '';
+              var item;
+              for (var i = 0, j = result.data.length; i < j; i++) {
+                item = result.data[i];
+                if (i <= 5) {
+                  recommendHtml += '<li><a href="#{config.url.play}/?gid=' + item.gid + '&sid=' + item.sid + '" target="_blank">' + item.sname + '</a></li>';
+                }
+                allHtml += '<li><a href="#{config.url.play}/?gid=' + item.gid + '&sid=' + item.sid + '" target="_blank">' + item.sname + '</a></li>';
+              }
+              $('#recommend_list').html(recommendHtml);
+              $('#all_list').html(allHtml);
+            }
+          }
+        });
+      }
+
+      // 获取最近玩过的服务器列表
+      function getPlayedList() {
+        $.ajax({
+          url: '#{config.origin.game}/gameinfo/server/recentserver',
+          data: {
+            gid: GAME_ID,
+            pagenum: 1,
+            pagesize: 99999
+          },
+          dataType: 'jsonp',
+          jsonp: 'function',
+          success: function (result) {
+            if (result.status == 1) {
+              var html = '';
+              var item;
+              for (var i = 0, j = result.data.length; i < j; i++) {
+                item = result.data[i];
+                html += '<li><a href="#{config.url.play}/?gid=' + item.gid + '&sid=' + item.sid + '" target="_blank">' + item.sname + '</a></li>';
+              }
+              $('#played_list').html(html);
+            }
+          }
+        });
+      }
+    });

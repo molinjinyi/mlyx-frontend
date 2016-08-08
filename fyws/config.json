@@ -1,0 +1,110 @@
+{
+    "dev": {
+        "name": "墨麟游戏",
+        "gid": 2,
+        "url": "http://fyws.13yx.com:3100",
+        "baseurl": "",
+        "assets": "/public",
+        "common_assets": "http://localhost:15400/public",
+        "version": "20160719",
+        "domain": {
+            "game": "https://gameapi.mlyx.com",
+            "user": "https://userapi.mlyx.com",
+            "misc": "https://miscapi.mlyx.com",
+            "recharge": "https://payapi.mlyx.com"
+        },
+        "site_url": {
+            "news_center": "/list",
+            "news_details": "/news",
+            "game_data": "/info",
+            "server_list": "/server_list",
+            "pay_center": "http://pay.13yx.com:8080",
+            "client_download": "#",
+            "game_forum": "#",
+            "novice_parcel": "#",
+            "answer_tool": "#",
+            "play_url": "http://play.mlyx.com",
+            "customer_url": "#",
+            "user": "http://localhost:14310",
+            "service": "http://localhost:14330",
+            "mlyx_url": "http://localhost:14300",
+            "forum_url": "http://bbs.mlyx.com"
+        },
+        "infos": {
+            "server_phone": "0755-86958818",
+            "server_email": "mlkf001@mokylin.com"
+        }
+    },
+    "test": {
+        "name": "墨麟游戏",
+        "gid": 2,
+        "url": "http://fy.mlyx.com",
+        "baseurl": "",
+        "assets": "http://static.mlyx.com/fyws/201607",
+        "common_assets": "http://static.mlyx.com/common",
+        "version": "201607202002",
+        "domain": {
+            "game": "https://gameinfo-dev.mlyx.com",
+            "user": "https://user-dev.mlyx.com",
+            "misc": "https://misc-dev.mlyx.com",
+            "cdn": "https://cdn-prod.mlyx.com/user/dev"
+        },
+        "site_url": {
+            "news_center": "/list",
+            "news_details": "/news",
+            "game_data": "/info",
+            "server_list": "/server_list",
+            "pay_center": "http://pay.mlyx.com",
+            "client_download": "#",
+            "game_forum": "#",
+            "novice_parcel": "#",
+            "answer_tool": "#",
+            "play_url": "http://play.mlyx.com",
+            "customer_url": "http://service.mlyx.com",
+            "user": "http://user.mlyx.com",
+            "service": "http://service.mlyx.com",
+            "mlyx_url": "http://www.mlyx.com",
+            "forum_url": "http://bbs.mlyx.com"
+        },
+        "infos": {
+            "server_phone": "0755-86958818",
+            "server_email": "mlkf001@mokylin.com"
+        }
+    },
+    "pro": {
+        "name": "墨麟游戏",
+        "gid": 2,
+        "url": "http://fy.mlyx.com",
+        "baseurl": "",
+        "assets": "http://static.mlyx.com/fyws/201607",
+        "common_assets": "http://static.mlyx.com/common",
+        "version": "201608051415",
+        "domain": {
+            "game": "https://gameapi.mlyx.com",
+            "user": "https://userapi.mlyx.com",
+            "misc": "https://miscapi.mlyx.com",
+            "recharge": "https://rechargeapi.mlyx.com"
+        },
+        "site_url": {
+            "news_center": "/list",
+            "news_details": "/news",
+            "game_data": "/info",
+            "server_list": "/server_list",
+            "pay_center": "http://pay.mlyx.com",
+            "client_download": "#",
+            "game_forum": "#",
+            "novice_parcel": "#",
+            "answer_tool": "#",
+            "play_url": "http://play.mlyx.com",
+            "customer_url": "http://service.mlyx.com",
+            "user": "http://user.mlyx.com",
+            "service": "http://service.mlyx.com",
+            "mlyx_url": "http://www.mlyx.com",
+            "forum_url": "http://bbs.mlyx.com"
+        },
+        "infos": {
+            "server_phone": "0755-86958818",
+            "server_email": "mlkf001@mokylin.com"
+        }
+    }
+}

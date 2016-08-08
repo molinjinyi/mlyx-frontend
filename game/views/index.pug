@@ -1,0 +1,90 @@
+extends ./layouts/default.pug
+
+block styles
+  link(rel='stylesheet', href=config.common_assets + '/components/unslider/unslider.css')
+
+block content
+  .index-wrapper
+    .banner
+      .container
+        h1
+          i.icon.icon-handle-lg
+          div.inblock
+            div.title 推荐游戏
+            div.subtitle recommend
+        .recommend-list.cf
+          each recommend, index in recommends
+            if index <= 3
+              .item(class={nrm: index == 3})
+                a.lnk-cover.block(href=recommend.apidata.gurl, target='_blank')
+                  img.cover(src=JSON.parse(recommend.data).img)
+                .online.fl
+                  a.name(href=recommend.apidata.gurl, target='_blank') #{recommend.apidata.gname}
+                  div #{recommend.apidata.catnames}
+                .lnks.fr
+                  a.lnk(href=recommend.apidata.gurl, target='_blank') 官网
+                  a.lnk.nbm(href=recommend.apidata.serverurl, target='_blank') 游戏
+    .container
+      aside.sidebar.fl
+        include ../../www/views/partials/server.pug
+        include ../../www/views/partials/news.pug
+        include ../../www/views/partials/shortcut.pug
+      .content.fl
+        //- ul.game-menu.cf
+        //-   li
+        //-     a(class={active: menu === 'hot'}, href='/game/hot')
+        //-       i.icon.icon-hot
+        //-       | 热门游戏
+        //-   li
+        //-     a(class={active: menu === 'new'}, href='/game/new')
+        //-       i.icon.icon-new
+        //-       | 最新游戏
+        ul.game-list.cf
+          each game, index in games
+            li.item(class={nrm: (index + 1) % 3 == 0})
+              a.lnk-cover.block(href=game.gurl, target='_blank', title=game.gname)
+                img.cover(src=game.picture)
+              div
+                a.lnk(href=game.gurl, target='_blank')
+                  i.icon.icon-home2
+                  | 官网
+                a.lnk.nrb(href=game.serverurl, target='_blank')
+                  i.icon.icon-handle2
+                  | 游戏
+        if totalPages > 1
+          .pagination.tac
+            if pageIndex > 1
+              - var previous = pageIndex - 1
+              a(href='/game') 首页
+              a.previous(href='/game?page=' + previous) 上一页
+            if pageIndex <= 3
+              - var page = 1
+              while page <= totalPages && page <= 5
+                - var current = page++
+                if current == pageIndex
+                  span.active #{current}
+                else
+                  a(href='/game?page=' + current) #{current}
+            else if pageIndex > totalPages - 3
+              - var page = totalPages - 4
+              while page <= totalPages
+                - var current = page++
+                if current == pageIndex
+                  span.active #{current}
+                else
+                  a(href='/game?page=' + current) #{current}
+            else
+              - var page = pageIndex - 2
+              while page <= totalPages && page <= pageIndex + 2
+                - var current = page++
+                if current == pageIndex
+                  span.active #{current}
+                else
+                  a(href='/game?page=' + current) #{current}
+            if pageIndex < totalPages
+              - var next = pageIndex + 1
+              a.next(href='/game?page=' + next) 下一页
+              a(href='/game?page=' + totalPages) 尾页
+
+block scripts
+  script(src=config.common_assets + '/components/unslider/unslider.js')

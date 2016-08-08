@@ -1,0 +1,51 @@
+extends ./layouts/default.pug
+
+block content
+  include ./partials/bannerad.pug
+  //- 内容 开始
+  .listcontent.container
+    //- 右侧内容开始
+    include ./partials/rightcomponents.pug
+    //- 右侧内容结束
+    .leftcontent
+      //- 左侧内容开始
+      .breadcrumbs
+        ul
+          li 您的位置：
+          li 
+            a(href='/') 首页
+          if isNews
+            li 
+              a(href='/list') 新闻中心
+          if category.ename == 'news'
+            li 
+              a(href=config.site_url.news_center) 综合
+          else
+            li 
+              a(href=config.site_url.news_center+'/'+ category.ename) #{category.cname}
+        h3.title 新闻中心
+        span / NEWS CENTER
+      if isNews
+        ul.newscategorynav
+          li(class={current: category.ename == 'news'})
+            a(href=config.site_url.news_center) 最新资讯
+          li(class={current: category.ename == 'announcements'})
+            a(href=config.site_url.news_center+'/announcements') 公告
+          li(class={current: category.ename == 'events'})
+            a(href=config.site_url.news_center+'/events') 活动
+      ul.ulnewslist
+        each article in articles
+          li
+            span [#{moment(article.uDate || article.cDate).format('MM-DD')}]
+            a(href=article.link ? article.link : '/news/' + article.aid, title=article.title, target='_blank') #{article.title}
+      if totalPages > 1
+        .pager
+          if pageIndex > 1
+            - var previous = parseInt(pageIndex) - 1
+            a.previous(href='/list/' + category.ename + '/' + previous) 上一页
+          if pageIndex < totalPages
+            - var next = parseInt(pageIndex) + 1
+            a.next(href='/list/' + category.ename + '/' + next) 下一页
+      //- 左侧内容结束
+  //- 内容结束
+  .clear

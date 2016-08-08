@@ -1,0 +1,26 @@
+doctype html
+html(lang='zh-cn')
+  head
+    include ../partials/head
+    block title
+      title 《风云无双》官方网站 - 墨麟集团
+    link(rel='stylesheet' href=config.assets + '/css/main.css?v=' + config.version)
+    block styles
+    script.
+      ServerUrl = "#{config.domain.game}";
+    script(src='//cdn.bootcss.com/jquery/1.12.4/jquery.min.js')
+    <!--[if (lt IE 8)]>
+    script(src="//cdn.bootcss.com/json2/20150503/json2.js")
+    <![endif]-->
+    script(src=config.assets + '/js/dialog.js?v=' + config.version)
+    script(src=config.assets + '/js/server_manager.js?v=' + config.version)
+    script(src=config.common_assets + '/js/login.js?v=' + config.version)
+    script(src=config.assets + '/js/main.js?v=' + config.version)
+  body.body-back
+    .wrapper
+      include ../partials/nav.pug
+      block content
+    .footer
+      include ../partials/footer.pug
+    block scripts
+    include ../../../common/views/analytics.pug

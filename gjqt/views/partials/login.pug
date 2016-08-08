@@ -1,0 +1,155 @@
+.row.enter-area
+  .start-area
+    a#startBtn.start-btn(href='/server_list', target='_blank')
+  #normal_spr_bg_1.deposit-area
+    #depositBtn.floatL
+      a(href=config.url.pay + '/?gid=' + config.gid, target='_blank')
+        i.img-dep
+        | 游戏充值
+    #regBtn.floatL.call-login-btn.regBtn
+      a(href='javascript:;', target='_blank')
+        i.img-reg
+        | 注册
+    #loginBtn
+  #normal_spr_bg_2.login-area
+    .floatL.inp-area
+      input.uname-inp.inp(type='text', placeholder='账户')
+      input.pwd-inp.inp(type='password', placeholder='密码')
+      .verify-layer.hide
+        input.verify-inp.inp(type='text', placeholder='验证码')
+        a#refreshVer(href='javascript:;', title='刷新验证码')
+          img#verifyImg.verify-img(src='')
+    .floatR.login-btn
+      span 登录
+    .inline.other-login
+      a#loginByQQ(href='', style='left: 0;width: 115px;')
+        img(src=config.assets + '/images/qq_login.gif', width='100%', height='100%')
+      a#loginByWechat(href='', style='right: 0;width: 110px;')
+        img(src=config.assets + '/images/wechat_login.png', width='100%', height='100%')
+  #normal_spr_bg_3.user-area.hide
+    p
+      | 您好，
+      strong.point.user-nickname
+    p
+      | 您最近一次进入的区服是：
+      br
+      a.point.recent-line(href='javascript:;', target='_blank') 您暂未玩过游戏
+    p.user-out
+      a.floatR.logout-btn(href='javascript:;') 注销 &gt;&gt;
+script.
+  $(function () {
+    LoginManager.isLogined(function (logined) {
+      if (logined) {
+        LoginManager.getUserInfo(function (userInfo) {
+          var $normal_spr_bg_3 = $('#normal_spr_bg_3');
+          $('#normal_spr_bg_2').addClass('hide');
+          $normal_spr_bg_3.removeClass('hide');
+          $normal_spr_bg_3.find('.user-nickname').text(userInfo.nickname);
+
+          //- 最近玩过的服
+          $.ajax({
+            url: '#{config.origin.game}/gameinfo/server/recentserver',
+            data: {
+              gid: GAME_ID,
+              pagenum: 1,
+              pagesize: 1
+            },
+            dataType: 'jsonp',
+            jsonp: 'function',
+            success: function (result) {
+              if (result.status == 1 && result.data.data.length != 0) {
+                $normal_spr_bg_3.find('.recent-line').attr('href', '#{config.url.play}/?gid=' + result.data.data[0].gid + '&sid=' + result.data.data[0].sid + '').text(result.data.data[0].sname);
+              }
+            }
+          });
+        });
+      }
+    });
+
+    //- 注册
+    $('#regBtn').find('a').attr('href', '#{config.url.user}/register?surl=' + encodeURIComponent(location.href));
+
+    //- 第三方登录
+    $('#loginByQQ').attr('href', LoginManager.loginByQQ(location.href));
+    $('#loginByWechat').attr('href', LoginManager.loginByWeixin(location.href));
+
+    //- 登录
+    $('#normal_spr_bg_2').on('click', '.login-btn', function (e) {
+      var $normal_spr_bg_2 = $('#normal_spr_bg_2');
+      var account = $.trim($normal_spr_bg_2.find('.uname-inp').val());
+      var password = $normal_spr_bg_2.find('.pwd-inp').val();
+      var code = '';
+      if (!account) {
+        alert('请输入账号');
+        return false;
+      }
+      if (!password) {
+        alert('请输入密码');
+        return false;
+      }
+      if (!$normal_spr_bg_2.find('.verify-layer').hasClass('hide')) {
+        code = $.trim($normal_spr_bg_2.find('.verify-inp').val());
+        if (!code) {
+          alert('请输入验证码');
+          return false;
+        }
+      }
+      LoginManager.login({
+        username: account,
+        password: password,
+        validatecode: code,
+        success: function (result) {
+          if (result.status == 1) {
+            location.reload();
+          } else {
+            if (result.status == 0) {
+              alert('登录失败');
+            } else if (result.status == 5) {
+              alert('系统错误');
+            } else if (result.status == 6) {
+              alert('此邮箱账号不存在');
+            } else if (result.status == 7) {
+              alert('登录名或密码错误');
+            } else if (result.status == 15) {
+              alert('此账号已经被禁用');
+            } else if (result.status == 17) {
+              alert('验证码错误');
+            }
+            needCode();
+          }
+        }
+      });
+    });
+
+    //- 是否需要验证码
+    $('#normal_spr_bg_2').on('blur', '.uname-inp', function (e) {
+      needCode();
+    });
+
+    //- 刷新验证码
+    $('#refreshVer').on('click', function (e) {
+      $('#normal_spr_bg_2').find('.verify-img').attr('src', LoginManager.getCode());
+    });
+
+    //- 是否需要验证码
+    function needCode() {
+      LoginManager.needCode({
+        yes: function () {
+          $('#normal_spr_bg_2').find('.verify-layer').removeClass('hide');
+          $('#normal_spr_bg_2').find('.verify-img').attr('src', LoginManager.getCode());
+        },
+        no: function () {
+          $('#normal_spr_bg_2').find('.verify-layer').addClass('hide');
+        }
+      });
+    }
+
+    //- 退出
+    $('#normal_spr_bg_3').on('click', '.logout-btn', function (e) {
+      LoginManager.logout({
+        success: function () {
+          location.reload();
+        }
+      });
+    });
+  });

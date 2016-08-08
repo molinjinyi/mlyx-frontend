@@ -1,0 +1,52 @@
+// 导航
+.g-navbar {
+  background-color: @navbar-bgcolor;
+  .brand {
+    float: left;
+    margin-top: 20px;
+    img {
+      display: block;
+    }
+  }
+  .nav {
+    float: right;
+    li {
+      float: left;
+      text-align: center;
+      a {
+        display: block;
+        padding: 0 20px;
+        height: 90px;
+        line-height: 90px;
+        color: @navbar-color;
+        &:hover {
+          color: @navbar-color-hover;
+        }
+      }
+      &.active {
+        a {
+          color: @navbar-color-hover;
+        }
+      }
+    }
+    .search-wrap {
+      float: right;
+    }
+    .search-form {
+      margin: 28px 0;
+      width: 195px;
+      height: 34px;
+      border: 1px solid #6e96d2;
+      border-radius: 20px;
+      text-align: left;
+      .txt-search {
+        padding-left: 20px;
+        width: 160px;
+        height: 32px;
+        background-color: transparent;
+        border: 0;
+        color: @navbar-color;
+      }
+    }
+  }
+}

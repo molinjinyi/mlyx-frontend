@@ -1,0 +1,213 @@
+doctype html
+html(lang='zh-cn')
+  head
+    include ./partials/head
+    block title
+      title 《风云无双》官方网站 - 墨麟游戏
+    link(rel='stylesheet' href=config.assets + '/css/server.css?v=' + config.version)
+    script(src='//cdn.bootcss.com/jquery/1.12.4/jquery.min.js')
+    <!--[if lt IE 8]>
+    script(src="//cdn.bootcss.com/json2/20150503/json2.js")
+    <![endif]-->
+    script(src=config.common_assets + '/js/login.js?v=' + config.version)
+  body
+    .topbar
+      .container
+        img.logo(src=config.assets + '/images/fw_wzwd_logo.png')
+        ul.nav
+          li
+            a(href=config.url + '/')
+              i.icon.icon-home
+              | 首页
+          li
+            a(href=config.site_url.play_url + '/')
+              i.icon.icon-recharge
+              | 充值
+          li.nrm
+            a(href=config.site_url.forum_url + '/')
+              i.icon.icon-commenting
+              | 论坛
+    .content
+      .container
+        h3.login-title.title
+          i.icon.icon-user
+          | 用户登录
+        #unlogin_wrap.unlogin-wrap
+          .prompt 您好，您还没有登录呢，赶紧登录吧
+          a.btn-login(href='javascript:;') 立即登录
+        #logined_wrap.logined-wrap(style='display: none;')
+          .user-info
+            .name-wrap
+              a(href=config.site_url.user + '/').username
+              | 您好！
+              a.btn-logout(href='javascript:;') 注销
+            a.btn-infocenter(href=config.site_url.user + '/', target='_blank') 用户中心
+          .played-server
+            i.icon.icon-clock
+            | 您上次登录的服务器是：
+            a.lnk-recent(href='javascript:;', target='_blank')
+        h3.title
+          i.icon.icon-server
+          | 服务器列表
+        h4.recommend-title.sub-title
+          span.angle &gt;
+          | 推荐服务器
+        ul#recommend_list.recommend-list.cf
+          li.item
+            a(href='', target='_blank') 1111服
+          li.item
+            a(href='', target='_blank') 1111服
+          li.item.nrm
+            a(href='', target='_blank') 1111服
+        h4.sub-title
+          span.angle &gt;
+          | 选择服务器
+        #server_wrap.server-wrap
+          .server-header
+            label.lbl.nlm 快速进入
+            input.input(type='number', name='serverid')
+            label.lbl 服
+            button.btn-quick(type='button') GO
+          .list-wrap
+            ul#server_list.server-list.cf
+    .footer
+      .container
+        a.f-logo.fl(href=config.site_url.mlyx_url + '/')
+          img(src=config.common_assets + '/images/logo2.png?v=' + config.version)
+        .copyright.fl
+          p.ntm
+            | 联系我们&nbsp;&nbsp;|&nbsp;&nbsp;加入墨麟&nbsp;&nbsp;|&nbsp;&nbsp;视频中心&nbsp;&nbsp;|&nbsp;&nbsp;下载中心&nbsp;&nbsp;|&nbsp;&nbsp;法律声明&nbsp;&nbsp;|&nbsp;&nbsp;网站地图&nbsp;&nbsp;|&nbsp;&nbsp;站长统计
+            //- a(href='http://www.mokylin.com/contact.php', rel='nofollow', target='_blank') 联系我们
+            //- | &nbsp;|&nbsp;
+            //- a(href='http://www.mokylin.com/timeline.php', rel='nofollow', target='_blank') 加入墨麟
+            //- | &nbsp;|&nbsp;
+            //- a(href='http://www.mokylin.com/video.php', rel='nofollow', target='_blank') 视频中心
+            //- | &nbsp;|&nbsp;
+            //- a(href='http://www.mokylin.com/download.php', rel='nofollow', target='_blank') 下载中心
+            //- | &nbsp;|&nbsp;
+            //- a(href='http://www.mokylin.com/legal.php', rel='nofollow', target='_blank') 法律声明
+            //- | &nbsp;|&nbsp;
+            //- a(href='http://www.mokylin.com/map.php', rel='nofollow', target='_blank') 网站地图
+            //- | &nbsp;|&nbsp;
+            //- a(href='http://www.cnzz.com/stat/website.php?web_id=5830563', rel='nofollow', target='_blank') 站长统计
+          p Copyright &copy; 2011 - #{moment().format('YYYY')} 墨麟科技股份有限公司. All Rights Reserved
+          p.icp.nbm
+            a(href='http://www.mokylin.com/images/B2-20130762.jpg', target='_blank') ICP粤B2-20130762
+            | &nbsp;
+            a(href='http://www.miitbeian.gov.cn', target='_blank') 粤ICP备13082784号-6
+            | &nbsp;
+            a(href='http://www.mokylin.com/images/icp.jpg', target='_blank') 粤网文[2013]1028-278
+        //- .contact.fr
+        //-   a.weixin(href='javascript:;')
+        //-     i.gicon.gicon-weixin
+        //-     | mokylin
+        //-   a.weibo(href='javascript:;', target='_blank')
+        //-     i.gicon.gicon-weibo
+        //-     | 墨麟科技
+    script.
+      $(function () {
+        var $unlogin_wrap = $('#unlogin_wrap');
+        var $logined_wrap = $('#logined_wrap');
+        var $server_wrap = $('#server_wrap');
+
+        initPage();
+
+        // 初始化页面
+        function initPage() {
+          LoginManager.isLogined(function (logined) {
+            if (logined) {
+              $unlogin_wrap.hide();
+              $logined_wrap.show();
+              LoginManager.getUserInfo(function (userInfo) {
+                $logined_wrap.find('.username').text(userInfo.nickname);
+              });
+
+              // 获取最近玩过的服
+              getPlayedList();
+            }
+          });
+
+          // 获取所有服务器列表
+          getServerList();
+        }
+
+        // 登录
+        $unlogin_wrap.on('click', '.btn-login', function (e) {
+          LoginManager.loginByDialog();
+        });
+
+        // 注销
+        $logined_wrap.on('click', '.btn-logout', function (e) {
+          LoginManager.logout({
+            success: function () {
+              location.reload();
+            }
+          });
+        });
+
+        // 快速进入
+        $server_wrap.on('click', '.btn-quick', function (e) {
+          var num = $.trim($server_wrap.find('.input').val());
+          if (num) {
+            window.open('#{config.site_url.play_url}/?gid=#{config.gid}&sid=' + num);
+          }
+        });
+
+        // 获取最近玩过的服
+        function getPlayedList() {
+          $.ajax({
+            url: '#{config.domain.game}/gameinfo/server/recentserver',
+            data: {
+              gid: #{config.gid},
+              pagenum: 1,
+              pagesize: 1
+            },
+            dataType: 'jsonp',
+            jsonp: 'function',
+            success: function (result) {
+              if (result.status == 1) {
+                var $lnk_recent = $logined_wrap.find('.lnk-recent');
+                if (result.data.data.length != 0) {
+                  var href = '#{config.site_url.play_url}/?gid=' + result.data.data[0].gid + '&sid=' + result.data.data[0].sid;
+                  $lnk_recent.text(result.data.data[0].sname).attr('href', href);
+                } else {
+                  $lnk_recent.text('您还没有玩过该游戏呢');
+                }
+              }
+            }
+          });
+        }
+
+        // 获取所有服务器列表
+        function getServerList() {
+          $.ajax({
+            url: '#{config.domain.game}/gameinfo/server/openserverlist',
+            data: {
+              gid: #{config.gid}
+            },
+            dataType: 'jsonp',
+            jsonp: 'function',
+            success: function (result) {
+              if (result.status == 1) {
+                var recommendHtml = '';
+                var html = '';
+                var item;
+                for (var i = 0, j = result.data.length; i < j; i++) {
+                  item = result.data[i];
+                  html += '<li class="item">' +
+                    '<a href="#{config.site_url.play_url}/?gid=' + item.gid + '&sid=' + item.sid + '" target="_blank">' + item.sname + '</a>' +
+                    '</li>';
+                  if (i < 3) {
+                    recommendHtml += '<li class="item">' +
+                      '<a href="#{config.site_url.play_url}/?gid=' + item.gid + '&sid=' + item.sid + '" target="_blank">' + item.sname + '</a>' +
+                      '</li>';
+                  }
+                }
+                $('#recommend_list').html(recommendHtml);
+                $('#server_list').html(html);
+              }
+            }
+          });
+        }
+      });
+    include ../../common/views/analytics.pug

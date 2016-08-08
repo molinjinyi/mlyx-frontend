@@ -1,0 +1,13 @@
+.hot-panel.panel
+  header.panel-header 热门推荐
+  .panel-body
+    ul.hot-list
+      each item, index in hots
+        li(class={nbb: index == 4})
+          dl
+            dt.fl
+              a.game-icon(href=item.gameurl, target='_blank')
+                img(src=item.gamepictureicon)
+            dd
+              a.name(href=item.gameurl, target='_blank') #{item.gamename}
+              .slogan &nbsp;

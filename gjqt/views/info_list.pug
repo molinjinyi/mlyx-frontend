@@ -1,0 +1,25 @@
+extends ./layouts/default.pug
+
+block styles
+  link(rel='stylesheet' href=config.assets + '/css/news.css?v=' + config.version)
+
+block content
+  .list-top
+    .top-title 游戏资料
+    .top-position
+      a(href='/') 古剑奇谭首页
+      |  &gt; 游戏资料
+  .list-main
+    ul.list
+      each article in articles
+        li.item
+          span.floatR 【#{moment(article.date).format('MM-DD')}】
+          a(href='/info/' + article.aid, title=article.title, target='_blank') #{article.title}
+    if totalPages > 1
+      .pager
+        if pageIndex > 1
+          - var previous = parseInt(pageIndex) - 1
+          a.previous(href='/info_list/' + previous) 上一页
+        if pageIndex < totalPages
+          - var next = parseInt(pageIndex) + 1
+          a.next(href='/info_list/' + next) 下一页

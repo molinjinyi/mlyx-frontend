@@ -1,0 +1,319 @@
+extends ./layouts/sign.pug
+
+block title
+  title 注册 - #{config.name}
+
+block header-title
+  | 注册
+
+block content
+  .sign-wrap
+    .container.pr
+      form#signup_form.signup-form.form.form-block.pa
+        .input-box.email-box.pr
+          label.lbl 邮箱
+            span.muted （建议使用常用邮箱）
+          input.input.email(type='text', tabindex='1')
+          i.icon.icon-success.pa(title='该邮箱可以使用', style='display: none;')
+          i.icon.icon-error.pa(title='该邮箱已被注册', style='display: none;')
+          ul#autocomplete.autocomplete.pa(style='display: none;')
+            li
+              a.item(href='javascript:;', data-type='@qq.com')
+            li
+              a.item(href='javascript:;', data-type='@163.com')
+            li
+              a.item(href='javascript:;', data-type='@126.com')
+            li
+              a.item(href='javascript:;', data-type='@263.com')
+            li
+              a.item(href='javascript:;', data-type='@sina.com')
+            li
+              a.item(href='javascript:;', data-type='@sohu.com')
+            li
+              a.item(href='javascript:;', data-type='@gmail.com')
+            li
+              a.item(href='javascript:;', data-type='@hotmail.com')
+            li
+              a.item(href='javascript:;', data-type='@yahoo.com')
+            li
+              a.item(href='javascript:;', data-type='@outlook.com')
+            li
+              a.item(href='javascript:;', data-type='@msn.com')
+            li
+              a.item(href='javascript:;', data-type='@live.com')
+            li
+              a.item(href='javascript:;', data-type='@icloud.com')
+        .input-box.pwd-box
+          label.lbl 密码
+            span.muted （建议至少使用两种字符组合）
+          input.input.password(type='password', tabindex='2', placeholder='6-40个字符')
+        .input-box
+          label.lbl 确认密码
+          input.input.confirm-password(type='password', tabindex='3')
+        .input-box.checkcode-box.hide
+          label.lbl 验证码
+          div
+            input.input.checkcode(type='text')
+            img.imgcode(title='点击刷新验证码')
+        .input-box
+          .error-msg
+        .input-box
+          label.lbl-chk
+            input.chk.chk-agree(type='checkbox', checked)
+            | 我已阅读并同意
+            a(href='/agreement', target='_blank') 《用户注册服务协议》
+        .input-box
+          button#btn_signup.btn.btn-signup(type='button') 注 册
+        .input-box.tac.nbm
+          a.lnk-signin(href='/login', target='_blank') 已有账号？马上登录
+
+block scripts
+  script.
+    $(function () {
+      var $signup_form = $('#signup_form');
+      var $btn_signup = $('#btn_signup');
+
+      // 注册成功跳转页面
+      var surl = decodeURIComponent(getPageVar('surl') || '#{config.url.main}/');
+      // 注册失败跳转页面
+      var furl = decodeURIComponent(getPageVar('furl') || '#{config.url.main}/');
+
+      // 联想邮箱后缀
+      $signup_form.on('keydown focus', '.email', function (e) {
+        var $this = $(this);
+        var $autocomplete = $('#autocomplete');
+        if (e.which == 38 || e.which == 40) {
+          e.preventDefault();
+          var $active = $autocomplete.find('.active');
+          if ($active.length != 0) {
+            $active.removeClass('active');
+          }
+          if (e.which == 38) {
+            if ($active.length == 0) {
+              $active = $autocomplete.find('.item:first');
+            }
+            var $prev = $active.parent().prev();
+            if ($prev.length != 0) {
+              $prev.find('.item').addClass('active');
+            } else {
+              $autocomplete.find('.item:last').addClass('active');
+            }
+          } else {
+            if ($active.length == 0) {
+              $active = $autocomplete.find('.item:last');
+            }
+            var $next = $active.parent().next();
+            if ($next.length != 0) {
+              $next.find('.item').addClass('active');
+            } else {
+              $autocomplete.find('.item:first').addClass('active');
+            }
+          }
+        } else if (e.which == 13) {
+          var $active = $autocomplete.find('.active');
+          if ($active.length != 0) {
+            $this.val($active.text());
+            $autocomplete.hide();
+          }
+        } else if (e.which == 9) {
+          $('#autocomplete').hide();
+        } else {
+          setTimeout(function () {
+            var email = $.trim($this.val());
+            if (email.lastIndexOf('@') != -1) {
+              var suggest = email.substring(0, email.indexOf('@'));
+              var suffix = email.substring(email.indexOf('@'));
+              $autocomplete.find('.item').each(function (index, item) {
+                var $item = $(item);
+                var type = $item.data('type');
+                $item.text(suggest + type);
+                if (type.indexOf(suffix) != -1) {
+                  $item.parent().removeClass('hide');
+                } else {
+                  $item.parent().addClass('hide');
+                }
+              });
+              if ($autocomplete.find('li').length != $autocomplete.find('li.hide').length) {
+                $autocomplete.show();
+              } else {
+                $autocomplete.hide();
+              }
+            } else {
+              $autocomplete.hide();
+            }
+          }, 10);
+        }
+      });
+
+      $signup_form.on('blur', '.email', function (e) {
+        var email = $.trim($(this).val());
+        if ($(e.relatedTarget).closest('#autocomplete').length != 0) {
+          return;
+        }
+        $('#autocomplete').hide();
+        var emailReg = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        if (!emailReg.test(email)) {
+          var $email_box = $signup_form.find('.email-box');
+          $email_box.find('.icon-success').hide();
+          $email_box.find('.icon-error').attr('title', '请输入正确的邮箱').show();
+        } else {
+          checkEmail();
+        }
+      });
+
+      // 选中
+      $('#autocomplete').on('mouseover', '.item', function (e) {
+        var $autocomplete = $('#autocomplete');
+        $autocomplete.find('.item.active').removeClass('active');
+        $(this).addClass('active');
+      });
+
+      // 选择
+      $('#autocomplete').on('click', '.item', function (e) {
+        e.preventDefault();
+        var $autocomplete = $('#autocomplete');
+        $signup_form.find('.email').val($autocomplete.find('.item.active').text());
+        $autocomplete.hide();
+        checkEmail();
+      });
+
+      // 注册
+      $btn_signup.on('click', function (e) {
+        var data = getFormData();
+        if (!data) {
+          return;
+        }
+        $btn_signup.text('注册中...').prop('disabled', true);
+        $.ajax({
+          url: '#{config.origin.user}/user/register/byemail',
+          data: {
+            email: data.email,
+            pwd: data.password,
+            surl: surl,
+            furl: furl,
+            validatecode: data.code
+          },
+          dataType: 'jsonp',
+          jsonp: 'function',
+          success: function (result) {
+            if (result.status == 1) {
+              alert('注册成功');
+              location.href = surl;
+            } else {
+              var $error = $signup_form.find('.error-msg');
+              if (result.status == 0) {
+                $error.text('注册失败');
+              } else if (result.status == 2) {
+                $error.text('您的IP已经被禁止，暂时无法完成注册');
+              } else if (result.status == 14) {
+                $error.text('此邮箱已经被抢先注册，请重新输入');
+              } else if (result.status == 17) {
+                $error.text('验证码校验失败');
+              }
+              needCode();
+            }
+          },
+          complete: function () {
+            $btn_signup.text('注 册').prop('disabled', false);
+          }
+        });
+      });
+
+      // 检查邮箱是否可用
+      function checkEmail() {
+        $.ajax({
+          url: '#{config.origin.user}/user/check/email',
+          data: {
+            email: $.trim($signup_form.find('.email').val())
+          },
+          dataType: 'jsonp',
+          jsonp: 'function',
+          success: function (result) {
+            var $email_box = $signup_form.find('.email-box');
+            if (result.status == 1) {
+              $email_box.find('.icon-success').hide();
+              $email_box.find('.icon-error').attr('title', '该邮箱已被注册').show();
+            } else {
+              $email_box.find('.icon-success').show();
+              $email_box.find('.icon-error').hide();
+            }
+          }
+        });
+      }
+
+      // 获取页面参数值
+      function getPageVar(sVar) {
+        return decodeURI(window.location.search.replace(new RegExp('^(?:.*[&\\?]' + encodeURI(sVar).replace(/[\.\+\*]/g, '\\$&') + '(?:\\=([^&]*))?)?.*$', 'i'), '$1'));
+      }
+
+      // 是否需要验证码
+      function needCode() {
+        $.ajax({
+          url: '#{config.origin.user}/user/register/needvalidatecode',
+          dataType: 'jsonp',
+          jsonp: 'function',
+          success: function (result) {
+            if (result.status == 1) {
+              $signup_form.find('.checkcode-box').removeClass('hide');
+              $signup_form.find('.imgcode').attr('src', '#{config.origin.user}/user/validatecode/image?_=' + (new Date()).getTime());
+            } else {
+              $signup_form.find('.checkcode-box').addClass('hide');
+            }
+          }
+        });
+      }
+
+      // 获取表单数据
+      function getFormData() {
+        var $email = $signup_form.find('.email');
+        var $password = $signup_form.find('.password');
+        var $confirm_password = $signup_form.find('.confirm-password');
+        var $chk_agree = $signup_form.find('.chk-agree');
+        var $error = $signup_form.find('.error-msg');
+        var email = $.trim($email.val());
+        var password = $password.val();
+        var confirm_password = $confirm_password.val();
+        var chk_agree = $chk_agree.prop('checked');
+        var code = '';
+        var emailReg = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        if (!email) {
+          $error.text('请输入邮箱');
+          return false;
+        } else if (email.length < 6 || email.length > 80 || !emailReg.test(email)) {
+          $error.text('请输入正确的邮箱');
+          return false;
+        }
+        if (!password) {
+          $error.text('请输入密码');
+          return false;
+        }
+        if (password.length < 6 || password.length > 40) {
+          $error.text('密码长度为6-40个字符');
+          return false;
+        }
+        if (!confirm_password) {
+          $error.text('请输入确认密码');
+          return false;
+        } else if (confirm_password != password) {
+          $error.text('两次密码不一致');
+          return false;
+        }
+        if (!$signup_form.find('.checkcode-box').hasClass('hide')) {
+          code = $.trim($signup_form.find('.checkcode').val());
+          if (!code) {
+            $error.text('请输入验证码');
+            return false;
+          }
+        }
+        if (!chk_agree) {
+          $error.text('请阅读注册协议并勾选同意');
+          return false;
+        }
+        $error.text('');
+        return {
+          email: email,
+          password: password,
+          code: code
+        }
+      }
+    });

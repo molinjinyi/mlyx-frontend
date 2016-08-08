@@ -1,0 +1,35 @@
+extends ./layouts/default.pug
+
+block content
+  .index-wrap
+    iframe#game_iframe.game-iframe(src='', width='100%', height='100%', frameborder='0')
+    script.
+      var gid = LoginManager.getUrlParam('gid');
+      var sid = LoginManager.getUrlParam('sid');
+
+      getGameInfo();
+
+      // 获取游戏服务器信息
+      function getGameInfo() {
+        $.ajax({
+          url: '#{config.origin.game}/gameinfo/server/loadgameurl',
+          data: {
+            gid: gid,
+            sid: sid
+          },
+          dataType: 'jsonp',
+          jsonp: 'function',
+          success: function (result) {
+            if (result.status == 1) {
+              $('#game_iframe').attr('src', result.data);
+              //- document.title = result.data.gname + ' ' + result.data.sname;
+            } else if (result.status == 2) {
+              location.href = '#{config.url.user}/login?surl=' + encodeURIComponent(location.href);
+            } else if (result.status == 3) {
+              $('.index-wrap').append('<div class="tips">参数错误，请确认后重试......</div>');
+            } else {
+              $('.index-wrap').append('<div class="tips">服务器异常，请稍后进行刷新重试......</div>');
+            }
+          }
+        });
+      }

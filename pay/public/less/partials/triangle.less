@@ -1,0 +1,21 @@
+// 列表三角索引
+.triangle {
+  display: inline-block;
+  border: 5px solid transparent;
+  &.left {
+    border-right-color: @triangle-color;
+    border-left-width: 0;
+  }
+  &.right {
+    border-left-color: @triangle-color;
+    border-right-width: 0;
+  }
+  &.top {
+    border-bottom-color: @triangle-color;
+    border-top-width: 0;
+  }
+  &.bottom {
+    border-top-color: @triangle-color;
+    border-bottom-width: 0;
+  }
+}

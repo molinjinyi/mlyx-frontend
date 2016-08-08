@@ -1,0 +1,33 @@
+extends ./layouts/default.pug
+
+block styles
+  link(rel='stylesheet' href=config.assets + '/css/news.css?v=' + config.version)
+
+block content
+  .list-top
+    .top-title 新闻中心
+    .top-position
+      a(href='/') 古剑奇谭首页
+      |  &gt; 新闻中心
+    .top-category
+      ul.category
+        li(class=category.ename == 'all' ? 'focus' : '')
+          a(href='/news_list/all') 综合
+        li(class=category.ename == 'news' ? 'focus' : '')
+          a(href='/news_list/news') 新闻
+        li(class=category.ename == 'announcements' ? 'focus' : '')
+          a(href='/news_list/announcements') 公告
+  .list-main
+    ul.list
+      each article in articles
+        li.item
+          span.floatR 【#{moment(article.date).format('MM-DD')}】
+          a(href='/news/' + article.aid, title=article.title, target='_blank') #{article.title}
+    if totalPages > 1
+      .pager
+        if pageIndex > 1
+          - var previous = parseInt(pageIndex) - 1
+          a.previous(href='/news_list/' + category.ename + '/' + previous) 上一页
+        if pageIndex < totalPages
+          - var next = parseInt(pageIndex) + 1
+          a.next(href='/news_list/' + category.ename + '/' + next) 下一页

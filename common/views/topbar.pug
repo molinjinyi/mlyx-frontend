@@ -1,0 +1,76 @@
+header#g_topbar.g-topbar
+  .container
+    .games-wrap
+      .game-menu
+        i.gicon.gicon-th
+        | 所有游戏
+      .game-list
+        .illustrate
+          .newest
+            i.gicon.gicon-newest
+            | 最新游戏
+          .hot
+            i.gicon.gicon-hot
+            | 热门游戏
+        .web-games
+          .title
+            i.gicon.gicon-file
+            | 网页游戏
+          ul.web-list.cf
+            li
+              a(href='http://fy.mlyx.com/', target='_blank') 风云无双
+              i.gicon.gicon-newest
+              i.gicon.gicon-hot
+        .client-games
+          .title
+            i.gicon.gicon-desktop2
+            | 客户端游戏
+          ul.client-list.cf
+        .mobile-games.nrb
+          .title
+            i.gicon.gicon-hand
+            | 手机游戏
+          ul.mobile-list.cf
+    .user-wrap
+      i.gicon.gicon-user
+      span.unlogin
+        a.lnk.g-signin(href='javascript:;') 登录
+        | &nbsp;|&nbsp;
+        a.lnk.g-signup(href=config.url.user + '/register', target='_blank') 注册
+      span.logined(style='display:none;')
+        a.lnk-username(href=config.url.user + '/')
+        | &nbsp;|&nbsp;
+        a.lnk.g-logout(href='javascript:;') 退出
+    //- .menu-wrap
+    //-   a.lnk.lnk-desktop(href='javascript:;')
+    //-     i.gicon.gicon-desktop
+    //-     | 保存桌面
+    //-   a.lnk.lnk-home(href='javascript:;')
+    //-     i.gicon.gicon-home
+    //-     | 设为首页
+    //-   a.lnk.lnk-mobile(href='javascript:;')
+    //-     i.gicon.gicon-handle
+    //-     | 墨麟手游
+script.
+  $(function() {
+    LoginManager.getUserInfo(function (userInfo) {
+      if (userInfo) {
+        var $g_topbar = $('#g_topbar');
+        $g_topbar.find('.unlogin').hide();
+        $g_topbar.find('.logined').show();
+        $g_topbar.find('.lnk-username').text(userInfo.nickname);
+      }
+    });
+
+    $('#g_topbar').on('click', '.g-signin', function (e) {
+      LoginManager.loginByDialog();
+    });
+
+    $('#g_topbar').on('click', '.g-logout', function (e) {
+      LoginManager.logout({
+        success: function () {
+          location.reload();
+        }
+      });
+    });
+  });

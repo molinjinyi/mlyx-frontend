@@ -1,0 +1,130 @@
+.serverlist
+  .title
+    a.morecommon.more.server-more(href='javascript:;') +更多
+    | 服务器列表
+    span / SEVER
+  .quickselect
+    .smalltitle 快速选服
+    span.selected
+    a.click(href='', target="_blank") 点击进入
+  ul.ul-serverlist
+script.
+  $(function () {
+    var $serverArea = $(".serverlist");
+    var $quickselect = $(".quickselect");
+    var playUrl = '#{config.site_url.play_url}';
+    var gid = "#{config.gid}";
+    var serverParams = {
+        gid: gid,
+        pagenum: 1,
+        pagesize: 36
+    };
+
+    function getServers() {
+      var $listArea = $serverArea.find(".ul-serverlist");
+      $listArea.empty();
+
+      var $quickSpan = $quickselect.find(".selected");
+      var $quickClick = $quickselect.find(".click");
+
+      getServerList({
+        gid: gid,
+        pagenum: 1,
+        pagesize: 3
+      }, function (result) {
+        var html = '';
+        if(!result || !result.data || !result.data.data){
+          return;
+        }
+        var list = result.data.data;
+        for (var i = 0; i < list.length; i++) {
+          var tmp = list[i];
+          if(i==0 && $quickSpan && $quickClick){
+            $quickSpan.html(tmp.sname);
+            $quickClick.attr("href", playUrl + "/?gid=#{config.gid}&sid="+tmp.sid);
+          }
+          var tempUrl = playUrl + '?gid=#{config.gid}&sid='+ tmp.sid;
+          html += '<li><a href="'+ tempUrl +'" target="_blank">' + tmp.sname +'<span class="open">火爆开启</span></a></li>';
+        };
+        $listArea.html(html);
+      }, function (result) {});
+    }
+
+    $(".server-more").click(function(){
+      var params = serverParams;
+      params.pagenum = 1;
+      ServerManager.getAllServerList(params, function(result){
+        createServerHtml(result);
+      }, function (result) {});
+    });
+
+    var createServerHtml = function(result){
+      var items = '';
+      var resultData = result.data;
+      var list = result.data.data;
+
+      for(var i=0,j=list.length;i<j;i++){
+        var data = list[i];
+        var item = '<a class="" href="' + playUrl + "?gid=#{config.gid}&sid=" + data.sid + '" target="_blank"><strong>' 
+          + data.sname + '</strong></a>';
+        items += item;
+      }
+      myPlayRecent(function(recentData){
+        var recent = '<h3>最近没玩过游戏,快去试试吧！</h3>'
+        if(recentData && recentData.data && recentData.data.data && recentData.data.data.length>0){
+          var recentList = recentData.data.data;
+          recent = '<span style="float:left;">最近玩过：</span>';
+          for(var i=0,j=recentList.length;i<j;i++){
+            var data = recentList[i];
+            var item = '<a class="" href="' + playUrl + "?gid=#{config.gid}&sid=" + data.sid + '" target="_blank"><strong>' 
+              + data.sname + '</strong></a>';
+            recent += item;
+          }
+        }
+        var pages = '';
+        if(resultData.pagenum > 1){
+          pages += '<span class="page-pre">上一页</span>'
+        }
+        if(resultData.total > (resultData.pagenum * resultData.pagesize)){
+          pages += '<span class="page-next">下一页</span>'
+        }
+        var html = '<div class="servers"><div class="recent">' + recent + '</div>'
+          +'<div class="list">'+ items +'</div><div class="page">'+　pages +'</div></div>';
+
+        $.dialog({
+                title: '风云无双服务器',
+                className: 'dialog-example-server',
+                content: html
+            });
+        $(".dialog-example-server").on('click', '.page-pre', function(){
+          goPage(true);
+        });
+        $(".dialog-example-server").on('click', '.page-next', function(){
+          goPage(false);
+        });
+      });
+    };
+
+    var myPlayRecent = function(callback){
+      getPlayRecent({
+        gid: gid,
+        pagenum: 1,
+        pagesize: 3
+      }, function(result){
+        callback(result);
+      });
+    }
+    var goPage = function(pre){
+      var params = serverParams;
+      if(pre && params.pagenum > 1){
+        params.pagenum--;
+      }else{
+        params.pagenum++;
+      }
+      ServerManager.getAllServerList(params, function(result){
+        createServerHtml(result);
+      });
+    };
+
+    getServers();
+  });

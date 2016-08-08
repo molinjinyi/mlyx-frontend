@@ -1,0 +1,222 @@
+body {
+  background-color: #f3f3f3;
+}
+.icon {
+  display: inline-block;
+  margin-right: 5px;
+  width: 14px;
+  height: 14px;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+.icon-user2 {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/icon_user2.png);
+}
+.icon-lock {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/icon_lock.png);
+}
+.icon-qq {
+  width: 30px;
+  height: 30px;
+  background-image: url(../images/icon_qq.png);
+}
+.icon-weixin {
+  width: 30px;
+  height: 30px;
+  background-image: url(../images/icon_weixin.png);
+}
+.icon-success {
+  width: 17px;
+  height: 17px;
+  background-image: url(../images/icon_success.png);
+}
+.icon-error {
+  width: 17px;
+  height: 17px;
+  background-image: url(../images/icon_error.png);
+}
+.g-header {
+  height: 90px;
+  background-color: #303030;
+}
+.g-header .brand {
+  margin-top: 20px;
+}
+.g-header .brand img {
+  display: block;
+}
+.g-header .title {
+  margin: 31px 0 31px 30px;
+  font-size: 28px;
+  font-weight: normal;
+  color: #fff;
+  line-height: 1em;
+}
+.g-wrap {
+  padding-bottom: 135px;
+  height: auto;
+  min-height: 100%;
+}
+.g-footer {
+  margin-top: -135px;
+}
+.sign-wrap {
+  min-height: 600px;
+  background: url(../images/bg_login.jpg) no-repeat 50% 0;
+}
+.sign-wrap .form {
+  right: 0;
+  margin-top: 100px;
+  padding: 35px;
+  width: 330px;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.sign-wrap .form .input.checkcode {
+  display: inline-block;
+  width: 116px;
+}
+.sign-wrap .form .imgcode {
+  display: inline-block;
+  width: 110px;
+  height: 34px;
+  vertical-align: top;
+  margin-left: 25px;
+  cursor: pointer;
+}
+.sign-wrap .form .btn {
+  display: block;
+  padding: 10px;
+  width: 100%;
+  background-color: #239cf0;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+}
+.sign-wrap .form .btn:hover {
+  background-color: #1090ea;
+  border-color: #0d73ba;
+}
+.sign-wrap .form .btn:active {
+  box-shadow: 0 0 20px 0 #0b64a2 inset;
+}
+.sign-wrap .form .error-msg {
+  color: #d44950;
+}
+.sign-wrap .signin-form .input-addon {
+  float: left;
+  width: 16%;
+  height: 34px;
+  border: 1px solid #c5c6c5;
+  border-right: 0;
+  border-radius: 3px 0 0 3px;
+  background-color: #f0f0f0;
+}
+.sign-wrap .signin-form .input {
+  float: left;
+  padding: 6px 12px;
+  width: 84%;
+  height: 34px;
+  border: 1px solid #c5c6c5;
+  border-radius: 0 3px 3px 0;
+}
+.sign-wrap .signin-form .input.checkcode {
+  width: 116px;
+}
+.sign-wrap .signin-form .imgcode {
+  width: 120px;
+  height: 34px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+.sign-wrap .signin-form .icon-user2,
+.sign-wrap .signin-form .icon-lock {
+  margin-top: 7px;
+  margin-right: 0;
+}
+.sign-wrap .signin-form .lnk-forget {
+  float: right;
+  text-decoration: none;
+  color: #827e7a;
+}
+.sign-wrap .signin-form .lnk-forget:hover {
+  color: #239cf0;
+}
+.sign-wrap .signin-form .third-party a {
+  margin: 0 10px;
+}
+.sign-wrap .signin-form .third-party .icon {
+  margin: 0;
+}
+.sign-wrap .signin-form .third-party .icon-qq:hover {
+  background-image: url(../images/icon_qq_hover.png);
+}
+.sign-wrap .signin-form .third-party .icon-weixin:hover {
+  background-image: url(../images/icon_weixin_hover.png);
+}
+.sign-wrap .signin-form .lnk-signup {
+  color: #239cf0;
+  font-size: 12px;
+  text-decoration: none;
+}
+.sign-wrap .signin-form .lnk-signup:hover {
+  text-decoration: underline;
+}
+.sign-wrap .signup-form .muted {
+  font-size: 12px;
+  color: #b1b1b1;
+}
+.sign-wrap .signup-form .icon {
+  top: 33px;
+  right: -30px;
+}
+.sign-wrap .signup-form a {
+  color: #239cf0;
+}
+.sign-wrap .signup-form a:hover {
+  text-decoration: underline;
+}
+.sign-wrap .signup-form .btn {
+  background-color: #ff8e32;
+}
+.sign-wrap .signup-form .btn:hover {
+  background-color: #ff8018;
+  border-color: #e46700;
+}
+.sign-wrap .signup-form .btn:active {
+  box-shadow: 0 0 20px 0 #cb5b00 inset;
+}
+.sign-wrap .signup-form .lnk-signin {
+  font-size: 12px;
+}
+.sign-wrap .signup-form .autocomplete {
+  margin-top: -1px;
+  width: 100%;
+  background-color: #fff;
+  z-index: 9999999;
+  border: 1px solid #ccc;
+}
+.sign-wrap .signup-form .autocomplete a {
+  display: block;
+  padding: 5px 12px;
+  color: #333;
+}
+.sign-wrap .signup-form .autocomplete a.active {
+  text-decoration: none;
+  background-color: #ccc;
+}
+.agreement-wrap {
+  padding: 50px 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.agreement-wrap .indent {
+  text-indent: 2em;
+}
+.agreement-wrap .indent2 {
+  text-indent: 4em;
+}

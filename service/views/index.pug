@@ -1,0 +1,39 @@
+extends ./layouts/default.pug
+
+block content
+  .index-wrap.container
+    a.online-qq.column(href='http://wpa.qq.com/msgrd?v=3&uin=2880500813&site=qq&menu=yes', target='_blank')
+      .large-icon.large-qq
+      .title 在线客服
+      .enter
+        .large-icon.large-qq-hover
+    .phone.column
+      .large-icon.large-phone
+      .title 客服电话
+      .enter
+        .large-icon.large-phone-hover
+    .email.column
+      .large-icon.large-email
+      .title 客服邮箱
+      .enter
+        .large-icon.large-email-hover
+    .self-help.column.nrm(title='功能开发中，敬请期待...')
+      .large-icon.large-cog
+      .title 自助服务
+      .enter
+        .large-icon.large-cog-hover
+    a.findpwd.column2(href=config.url.service + '/forgotpwd')
+      .large-icon.large-lock
+      .title 找回密码
+      .enter
+        .large-icon.large-lock-hover
+    .account-repair.column(title='功能开发中，敬请期待...')
+      .large-icon.large-wrench
+      .title 账号修复
+      .enter
+        .large-icon.large-wrench-hover
+    .account-stolen.column.nrm(title='功能开发中，敬请期待...')
+      .large-icon.large-microphone
+      .title 账号申述
+      .enter
+        .large-icon.large-microphone-hover

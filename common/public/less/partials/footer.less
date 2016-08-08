@@ -1,0 +1,53 @@
+// 底部footer
+.g-footer {
+  padding: 30px 0;
+  background-color: @footer-bgcolor;
+  color: @footer-color;
+  font-size: 12px;
+  .f-logo {
+    float: left;
+    margin-right: 50px;
+    height: 37px;
+  }
+  .copyright {
+    float: left;
+    a {
+      color: @footer-color-lnk;
+      &:hover {
+        color: @footer-color-hover;
+      }
+    }
+    .icp {
+      a {
+        color: @footer-color;
+        &:hover {
+          color: @footer-color-hover;
+        }
+      }
+    }
+  }
+  .contact {
+    a {
+      display: inline-block;
+      padding: 14px 30px;
+      width: 235px;
+      color: #fff;
+    }
+    .gicon {
+      margin-right: 20px;
+    }
+    .weixin {
+      background-color: @footer-weixin-bgcolor;
+      &:hover {
+        background-color: lighten(@footer-weixin-bgcolor, 5%)
+      }
+    }
+    .weibo {
+      margin-left: 25px;
+      background-color: @footer-weibo-bgcolor;
+      &:hover {
+        background-color: lighten(@footer-weibo-bgcolor, 5%)
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+doctype html
+html(lang='zh-cn')
+  head
+    include ../../../common/views/head.pug
+    block title
+      title #{config.name}
+    link(rel='stylesheet' href=config.common_assets + '/css/mlyx.css?v=' + config.version)
+    link(rel='stylesheet' href=config.assets + '/css/sign.css?v=' + config.version)
+    block styles
+    <!--[if lt IE 9]>
+    script(src=config.common_assets + '/components/html5shiv/html5shiv.js?v=' + config.version)
+    <![endif]-->
+    script(src=config.common_assets + '/components/jquery/v1/jquery.js')
+  body
+    .g-wrap.cf
+      .g-header
+        .container
+          a.brand.fl(href=config.url.main + '/')
+            img(src=config.common_assets + '/images/logo.png')
+          h1.title.fl
+            block header-title
+      block content
+    include ../../../common/views/footer.pug
+    block scripts
+    include ../../../common/views/analytics.pug

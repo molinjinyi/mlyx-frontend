@@ -1,0 +1,144 @@
+// 游戏中心
+.index-wrapper {
+  position: relative;
+  .container {
+    position: relative;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .banner {
+    background: url(../images/bg_banner.jpg) no-repeat 50% 50%;
+    h1 {
+      margin: 0;
+      padding-bottom: 40px;
+      text-align: center;
+      color: #fff;
+      .icon-handle-lg {
+        margin-top: 5px;
+        vertical-align: top;
+      }
+      .title,
+      .subtitle {
+        margin-left: 15px;
+        font-weight: normal;
+        line-height: 1em;
+        text-align: left;
+      }
+      .title {
+        height: 28px;
+        font-size: 22px;
+        vertical-align: top;
+      }
+      .subtitle {
+        height: 20px;
+        font-size: 14px;
+        vertical-align: bottom;
+      }
+    }
+  }
+  .recommend-list {
+    .item {
+      float: left;
+      margin-right: 2%;
+      width: 23.5%;
+      background-color: #fff;
+      &:hover {
+        box-shadow: 0 0 10px 0px #fff;
+      }
+    }
+    .lnk-cover {
+      height: 160px;
+      overflow: hidden;
+    }
+    .cover {
+      display: block;
+      max-width: 100%;
+    }
+    .online {
+      margin: 10px 0 10px 20px;
+      line-height: 1.8em;
+      color: #a3a3a3;
+      .name {
+        display: inline-block;
+        margin: 5px 0;
+        font-size: 16px;
+        color: #515151;
+        &:hover {
+          color: @primary-color;
+        }
+      }
+    }
+    .lnks {
+      margin: 15px 20px 15px 0;
+      .lnk {
+        display: block;
+        margin-bottom: 10px;
+        padding: 2px 20px;
+        border: 1px solid #dedede;
+        border-radius: 16px;
+        color: #a3a3a3;
+        &:hover {
+          color: #fff;
+          background-color: @primary-color;
+          border-color: @primary-color;
+        }
+      }
+    }
+  }
+  .sidebar {
+    width: @sidebar-width;
+  }
+  .content {
+    margin-left: 20px;
+    width: @screen-width - (@sidebar-width + 20px);
+    @media screen and (max-width: @screen-max-width) {
+      width: @screen-width - (@sidebar-width + 20px + @mini-padding * 2);
+    }
+    .game-menu {
+      li {
+        float: left;
+        margin-right: 10px;
+      }
+      a {
+        display: block;
+        padding: 10px 25px;
+        background-color: #797575;
+        color: #fff;
+        font-size: 16px;
+        &:hover,
+        &.active {
+          background-color: @secondary-color;
+        }
+      }
+    }
+    .game-list {
+      margin-bottom: 25px;
+      .item {
+        float: left;
+        margin: 0 2% 2% 0;
+        width: 32%;
+        background-color: #fff;
+      }
+      .lnk-cover {
+        height: 160px;
+        overflow: hidden;
+      }
+      .cover {
+        display: block;
+        max-width: 100%;
+      }
+      .lnk {
+        display: inline-block;
+        padding: 15px;
+        width: 100% / 2;
+        border-right: 1px solid @border-color;
+        color: #515151;
+        text-align: center;
+        &:hover {
+          background-color: #fbfbfb;
+          color: @primary-color;
+        }
+      }
+    }
+  }
+}

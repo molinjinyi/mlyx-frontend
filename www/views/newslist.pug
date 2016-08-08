@@ -1,0 +1,70 @@
+extends ./layouts/default.pug
+
+block content
+  .news-wrapper
+    .container
+      .content.fl
+        header.breadcrumb.cf
+          a.crumb.home(href=config.url.main + '/')
+            i.icon.icon-home2
+            | 平台首页
+          i.crumb.icon.icon-angle-right
+          span.crumb 新闻资讯
+        ul.article-list
+          each article in articles
+            li
+              h3.toe
+                time.date.fr #{moment(article.cDate).format('YYYY.MM.DD')}
+                - var url = article.type == 0 ? '/news/' + article.aid : article.link
+                a.title(href=url, target='_blank') #{article.title}
+        if totalPages > 1
+          .pagination.tac
+            if pageIndex > 1
+              - var previous = pageIndex - 1
+              a(href=config.url.main + '/newslist') 首页
+              a.previous(href=config.url.main + '/newslist?page=' + previous) 上一页
+            if pageIndex <= 3
+              - var page = 1
+              while page <= totalPages && page <= 5
+                - var current = page++
+                if current == pageIndex
+                  span.active #{current}
+                else
+                  a(href=config.url.main + '/newslist?page=' + current) #{current}
+            else if pageIndex > totalPages - 3
+              - var page = totalPages - 4
+              while page <= totalPages
+                - var current = page++
+                if current == pageIndex
+                  span.active #{current}
+                else
+                  a(href=config.url.main + '/newslist?page=' + current) #{current}
+            else
+              - var page = pageIndex - 2
+              while page <= totalPages && page <= pageIndex + 2
+                - var current = page++
+                if current == pageIndex
+                  span.active #{current}
+                else
+                  a(href=config.url.main + '/newslist?page=' + current) #{current}
+            if pageIndex < totalPages
+              - var next = pageIndex + 1
+              a.next(href=config.url.main + '/newslist?page=' + next) 下一页
+              a(href=config.url.main + '/newslist?page=' + totalPages) 尾页
+      aside.sidebar.fl
+        #signin_panel.panel
+          header.panel-header
+            | 登录
+          include partials/signin.pug
+        include partials/hot.pug
+        include partials/shortcut.pug
+
+block scripts
+  script.
+    $(function () {
+      LoginManager.isLogined(function (logined) {
+        if (logined) {
+          $('#signin_panel').hide();
+        }
+      });
+    });

@@ -1,0 +1,35 @@
+doctype html
+html(lang='zh-cn')
+  head
+    include ../../../common/views/head.pug
+    block title
+      title 用户中心 - #{config.name}
+    link(rel='stylesheet' href=config.common_assets + '/css/mlyx.css?v=' + config.version)
+    link(rel='stylesheet' href=config.assets + '/css/main.css?v=' + config.version)
+    block styles
+    <!--[if lt IE 9]>
+    script(src=config.common_assets + '/components/html5shiv/html5shiv.js?v=' + config.version)
+    <![endif]-->
+    script(src=config.common_assets + '/components/jquery/v1/jquery.js')
+    script(src=config.common_assets + '/js/login.js?v=' + config.version)
+  body
+    - var nav = 'user'
+    include ../../../common/views/topbar.pug
+    include ../../../common/views/navbar.pug
+    .g-wrap.pr.cf
+      include ../partials/sidebar.pug
+      .content.cf
+        block content
+    include ../../../common/views/footer.pug
+    script.
+      LoginManager.isLogined(function (logined) {
+        if (logined) {
+          LoginManager.getUserInfo(function (userInfo) {
+            $('.avatar-wrap').find('.name').text(userInfo.nickname);
+          });
+        } else {
+          location.href = '#{config.url.user}/login?surl=' + encodeURIComponent(location.href);
+        }
+      });
+    block scripts
+    include ../../../common/views/analytics.pug

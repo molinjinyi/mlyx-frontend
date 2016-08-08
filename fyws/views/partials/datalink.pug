@@ -1,0 +1,7 @@
+.dataLink
+  if carouselList && carouselList.index_gamedata && carouselList.index_gamedata.length > 0
+    - var index = 0, len = carouselList.index_gamedata.length
+    while index < 4 && index < len
+      a(href=carouselList.index_gamedata[index].data.link, target='_blank', title=carouselList.index_gamedata[index].data.title)
+        img(src=carouselList.index_gamedata[index].data.img, width="135", height="66")
+      - index++

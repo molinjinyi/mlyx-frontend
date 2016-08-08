@@ -1,0 +1,87 @@
+extends ./layouts/default.pug
+
+block content
+  #payend_wrap.payend-wrap.cf
+    i.recharge-status.fl
+    .pay-info.fl
+      .title &nbsp;
+      table.table-form
+        tbody
+          tr
+            td.field 充值方式
+            td.order-mode
+          tr
+            td.field 订单号
+            td.order-no
+          tr
+            td.field 充值账号
+            td.order-user
+          tr
+            td.field 充值游戏
+            td.order-game
+          tr
+            td.field 充值金额
+            td.order-money
+          tr
+            td.field 获得元宝
+            td.order-ingot
+      div
+        a.btn.btn-orange(href=config.url.pay + '/') 继续充值
+        a.btn.btn-default(href=config.url.main + '/') 返回首页
+block scripts
+  script.
+    $(function () {
+      LoginManager.isLogined(function (login) {
+        if (!login) {
+          location.href = '#{config.url.user}/login?surl=' + encodeURIComponent(location.href);
+        }
+      });
+
+      // 获取url参数
+      function getPageVar(sVar) {
+        return decodeURI(window.location.search.replace(new RegExp('^(?:.*[&\\?]' + encodeURI(sVar).replace(/[\.\+\*]/g, '\\$&') + '(?:\\=([^&]*))?)?.*$', 'i'), '$1'));
+      }
+
+      // 获取订单信息
+      function getOrderInfo() {
+        var orderNo = getPageVar('orderNo');
+        $.ajax({
+          url: '#{config.origin.recharge}/recharge/alipay/getOrderInfo',
+          data: {
+            vOrderNo: orderNo
+          },
+          dataType: 'jsonp',
+          jsonp: 'function',
+          success: function (result) {
+            if (result.status == 20001) {
+              var $payend_wrap = $('#payend_wrap');
+              var mode = '';
+              switch (result.data.order.iplatformType) {
+              case 'ALIPAY':
+                mode = '支付宝支付';
+                break;
+              case 'WEICHAT':
+                mode = '微信支付';
+                break;
+              }
+              $payend_wrap.find('.order-mode').text(mode);
+              $payend_wrap.find('.order-no').text(result.data.order.vorderNo);
+              $payend_wrap.find('.order-user').text(result.data.nickname);
+              $payend_wrap.find('.order-game').text(result.data.gamename + ' ' + result.data.sname);
+              $payend_wrap.find('.order-money').text((result.data.order.irmb / 100) + '元');
+              $payend_wrap.find('.order-ingot').text(result.data.order.igameCurrency);
+
+              if (result.data.order.istatusVal >= 1) {
+                $payend_wrap.find('.recharge-status').addClass('recharge-success');
+                $payend_wrap.find('.title').text('充值成功，感谢您对墨麟游戏的支持，祝您游戏愉快！');
+              } else {
+                $payend_wrap.find('.recharge-status').addClass('recharge-failure');
+                $payend_wrap.find('.title').text('很抱歉，支付渠道扣款没有成功！');
+              }
+            }
+          }
+        });
+      }
+
+      getOrderInfo();
+    });

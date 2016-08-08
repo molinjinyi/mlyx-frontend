@@ -1,0 +1,37 @@
+extends ./layouts/default.pug
+
+block content
+  .news-wrapper
+    .container
+      .content.fl
+        header.breadcrumb.cf
+          a.crumb.home(href=config.url.main + '/')
+            i.icon.icon-home2
+            | 平台首页
+          i.crumb.icon.icon-angle-right
+          a.crumb(href=config.url.main + '/newslist') 新闻资讯
+          i.crumb.icon.icon-angle-right
+          span.crumb 文章详情
+        article.article
+          header.article-title
+            h2 #{article.title}
+            time.date #{moment(article.cDate).format('YYYY-MM-DD HH:ss')}
+          .article-content
+            | !{article.content}
+      aside.sidebar.fl
+        #signin_panel.panel
+          header.panel-header 登录
+          include partials/signin.pug
+        include partials/news.pug
+        include partials/hot.pug
+        include partials/shortcut.pug
+
+block scripts
+  script.
+    $(function () {
+      LoginManager.isLogined(function (logined) {
+        if (logined) {
+          $('#signin_panel').hide();
+        }
+      });
+    });

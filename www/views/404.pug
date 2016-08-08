@@ -1,0 +1,8 @@
+doctype html
+html(lang='zh-cn')
+  head
+    include ../../common/views/head.pug
+    block title
+      title 找不到页面 - #{config.name}
+  body
+    script(src='http://www.qq.com/404/search_children.js', charset='utf-8', homePageUrl=config.url.main + '/', homePageName='返回首页')

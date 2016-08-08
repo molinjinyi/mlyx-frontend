@@ -1,0 +1,160 @@
+@column-width: 241px;
+@gutter-width: 12px;
+.index-wrap {
+  margin: 90px auto 93px;
+  .column,
+  .column2 {
+    position: relative;
+    background-color: #999;
+    float: left;
+    margin-right: @gutter-width;
+    margin-bottom: @gutter-width;
+    width: @column-width;
+    height: @column-width;
+    font-size: 18px;
+    color: #fff;
+    .large-icon {
+      margin: (@column-width / 2 - 60) auto 0;
+      width: 93px;
+      height: 93px;
+    }
+    .title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 20px 25px;
+      width: 100%;
+    }
+    .enter {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: #fff;
+      overflow: hidden;
+      .opacity(0);
+      transition-duration: .5s;
+    }
+    &:hover {
+      .enter {
+        .opacity(1);
+      }
+    }
+  }
+  .column2 {
+    width: @column-width * 2 + @gutter-width;
+  }
+  .online-qq {
+    background: #28adea url(../images/bg_online_qq.png) no-repeat 290% 0;
+    .large-qq {
+      background-image: url(../images/large_qq.png);
+    }
+    .enter {
+      background-color: #28adea;
+    }
+    .large-qq-hover {
+      margin: (@column-width / 2 - 79 / 2) auto 0;
+      width: 162px;
+      height: 79px;
+      background-image: url(../images/large_qq_hover.png);
+    }
+  }
+  .phone {
+    background-color: #e7983c;
+    .large-phone {
+      background-image: url(../images/large_phone.png);
+    }
+    .enter {
+      background-color: #e7983c;
+    }
+    .large-phone-hover {
+      margin-top: @column-width / 2 - 107 / 2;
+      width: 165px;
+      height: 107px;
+      background-image: url(../images/large_phone_hover.png);
+    }
+  }
+  .email {
+    background-color: #8cc25a;
+    .large-email {
+      width: 108px;
+      background-image: url(../images/large_email.png);
+    }
+    .enter {
+      background-color: #8cc25a;
+    }
+    .large-email-hover {
+      margin-top: @column-width / 2 - 18 / 2;
+      width: 206px;
+      height: 18px;
+      background-image: url(../images/large_email_hover.png);
+    }
+  }
+  .self-help {
+    background-color: #7b7675;
+    .large-cog {
+      width: 84px;
+      height: 84px;
+      background-image: url(../images/large_cog.png);
+    }
+    .enter {
+      background-color: #7b7675;
+    }
+    .large-cog-hover {
+      margin-top: @column-width / 2 - 42 / 2;
+      width: 132px;
+      height: 42px;
+      background-image: url(../images/large_cog_hover.png);
+    }
+  }
+  .findpwd {
+    background-color: #e76f3f;
+    .large-lock {
+      width: 90px;
+      height: 90px;
+      background-image: url(../images/large_lock.png);
+    }
+    .enter {
+      background-color: #e76f3f;
+    }
+    .large-lock-hover {
+      margin-top: @column-width / 2 - 42 / 2;
+      width: 132px;
+      height: 42px;
+      background-image: url(../images/large_lock_hover.png);
+    }
+  }
+  .account-repair {
+    background-color: #4fb6e5;
+    .large-wrench {
+      background-image: url(../images/large_wrench.png);
+    }
+    .enter {
+      background-color: #4fb6e5;
+    }
+    .large-wrench-hover {
+      margin-top: @column-width / 2 - 42 / 2;
+      width: 132px;
+      height: 42px;
+      background-image: url(../images/large_wrench_hover.png);
+    }
+  }
+  .account-stolen {
+    background-color: #11bdb3;
+    .large-microphone {
+      width: 65px;
+      height: 88px;
+      background-image: url(../images/large_microphone.png);
+    }
+    .enter {
+      background-color: #11bdb3;
+    }
+    .large-microphone-hover {
+      margin-top: @column-width / 2 - 42 / 2;
+      width: 132px;
+      height: 42px;
+      background-image: url(../images/large_microphone_hover.png);
+    }
+  }
+}

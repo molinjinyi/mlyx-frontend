@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  outline: 0;
+  transition-duration: .15s;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  min-width: @screen-width;
+}
+body {
+  font-family: 'Hiragino Sans GB', 'Helveica Neue', 'Open Sans', 'Microsoft YaHei', Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: @body-color;
+  background-color: @body-bgcolor;
+}
+
+a {
+  text-decoration: none;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.container {
+  margin: 0 auto;
+  width: @screen-width;
+  .clearfix();
+  @media screen and (max-width: @screen-max-width) {
+    padding: 0 @mini-padding;
+  }
+}

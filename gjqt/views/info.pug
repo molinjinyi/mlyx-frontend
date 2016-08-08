@@ -1,0 +1,20 @@
+extends ./layouts/default.pug
+
+block styles
+  link(rel='stylesheet' href=config.assets + '/css/news.css?v=' + config.version)
+
+block content
+  .article-top
+    .top-title 游戏资料
+    .top-position
+      a(href='/') 古剑奇谭首页
+      | &nbsp;&gt;&nbsp;
+      a(href='/info_list') 游戏资料
+  .article-main
+    .article-title
+      .r-title #{article.title}
+      .r-date
+        | 发布时间：
+        span #{moment(article.date).format('YYYY-MM-DD HH:ss')}
+    .article-content
+      | !{article.content}

@@ -1,0 +1,172 @@
+.icon {
+  display: inline-block;
+  margin-right: 5px;
+  width: 14px;
+  height: 14px;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+.icon-angle-right2 {
+  width: 5px;
+  height: 9px;
+  background-image: url(../images/icon_angle_right2.png);
+}
+.icon-folder {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/icon_folder.png);
+}
+.icon-user2 {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/icon_user2.png);
+}
+.icon-user3 {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/icon_user3.png);
+}
+.icon-lock {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/icon_lock.png);
+}
+.icon-lock2 {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/icon_lock2.png);
+}
+.icon-square-plus {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/icon_square_plus.png);
+}
+.icon-microphone {
+  width: 12px;
+  height: 16px;
+  background-image: url(../images/icon_microphone.png);
+}
+.icon-success {
+  width: 17px;
+  height: 17px;
+  background-image: url(../images/icon_success.png);
+}
+.icon-error {
+  width: 17px;
+  height: 17px;
+  background-image: url(../images/icon_error.png);
+}
+body {
+  background-color: #fff;
+}
+.g-wrap {
+  margin: 0 auto;
+  width: 1260px;
+  min-height: 689px;
+}
+.content {
+  margin-left: 240px;
+  padding: 40px;
+}
+.sidebar {
+  width: 240px;
+  top: 0;
+  bottom: 0;
+  background-color: #f9f9f9;
+  border: 1px solid #e6e6e6;
+}
+.sidebar .avatar-wrap {
+  margin-top: 100px;
+  padding: 50px 0;
+}
+.sidebar .avatar-wrap .avatar-bg {
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #ededed;
+}
+.sidebar .avatar-wrap .avatar {
+  top: -50px;
+  left: 50%;
+  margin-left: -50px;
+  width: 100px;
+  height: 100px;
+}
+.sidebar .avatar-wrap .avatar img {
+  display: block;
+  max-width: 100%;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.sidebar .avatar-wrap .name {
+  margin-top: 10px;
+  height: 36px;
+  font-size: 18px;
+  line-height: 2em;
+}
+.sidebar .subnav {
+  margin: 30px 0 100px;
+}
+.sidebar .subnav li {
+  position: relative;
+}
+.sidebar .subnav li:hover a,
+.sidebar .subnav li.active a {
+  color: #fff;
+  background-color: #239cf0;
+}
+.sidebar .subnav li:hover a:after,
+.sidebar .subnav li.active a:after {
+  background: url(../images/icon_angle_right2.png) no-repeat 0 0;
+}
+.sidebar .subnav li:hover .icon-folder,
+.sidebar .subnav li.active .icon-folder {
+  background-image: url(../images/icon_folder2.png);
+}
+.sidebar .subnav li:hover .icon-user2,
+.sidebar .subnav li.active .icon-user2 {
+  background-image: url(../images/icon_user3.png);
+}
+.sidebar .subnav li:hover .icon-lock,
+.sidebar .subnav li.active .icon-lock {
+  background-image: url(../images/icon_lock2.png);
+}
+.sidebar .subnav li:hover .icon-square-plus,
+.sidebar .subnav li.active .icon-square-plus {
+  background-image: url(../images/icon_square_plus2.png);
+}
+.sidebar .subnav li:hover .icon-microphone,
+.sidebar .subnav li.active .icon-microphone {
+  background-image: url(../images/icon_microphone2.png);
+}
+.sidebar .subnav li a {
+  display: block;
+  padding: 18px 30px;
+  border-bottom: 1px solid #e6e6e6;
+  color: #333;
+  font-size: 15px;
+}
+.sidebar .subnav li a:after {
+  position: absolute;
+  content: '';
+  right: 20px;
+  top: 24px;
+  width: 5px;
+  height: 9px;
+  background: url(../images/icon_angle_right.png) no-repeat 0 0;
+}
+.sidebar .subnav li a .icon {
+  margin-top: -3px;
+  margin-right: 15px;
+}
+.modifypwd-wrap {
+  padding: 25px;
+  border: 1px solid #ddd;
+}
+.modifypwd-wrap .title {
+  margin-top: 0;
+  color: #3c3d40;
+  font-size: 16px;
+  font-weight: normal;
+}
