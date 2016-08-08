@@ -12,8 +12,6 @@ ports:
 - "8080:8080"
 
 script:
-- cd /mlyx-frontend/www
-- npm install
-- npm test
+- ls -l
 
 
