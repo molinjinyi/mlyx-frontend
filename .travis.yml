@@ -12,6 +12,8 @@ ports:
 - "8080:8080"
 
 script:
-- ls -l
+- cd www
+- npm install
+- npm test
 
 
