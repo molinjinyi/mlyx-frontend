@@ -16,4 +16,4 @@ script:
 - npm install
 - npm test
 
-
+- docker images
