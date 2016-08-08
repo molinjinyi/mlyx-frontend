@@ -10,7 +10,7 @@ install:
 - npm install
 
 before_install:
-- cd www
+- cd mlyx-frontend/www
 
 script:npm test
 
